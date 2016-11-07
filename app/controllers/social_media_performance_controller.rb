@@ -1,0 +1,2 @@
+class SocialMediaPerformanceController < ApplicationController
+end

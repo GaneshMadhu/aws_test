@@ -1,3 +1,42 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ug-topbar .mvp-ugt-logo a h2 {
+    background-image: image_url("iris_logo_reverse.png") !important;
+}
+
+.ugh-irisIntro,
+.ugh-insights {
+  .ug-card {
+    &.ugc-pdf {
+      &:after {
+        background-image: image_url("pdf-image.jpg") !important;
+      }
+    }
+    &.ugc-drivers {
+      &:after {
+        background-image: image_url("drivers.jpg") !important;
+      }
+    }
+    &.ugc-esmp {
+      &:after {
+        background-image: image_url("esmp-image.jpg") !important;
+      }
+    }
+    &.ugc-azmi {
+      &:after {
+        background-image: image_url("zoom-in-image.jpg") !important;
+      }
+    }
+    &.ugc-csl {
+      &:after {
+        background-image: image_url("case-study-image.jpg") !important;
+      }
+    }
+  }
+}
+
+.icon-pdf {
+  background-image: image_url("pdf.png");
+}

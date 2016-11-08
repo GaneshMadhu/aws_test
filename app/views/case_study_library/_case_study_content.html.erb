@@ -1,0 +1,32 @@
+<!-- start post-performance cards  -->
+<section class="ug-hand">
+  <header>
+    <h3>Post rankings based on engagement </h3>
+    <div class="ugh-actions">
+      <div class="custom-select">
+        <select name="ugh-sortby" id="" class="ugh-sortby" placeholder="Sort by">
+          <option></option>
+          <option value="h-l">Engagement (highest - lowest)</option>
+          <option value="l-h">Engagement (lowest - highest)</option>
+        </select>
+      </div>
+      <a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a>
+    </div>
+    <div class="ugh-description">Post rankings based on engagement </div>
+  </header>
+
+  <% @posts['data'].each_with_index do |post,index| %>
+    <% if index == 0 %>
+      <%= render 'top_post', post: post %>
+    <% else %>
+      <% if index == 1 %>
+        <div class="mvp-ranked-posts">
+      <% end %>
+        <%= render 'ranked_post', post: post %>
+      <% if index == @posts['data'].count %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
+<!-- END post-performance cards

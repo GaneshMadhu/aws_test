@@ -2,24 +2,22 @@ module IrisEngine
 
   class IrisApi
 
-    ENDPOINT = "http://localhost:3000/api"
-
     attr_accessor :conn
 
     def initialize
-      @conn = Faraday.new url: ENDPOINT
-      # @conn.basic_auth "iris_api", "ff3c3ac002c6c8cb"
+      @conn = Faraday.new url: ENV["IRIS_ENDPOINT"]
     end
 
-    def search
+    def case_study_search(url, query)
       json = _wrap_json do
         @conn.get do |r|
-          r.url "report_tagged_posts"
+          r.url url
           r.headers['Content-Type'] = 'application/json'
-          r.headers['Accept'] = 'application/api.v1'
-          r.body
+          r.headers = {'Accept' => 'application/api.v1', 'Authorization' => %-Token token="#{ENV["FRONT_END_KEY"]}"-}
+          r.params = query
         end
       end
+      json
     end
 
   private
@@ -27,8 +25,11 @@ module IrisEngine
    def _wrap_json(&block)
       if block_given?
         resp = block.call
-        raise "Attribot API Error: #{resp.status}" unless _response_good?(resp)
-        JSON.parse resp.body
+        unless _response_good?(resp)
+          {"data" => "HTTP Token: Access denied.\n"}
+        else
+          JSON.parse resp.body
+        end
       end
     end
 

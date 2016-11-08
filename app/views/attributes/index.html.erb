@@ -50,7 +50,7 @@
     <% @attributes.each do |key,attribute| %>
       <% attribute["traits"].each do |trait| %>
         <div class="attribute">
-          <div class="wrapper">
+          <div class="wrapper" style='background: <%= attribute["properties"]["color"] %>'>
             <div>
               <div class="attribute-title">
                   <h3><%= trait["code"] %></h3>

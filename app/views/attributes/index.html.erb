@@ -23,6 +23,13 @@
       <select name="m-attributes-filters" id="m-attributes-filters" data-color="*"></select>
     </div>
     <ul id="attributes-filters">
+      <% @attributes.each do |key,attribute| %>
+        <li class="active">
+            <a href="#" data-filter="*">
+                <%= attribute["name"] %>
+            </a>
+        </li>
+      <% end %>
       <li>
         <div class="spr-sort-filter">
             <input type="text" name="attribute-filter" id="attribute-filter" placeholder="Find attribute"/>
@@ -40,6 +47,25 @@
 <!-- start .page-content -->
 <section class="page-content">
   <div class="attribute-grid clearfix" id="attributes-container">
-
+    <% @attributes.each do |key,attribute| %>
+      <% attribute["traits"].each do |trait| %>
+        <div class="attribute">
+          <div class="wrapper">
+            <div>
+              <div class="attribute-title">
+                  <h3><%= trait["code"] %></h3>
+                  <h5><span><%= trait["name"] %></span></h5>
+                  <h4>Employer Reputation & Image</h4>
+              </div>
+              <div class="attribute-definition">
+                  <h4>Definition</h4>
+                  <p><%= trait["definition"] %></p>
+                  <a href="#!" class="atr-close">&times;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </section>

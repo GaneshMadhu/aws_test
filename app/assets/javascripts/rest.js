@@ -46,7 +46,7 @@ function frame_request(sort){
   }
 
   if(sort && (($('.ugh-sortby').length > 0) && ($('.ugh-sortby').val() != ""))){
-    params['sort'] = ($('.ugh-sortby').val() == "h-l") ? "asc" : "desc"
+    params['sort'] = $('.ugh-sortby').val()
   }
 
   return params;

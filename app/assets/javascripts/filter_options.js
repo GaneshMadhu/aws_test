@@ -107,8 +107,9 @@ function custom_select(filter_options){
           dropdownParent.removeClass('no-results');
       }
       populateResultsView(filtered);
+      rest_api_call('http://localhost:3000/case_study_library',true);
   });
-  input.val(getSelected(_resultsData)).trigger('change');
+  // input.val(getSelected(_resultsData)).trigger('change');
 
   if (clearButton instanceof jQuery) {
       clearButton.on('click', function(event) {

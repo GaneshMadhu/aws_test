@@ -4,7 +4,7 @@
     <h3>Post rankings based on engagement </h3>
     <div class="ugh-actions">
       <div class="custom-select">
-        <select name="ugh-sortby" id="" class="ugh-sortby" placeholder="Sort by">
+        <select name="ugh-sortby" id="" class="ugh-sortby" placeholder="Sort by" onchange="javascript: rest_api_call('<%= case_study_library_path %>',true);">
           <option></option>
           <option value="h-l">Engagement (highest - lowest)</option>
           <option value="l-h">Engagement (lowest - highest)</option>

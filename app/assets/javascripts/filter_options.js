@@ -116,4 +116,19 @@ function custom_select(filter_options){
           event.preventDefault();
       });
   }
+
+  var updateFiltersCount = function(values, group) {
+      var filtersCount = values ? values.length : 0;
+      group.find('.ugf-header').find('.selected').text([filtersCount, 'selected'].join(' '));
+  };
+
+  var filterGroups = $('.ugf-filter');
+  filterGroups.each(function() {
+      var group = $(this);
+      group.find('select').on('change', function() {
+          var values = $(this).val();
+          if (values && values[0] == '') values = null && $(this).val('');
+          updateFiltersCount(values, group);
+      });
+  });
 }

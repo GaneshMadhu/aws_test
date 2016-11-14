@@ -6,100 +6,10 @@
       <h3>Filters</h3>
     </div>
     <div class="ugf-content">
-      <div class="ugf-filter">
-        <header class="ugf-header">
-          <a href="#ugff-attribute" class="btn ugf-edit">Edit</a>
-          <h4>Attribute
-            <a href="#!" class="tooltip-trigger">
-              <i class="ug-icon i-info"></i>
-              <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
-            </a>
-          </h4>
-          <a href="!#close" class="clear-values"><span>Clear All</span> <i class="ug-icon i-remove"></i></a>
-          <span class="selected">6 selected</span>
-        </header>
-        <div id="#ugff-attribute" class="ugf-select ugff-attribute">
-          <div class="ugf-attribute-results"></div>
-          <select name="ugf-attribute" class="ugf-attribute" placeholder="Search attribute name" multiple="multiple"></select>
-        </div>
-        <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
-      </div>
 
-
-      <div class="ugf-filter">
-        <header class="ugf-header">
-          <a href="#ugff-country" class="btn ugf-edit">Edit</a>
-          <h4>Country
-            <a href="#!" class="tooltip-trigger">
-              <i class="ug-icon i-info"></i>
-              <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
-            </a>
-          </h4>
-          <a href="!#close" class="clear-values"><span>Clear All</span> <i class="ug-icon i-remove"></i></a>
-          <span class="selected">6 selected</span>
-        </header>
-        <div id="#ugff-country" class="ugf-select ugff-country">
-          <div class="ugf-country-results"></div>
-          <select name="ugf-country" class="ugf-country" placeholder="Search country" multiple="multiple"></select>
-        </div>
-        <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
-      </div>
-      <div class="ugf-filter">
-        <header class="ugf-header">
-          <a href="#ugff-industry" class="btn ugf-edit">Edit</a>
-          <h4>Industry
-            <a href="#!" class="tooltip-trigger">
-              <i class="ug-icon i-info"></i>
-              <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
-            </a>
-          </h4>
-          <a href="!#close" class="clear-values"><span>Clear All</span> <i class="ug-icon i-remove"></i></a>
-          <span class="selected">0 selected</span>
-        </header>
-        <div id="#ugff-industry" class="ugf-select ugff-industry">
-          <div class="ugf-industry-results"></div>
-          <select name="ugf-industry" class="ugf-industry" placeholder="Search industry" multiple="multiple"></select>
-        </div>
-        <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
-      </div>
-
-      <div class="ugf-filter">
-        <header class="ugf-header">
-          <a href="#ugff-company" class="btn ugf-edit">Edit</a>
-          <h4>Employer
-            <a href="#!" class="tooltip-trigger">
-              <i class="ug-icon i-info"></i>
-              <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
-            </a>
-          </h4>
-          <a href="!#close" class="clear-values"><span>Clear All</span> <i class="ug-icon i-remove"></i></a>
-          <span class="selected">0 selected</span>
-        </header>
-        <div id="#ugff-company" class="ugf-select ugff-company">
-          <div class="ugf-company-results"></div>
-          <select name="ugf-company" class="ugf-company" placeholder="Search company" multiple="multiple"></select>
-        </div>
-        <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
-      </div>
-
-      <div class="ugf-filter">
-        <header class="ugf-header">
-          <a href="#ugff-platform" class="btn ugf-edit">Edit</a>
-          <h4>Platform
-            <a href="#!" class="tooltip-trigger">
-              <i class="ug-icon i-info"></i>
-              <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
-            </a>
-          </h4>
-          <a href="!#close" class="clear-values"><span>Clear All</span> <i class="ug-icon i-remove"></i></a>
-          <span class="selected">0 selected</span>
-        </header>
-        <div id="#ugff-platform" class="ugf-select ugff-platform">
-          <div class="ugf-platform-results"></div>
-          <select name="ugf-platform" class="ugf-platform" placeholder="Search platform" multiple="multiple"></select>
-        </div>
-        <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
-      </div>
+      <% filters.each do |type| %>
+        <%= react_component('FilterSelect', SelectFilterParams.new(data["filters"][type], type).options) %>
+      <% end %>
 
       <div class="ugf-filter">
         <header class="ugf-header">

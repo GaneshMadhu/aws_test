@@ -1,0 +1,25 @@
+<!-- start zoom-in-chart card  -->
+<section class="ug-hand">
+  <header>
+    <h3>Attribute Zoom-In</h3>
+    <div class="ugh-actions"><a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a></div>
+    <div class="ugh-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ipsum repudiandae vel totam, sequi adipisci recusandae corrupti, ea similique temporibus magni fuga nisi.</div>
+  </header>
+  <div class="ug-card ug-chart">
+    <div class="chart-container">
+      <div data-zoom-in-chart>
+        <%= react_component("PostMetrics", data: post_metrics) %>
+      </div>
+    </div>
+    <div class="ug-loading-container">
+      <div class="ug-loading">
+        <span class="icon-loading">
+          <span class="l-outer"></span>
+          <span class="l-middle"></span>
+          <span class="l-inner"></span>
+        </span>Loading...
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END zoom-in-chart card -->

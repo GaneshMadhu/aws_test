@@ -16,5 +16,5 @@
   </div>
 </header>
 
-<%= react_component("Attributes", AttributeMapper.new(@attributes).options) %>
+<%= react_component("Attributes", {attributes: @attributes}) %>
 

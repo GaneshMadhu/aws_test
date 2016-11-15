@@ -127,6 +127,7 @@ function apply_effects(attributes){
   var filtersContainer  = $('#attributes-container');
   var attribute_objects = $('#attributes-container .attribute');
   var searchRegex;
+  var autocompleteAttributes = []
 
   attribute_objects.each(function(){
     var attribute = $(this);
@@ -151,6 +152,9 @@ function apply_effects(attributes){
         'data-filter': category.id,
         value: category.id
     }));
+    category.traits.map(function(trait){
+      autocompleteAttributes.push(trait.name);
+    })
   });
   mobileAttributes.prepend($('<option></option>', {
       text: 'All Attributes',
@@ -216,6 +220,26 @@ function apply_effects(attributes){
           container.isotope({filter: filterValue});
       });
 
+      let quicksearch = $('#attribute-filter');
+      if (quicksearch.length) {
+          //let autocomplete = new Awesomplete(quicksearch[0], {
+            //  minChars: 1,
+            //  list: autocompleteAttributes,
+            //  maxItems: 5
+          //});
+      }
+
+      quicksearch.on('keydown keypress keyup', (e) => {
+          if ($('#attributes-filters').find('.active a').attr('data-filter') !== '*') {
+              $('#attributes-filters [data-filter="*"]').trigger('click');
+          }
+          searchRegex = new RegExp(quicksearch.val(), 'gi');
+          container.isotope({
+              filter: function () {
+                  return searchRegex ? (($(this).find('.attribute-title h5 span').text().match(searchRegex)) || ($(this).find('.attribute-title h3').html().match(searchRegex))) : true;
+              }
+          });
+      });
 
   };
 }

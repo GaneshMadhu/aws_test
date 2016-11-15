@@ -5,7 +5,6 @@
     </ul>
 </nav>
 
-<!-- start .ug-header -->
 <header class="ug-header ugh-narrow">
   <div class="content">
     <div class="ugh-page-title">
@@ -17,55 +16,5 @@
   </div>
 </header>
 
-<div class="sp-results mvpsp-results">
-  <nav class="spr-tabs">
-    <div id="mobile-attributes-filters">
-      <select name="m-attributes-filters" id="m-attributes-filters" data-color="*"></select>
-    </div>
-    <ul id="attributes-filters">
-      <% @attributes.each do |key,attribute| %>
-        <li class="active">
-            <a href="#" data-filter="*">
-                <%= attribute["name"] %>
-            </a>
-        </li>
-      <% end %>
-      <li>
-        <div class="spr-sort-filter">
-            <input type="text" name="attribute-filter" id="attribute-filter" placeholder="Find attribute"/>
-        </div>
-      </li>
-    </ul>
-  </nav>
-</div>
+<%= react_component("Attributes", AttributeMapper.new(@attributes).options) %>
 
-<div class="scroll-top-wrapper mvp">
-  <span class="scroll-top-inner"><i class="icon-arrow"></i></span>
-</div>
-<!-- end .ug-header -->
-
-<!-- start .page-content -->
-<section class="page-content">
-  <div class="attribute-grid clearfix" id="attributes-container">
-    <% @attributes.each do |key,attribute| %>
-      <% attribute["traits"].each do |trait| %>
-        <div class="attribute">
-          <div class="wrapper" style='background: <%= attribute["properties"]["color"] %>'>
-            <div>
-              <div class="attribute-title">
-                  <h3><%= trait["code"] %></h3>
-                  <h5><span><%= trait["name"] %></span></h5>
-                  <h4>Employer Reputation & Image</h4>
-              </div>
-              <div class="attribute-definition">
-                  <h4>Definition</h4>
-                  <p><%= trait["definition"] %></p>
-                  <a href="#!" class="atr-close">&times;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-</section>

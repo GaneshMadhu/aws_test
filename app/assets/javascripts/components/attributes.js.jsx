@@ -49,8 +49,9 @@ var Attributes = React.createClass({
     )
   },
   render: function(){
+    var attributes = this.state.attributes;
     window.requestAnimationFrame(function() {
-      apply_effects();
+      apply_effects(attributes);
     });
     return(
       <span>
@@ -120,7 +121,7 @@ var TraitWrapper = React.createClass({
   }
 });
 
-function apply_effects(){
+function apply_effects(attributes){
   masonry();
   bindFilters();
   var filtersContainer  = $('#attributes-container');
@@ -142,6 +143,21 @@ function apply_effects(){
         event.preventDefault();
     });
   });
+
+  var mobileAttributes = $('#m-attributes-filters');
+  attributes.map(function(category){
+    mobileAttributes.prepend($('<option></option>', {
+        text: category.name,
+        'data-filter': category.id,
+        value: category.id
+    }));
+  });
+  mobileAttributes.prepend($('<option></option>', {
+      text: 'All Attributes',
+      'data-filter': '*',
+      value: '*',
+      selected: 'selected'
+  }));
 
   let debounce = (fn, threshold) => {
       let timeout;

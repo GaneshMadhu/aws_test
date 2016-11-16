@@ -40,3 +40,7 @@
 .icon-pdf {
   background-image: image_url("pdf.png");
 }
+
+#attributes-filters > li > a {
+  white-space: pre;
+}

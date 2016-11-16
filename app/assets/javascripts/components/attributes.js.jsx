@@ -21,7 +21,7 @@ var Attributes = React.createClass({
               return <TraitGroup category={category} key={category.id} index={index+1} filter={"."+category.id} />
             })}
             <li>
-              <div class="spr-sort-filter">
+              <div className="spr-sort-filter">
                 <input type="text" name="attribute-filter" id="attribute-filter" placeholder="Find attribute"/>
               </div>
             </li>
@@ -70,7 +70,7 @@ var TraitGroup = React.createClass({
     return (
       <li className={active}>
           <a href="#" data-filter={this.props.filter}>
-              {this.props.category.name}
+              {this.props.category.name.replace(" ","\n")}
           </a>
       </li>
     )

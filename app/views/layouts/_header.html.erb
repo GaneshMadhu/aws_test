@@ -40,11 +40,27 @@
                 </div>
               </header>
               <ul>
-                <li class="active"><a href="/mvp-iris-homepage.html"><i class="ug-icon i-dashboard"></i>Iris Homepage </a></li>
+                <li class="active">
+                  <%= link_to dashboard_index_path do %>
+                    <i class="ug-icon i-dashboard"></i>Iris Homepage
+                  <% end %>
+                </li>
                 <li class="divider"></li>
-                <li><a href="/mvp-esmp.html"><i class="ug-icon i-compperf"></i>Employer Social Media Performance</a></li>
-                <li><a href="/mvp-zoom-in.html"><i class="ug-icon i-zoomin"></i>Attribute Zoom-In</a></li>
-                <li><a href="/mvp-case-study-library.html"><i class="ug-icon i-postlib"></i>Case Study Library</a></li>
+                <li>
+                  <%= link_to social_media_performance_path do %>
+                    <i class="ug-icon i-compperf"></i>Employer Social Media Performance
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to post_metrics_path do %>
+                    <i class="ug-icon i-zoomin"></i>Attribute Zoom-In
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to case_study_library_path do %>
+                    <i class="ug-icon i-postlib"></i>Case Study Library
+                  <% end %>
+                </li>
                 <li>
                   <%= link_to attributes_path do %>
                     <i class="ug-icon i-drivers"></i>The Universum Drivers of Employer Attractiveness

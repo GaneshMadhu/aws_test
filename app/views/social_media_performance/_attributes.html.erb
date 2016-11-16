@@ -1,0 +1,23 @@
+<!-- start attribute cards  -->
+<section class="ug-hand">
+  <header>
+    <h3>The Universum Drivers of Employer Attractiveness</h3>
+    <div class="ugh-actions"><a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a></div>
+    <div class="ugh-description">The attributes of Employer Attractiveness is a scientific framework developed by Universum that gives you a complete picture of what talent perceive as important in their careers and what they associate with their preferred employers.</div>
+  </header>
+  <div class="ug-card attribute-glossary-card">
+    <% attributes.each do |trait_group| %>
+      <h4><%= trait_group["name"] %></h4>
+      <p><%= trait_group["description"] %></p>
+      <div class="agc-group ag-eri">
+      <% trait_group["traits"].each do |trait| %>
+        <div class="ac-attribute" style="background: <%= trait_group["properties"]["color"] %>">
+        <span class="aca-nickname"><%= trait["code"] %></span>
+        <span class="aca-name"><%= trait["name"] %></span>
+      </div>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>
+<!-- END attribute cards -->

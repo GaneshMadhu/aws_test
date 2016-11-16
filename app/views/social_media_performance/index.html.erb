@@ -1,39 +1,39 @@
+<!-- start .ug-breadcrumbs -->
 <nav class="ug-breadcrumbs">
     <ul class="ugb-nav">
         <li><a href="#!">Iris Homepage</a></li>
-        <li><a href="#!">Case Study Library</a></li>
+        <li><a href="#!">Employer Social Media Performance</a></li>
     </ul>
 </nav>
+<!-- end .ug-breadcrumbs -->
 
 <!-- start .ug-header -->
 <header class="ug-header"> <!-- default is the light version - without adding "light" class to ug-header -->
   <div class="content">
     <div class="ugh-page-title">
       <div>
-        <h1>Case Study Library</h1>
-        <h4 class="subtitle">Case Study Library helps you create great content by showing you what is working, with what<br>audience, and in which countries. Learn from the best and get inspired every single day.</h4>
+        <h1>Employer Social Media Performance</h1>
+        <h4 class="subtitle">Dive deeply into what content is resonating with the right talent and find out<br>how your competitors are performing on social media.</h4>
         <a href="#!" class="btn btn-filters"><i class="ug-icon i-filter"></i><span class="btnf-hide">Hide</span><span class="btnf-show">Show</span><span class="show-on-small"> filters</span></a>
       </div>
     </div>
   </div>
 </header>
-<div class="mobile-subheader">
-  <p>Case Study Library helps you create great content by showing you what is working, with what audience, and in which countries. Learn from the best and get inspired every single day. </p>
-</div>
 
 <div class="scroll-top-wrapper mvp">
   <span class="scroll-top-inner"><i class="icon-arrow"></i></span>
 </div>
+<!-- end .ug-header -->
 
- <!-- start .page-content -->
+<!-- start .page-content -->
 <section class="page-content">
-  <%= render 'shared/filters', data: @posts, filters: ["traits","company_groups","industries","companies","platforms"] %>
+  <%= render 'shared/filters', data: @tagging_metrics, filters: ["company_groups","companies","platforms"] %>
   <!-- start .ug-hand-header -->
   <div class="ug-hand-header">
-    <%= render 'case_study_content', data: @posts %>
+    <%= render 'esmp_content', tagging_metrics: @tagging_metrics["data"] %>
+    <%= render 'attributes', attributes: @tagging_metrics["attributes"] %>
   </div>
   <!-- END .ug-hand-header -->
 </section>
-<!-- end .ug-header -->
-<!-- end .ug-breadcrumbs -->
-<%#= @posts %>
+<!-- END #save-panel .ug-side-modal  -->
+

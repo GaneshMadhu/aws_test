@@ -37,9 +37,9 @@ function generateLeftChart(chart_data){
       xAxisData.push(key)
       yAxisData.push({
         y: -(datum.tags_count),
-        color: '#cccccc',
-        name: key,
-        text: key
+        color: datum.color,
+        name: datum.name,
+        text: datum.definition
       })
     }
   }
@@ -138,6 +138,9 @@ function generateLeftChart(chart_data){
           shadow: false,
           padding: 0,
           hideDelay: 2000,
+          formatter: function () {
+              return generate_tooltip(this.point);
+          },
           positioner: function(labelWidth, labelHeight, point) {
               let tooltipX, tooltipY;
               tooltipX = (this.chart.plotWidth - labelWidth - point.h / 2);
@@ -301,4 +304,9 @@ function generateRightChart(chart_data){
           data: series
       }]
   });
+}
+
+function generate_tooltip(point){
+  var ret_string = "<div class='tc-tooltip on-pie-chart' style='background: "+point.color+"'><div class='header'><h4><b>"+point.category+"</b><span>"+point.name+"</span></h4></div><div class='ugc-last-month-growth ugc-decrease'><p class='ugcf-info'>"+point.text+"</p></div><a href='http://www.google.com' class='btn' style='color: "+point.color+"'>Zoom-in</a><a href='http://www.google.com' class='btn'>View posts</a></div>"
+  return ret_string;
 }

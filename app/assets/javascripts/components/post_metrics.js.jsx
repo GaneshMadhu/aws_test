@@ -285,6 +285,6 @@ function generate_chart(chart_data){
 }
 
 function chart_tooltip(point){
-  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in'><div class='header'><h4>"+point.category+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"%</span>Post volume</p><p class='ugcs'><span>"+point.areaSplineValue+"%</span>Avg engagement</p></div><a href='http://www.google.com' class='btn'>View posts</a></div>";
+  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in'><div class='header'><h4>"+point.category+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"%</span>Post volume</p><p class='ugcs'><span>"+(Math.round(point.areaSplineValue * 100) / 100)+"%</span>Avg engagement</p></div><a href='http://www.google.com' class='btn'>View posts</a></div>";
   return ret_string;
 }

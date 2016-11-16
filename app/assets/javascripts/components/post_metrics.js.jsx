@@ -30,10 +30,12 @@ function generate_chart(chart_data){
     if (post_metrics.hasOwnProperty(key)) {
       var datum = post_metrics[key];
       categories.push(datum.tags_count)
-      areaspline_data.push({ y: datum.avg_engagement})
+      areaspline_data.push({y: datum.avg_engagement})
       column_data.push({
         y: datum.posts_count,
-        "color": "rgba(243,98,43, 0.75)"
+        color: "rgba(243,98,43, 0.75)",
+        areaSplineValue: datum.avg_engagement,
+        borderColor: "transparent",
       })
     }
   }
@@ -49,6 +51,7 @@ function generate_chart(chart_data){
                   $('.ug-loading-container').fadeOut(function(){
                       $(this).remove();
                   });
+                  //this.myTooltip = new Highcharts.Tooltip(this, this.options.tooltip);
               }
           }
       },
@@ -78,15 +81,66 @@ function generate_chart(chart_data){
               fontWeight: '300'
           }
       },
+
+      tooltip: {
+          enabled: true,
+          shared: false,
+          useHTML: true,
+          borderRadius: 5,
+          borderWidth: 1,
+          shadow: false,
+          followPointer: false,
+          hideDelay: 1000,
+          formatter: function () {
+              return chart_tooltip(this.point)
+          },
+          positioner: function (boxWidth, boxHeight, point) {
+              let chart = this.chart,
+                  plotLeft = chart.plotLeft,
+                  plotTop = chart.plotTop,
+                  plotWidth = chart.plotWidth,
+                  plotHeight = chart.plotHeight,
+                  distance = 5,
+                  pointX = point.plotX,
+                  pointY = point.plotY,
+                  x = pointX - (boxWidth / 2),
+                  y = pointY - (boxHeight) - plotTop - 5,
+                  alignedRight;
+
+              if (x < 0) {
+                  x = 5;
+              }
+
+              if ((x + boxWidth) > plotWidth) {
+                  x = pointX - (boxWidth / 1.2);
+              }
+              if (y < plotTop) {
+                  y = pointY + 30;
+
+                  // If the tooltip is still covering the point, move it below instead
+                  if (alignedRight && pointY >= y && pointY <= (y + boxHeight)) {
+                      y = Math.max(plotTop, plotTop + plotHeight - boxHeight - distance); // below
+                  }
+              }
+              if (y + boxHeight > plotTop + plotHeight) {
+                  y = Math.max(plotTop, plotTop + plotHeight - boxHeight - distance); // below
+              }
+              return {
+                  x: x,
+                  y: y
+              };
+          }
+      },
+
       plotOptions: {
           series: {
               stickyTracking: false,
               events: {
                   click: function (evt) {
-                      //this.chart.myTooltip.refresh(evt.point, evt);
+                      //this.chart.options.tooltip.enabled = true;
                   },
                   mouseOut: function () {
-                      //this.chart.myTooltip.hide();
+                      //this.chart.tooltip.hide();
                   }
               }
           },
@@ -228,4 +282,9 @@ function generate_chart(chart_data){
               }
           }]
   });
+}
+
+function chart_tooltip(point){
+  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in'><div class='header'><h4>"+point.category+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"%</span>Post volume</p><p class='ugcs'><span>"+point.areaSplineValue+"%</span>Avg engagement</p></div><a href='http://www.google.com' class='btn'>View posts</a></div>";
+  return ret_string;
 }

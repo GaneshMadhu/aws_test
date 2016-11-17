@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :dashboard
+  resources :dashboard do
+    get :how_iris_works, on: :collection
+  end
   resources :attributes
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/case_study_library" => "case_study_library#index", as: "case_study_library"

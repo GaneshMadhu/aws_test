@@ -23,7 +23,8 @@ class ParseQueryParams
           filter_query[key] = value.join(",") unless value.blank?
       end
     end
-    query[:sort] = [{"engagement_score_normalised" => params[:sort]}] unless params[:sort].blank?
+    sort_params = params[:sort].blank? ? "desc" : params[:sort]
+    query[:sort] = [{"engagement_score_normalised" =>sort_params}]
     query[:filter] = filter_query
 
     query

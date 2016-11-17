@@ -1,10 +1,11 @@
 class SelectFilterParams
-  attr_reader :filter_data, :filter_type, :filter_group
+  attr_reader :filter_data, :filter_type, :filter_group, :api_path
 
-  def initialize(data,filter_type)
+  def initialize(data,filter_type,api_path)
     @filter_data   = data
     @filter_type   = filter_type
     @filter_group  = filter_group
+    @api_path      = api_path
   end
 
   def options
@@ -16,7 +17,8 @@ class SelectFilterParams
       placeholder:        "Search #{filter_group.capitalize}",
       tooltip:            "All Filters",
       filter_title:       filter_group.capitalize,
-      filter_group:       filter_group
+      filter_group:       filter_group,
+      rest_url:           api_path
     }
   end
 

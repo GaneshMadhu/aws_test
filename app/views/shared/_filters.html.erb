@@ -7,7 +7,7 @@
     </div>
     <div class="ugf-content">
       <% select_filters.each do |type| %>
-        <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type).options) %>
+        <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type, api_path).options) %>
       <% end %>
 
       <% if post_type %>

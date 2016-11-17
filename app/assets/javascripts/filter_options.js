@@ -5,6 +5,7 @@ function custom_select(filter_options){
   var options_data     = filter_options.traits;
   var dropdownParent   = $(filter_options.dropdown_parent);
   var placeholder      = filter_options.placeholder;
+  var rest_url         = filter_options.rest_url;
 
   var resultsToAutocomplete = function(results) {
     var data = [];
@@ -107,7 +108,7 @@ function custom_select(filter_options){
           dropdownParent.removeClass('no-results');
       }
       populateResultsView(filtered);
-      rest_api_call('http://localhost:3001/case_study_library/filter',true);
+      rest_api_call(rest_url,true);
   });
   // input.val(getSelected(_resultsData)).trigger('change');
 

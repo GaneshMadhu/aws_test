@@ -20,7 +20,7 @@
 
  <!-- start .page-content -->
 <section class="page-content">
-  <%= render 'shared/filters', data: @posts["filters"], select_filters: ["traits","company_groups","industries","companies","platforms"], post_type: true, date_range: true, api_path: case_study_library_index_path %>
+  <%= render 'shared/filters', data: @posts["filters"], select_filters: ["traits","company_groups","industries","companies","platforms"], post_type: true, date_range: true, api_path: filter_case_study_library_index_path %>
   <!-- start .ug-hand-header -->
   <div class="ug-hand-header" id="ug-post-content">
     <%= render 'case_study_content', data: @posts["data"] %>

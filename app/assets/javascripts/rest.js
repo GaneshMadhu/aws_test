@@ -1,5 +1,6 @@
 function rest_api_call(uri, page) {
-  var page = page ? (parseInt(page) + 1) : 1
+  apply_loaders(page);
+  var page = page ? (parseInt(page) + 1) : 1;
   make_ajax(uri,"GET",frame_request(page));
 }
 

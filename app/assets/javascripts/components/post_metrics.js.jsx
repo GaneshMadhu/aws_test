@@ -48,9 +48,7 @@ function generate_chart(chart_data){
           },
           events: {
               load: function () {
-                  $('.ug-loading-container').fadeOut(function(){
-                      $(this).remove();
-                  });
+                  remove_loaders();
                   //this.myTooltip = new Highcharts.Tooltip(this, this.options.tooltip);
               }
           }

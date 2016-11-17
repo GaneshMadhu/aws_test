@@ -18,6 +18,6 @@ class CaseStudyLibraryController < ApplicationController
   def filter_data
     filters = ParseQueryParams.new(params).parse
     iris    = IrisEngine::IrisApi.new
-    @posts  = iris.search("report_tagged_posts/filter", filters)["data"]
+    @posts  = iris.search("report_tagged_posts/filter", filters)
   end
 end

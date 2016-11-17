@@ -1,5 +1,6 @@
-function rest_api_call(uri, sort) {
-  make_ajax(uri,"GET",frame_request(sort));
+function rest_api_call(uri, page) {
+  var page = page ? (parseInt(page) + 1) : 1
+  make_ajax(uri,"GET",frame_request(page));
 }
 
 function make_ajax(uri, method, data, path) {
@@ -16,12 +17,12 @@ function make_ajax(uri, method, data, path) {
   return $.ajax(request);
 };
 
-function frame_request(sort){
-  var params = {filter: {}};
+function frame_request(page){
+  var params = {filter: {}, page_number: page};
   if(($('.ugf-attribute').length > 0) && ($('.ugf-attribute').val() != null))
     params['filter']['traits.code'] = $('.ugf-attribute').val();
   if(($('.ugf-country').length > 0) && ($('.ugf-country').val() != null))
-    params['filter']['company_group_name'] = $('.ugf-country').val();
+    params['filter']['company_group_id'] = $('.ugf-country').val();
   if(($('.ugf-company').length > 0) && ($('.ugf-company').val() != null))
     params['filter']['company_precode'] = $('.ugf-company').val();
   if(($('.ugf-industry').length > 0) && ($('.ugf-industry').val() != null))
@@ -45,7 +46,7 @@ function frame_request(sort){
     params['filter']['post_time']['lte'] = $('#ugf-time-formatted').find('.end').html()
   }
 
-  if(sort && (($('.ugh-sortby').length > 0) && ($('.ugh-sortby').val() != ""))){
+  if(($('.ugh-sortby').length > 0) && ($('.ugh-sortby').val() != "")){
     params['sort'] = $('.ugh-sortby').val()
   }
 

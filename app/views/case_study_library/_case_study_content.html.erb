@@ -4,7 +4,7 @@
     <h3>Post rankings based on engagement </h3>
     <div class="ugh-actions">
       <div class="custom-select">
-        <select name="ugh-sortby" id="" class="ugh-sortby" placeholder="Sort by" onchange="javascript: rest_api_call('<%= filter_case_study_library_index_path %>',true);">
+        <select name="ugh-sortby" id="" class="ugh-sortby" placeholder="Sort by" onchange="javascript: rest_api_call('<%= filter_case_study_library_index_path %>');">
           <option></option>
           <option value="asc">Engagement (highest - lowest)</option>
           <option value="desc">Engagement (lowest - highest)</option>
@@ -14,6 +14,8 @@
     </div>
     <div class="ugh-description">Post rankings based on engagement </div>
   </header>
+  <input type="hidden" id="post_current_page" value="<%= meta["page2"]["current"] rescue "1" %>">
+  <input type="hidden" id="post_total_page" value="<%= meta["page"]["total"] rescue "1" %>">
   <% if data.is_a? String %>
     <p> <%= data %> </p>
   <% else %>
@@ -36,4 +38,5 @@
     <% end %>
   <% end %>
 </section>
-<!-- END post-performance cards
+
+<%= react_component("Scrollable", {api_path: api_path}) %>

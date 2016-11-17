@@ -108,7 +108,7 @@ function custom_select(filter_options){
           dropdownParent.removeClass('no-results');
       }
       populateResultsView(filtered);
-      rest_api_call(rest_url,true);
+      rest_api_call(rest_url);
   });
   // input.val(getSelected(_resultsData)).trigger('change');
 

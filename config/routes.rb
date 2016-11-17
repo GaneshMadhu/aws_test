@@ -8,6 +8,7 @@ Rails.application.routes.draw do
  	resources :case_study_library do
  		collection do
  			get :filter, as: "filter"
+      get :scroll
  		end
  	end
 

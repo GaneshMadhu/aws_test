@@ -1,50 +1,53 @@
 <div class="ug-card post-card ranked-post-card">
   <div class="rpc-header">
-    <p class="ugpc-kind"><i class="ug-icon i-sponsored"></i> Sponsored</p>
+    <p class="ugpc-kind"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i> <%= post["sponsored_or_organic"] %></p>
     <div>
-      <span class="ugpc-rank">2<sup>nd</sup></span>
-      <div class="rpc-attribute orange tooltip-trigger">Ps
+      <span class="ugpc-rank"><%=rank%> <sup><%= rank.ordinalize.last(2)%></sup></span>
+      <div class="rpc-attribute orange tooltip-trigger"><%= post["trait"]["code"]%>
         <div class="ugpc-attribute orange tooltip">
-          <span><span class="aca-nickname">Ps</span></span>
-          <span class="aca-name">Attractive / exciting products and services</span>
+          <span><span class="aca-nickname"><%= post["trait"]["code"] %></span></span>
+          <span class="aca-name"><%= post["trait"]["name"]%></span>
         </div>
       </div>
-      <div class="rpc-attribute blue tooltip-trigger">Fx
+     <!--  <div class="rpc-attribute blue tooltip-trigger">Fx
         <div class="ugpc-attribute blue tooltip">
           <span><span class="aca-nickname">Fx</span></span>
           <span class="aca-name">Enabling me to integrate personal interests in my schedule</span>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <article class="ugpc-post bottom-image">
     <header>
       <figure class="ugpc-social-avatar">
-        <img src="mockImages/post-avatar-ge.jpg" alt="">
+        <img src=<%= post["company_logo"]%>>
       </figure>
       <div class="ugpc-social-info">
-        <h5 class="name"><a href="#">GE</a></h5>
-        <p class="date">13 Apr, 2020 18:03</p>
+        <h5 class="name"><%= post["company_name"] %></h5>
+        <p class="date"><%= formatted_time(post["post_time"]) %></p>
       </div>
-      <a href="#!" class="ug-icon i-fb"></a>
+      <% if post["url_type"] == "facebook"%>
+        <a href="#!" class="ug-icon i-fb"></a>
+      <% else %>
+        <a href="#!" class="ug-icon i-<%= "#{post["url_type"]}"%>>"></a>
+      <% end %>
     </header>
     <div class="content">
-      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi ni ... <a href="#!">continue reading</a></p>
-
+      <p><%= post["post_content"] %> <a href="<%= post["post_url"]%>">continue reading</a></p>
       <figure class="ugpc-post-image">
         <a href="#!">
-          <img src="mockImages/post-image3.jpg" alt="">
+          <img src=<%=post["attachment_url"] %> alt="">
         </a>
       </figure>
       <div class="ugpc-stats">
         <div class="stat">
-          <p><i class="ug-icon i-likes"></i><span class="number">7.8K</span></p>
+          <p><i class="ug-icon i-likes"></i><span class="number"><%= post["likes"] %></span></p>
         </div>
         <div class="stat">
-          <p><i class="ug-icon i-comments"></i><span class="number">1.7K</span></p>
+          <p><i class="ug-icon i-comments"></i><span class="number"><%= post["comments"] %></span></p>
         </div>
         <div class="stat">
-          <p><i class="ug-icon i-shares"></i><span class="number">10K</span></p>
+          <p><i class="ug-icon i-shares"></i><span class="number"><%= post["shares"] %></span></p>
         </div>
       </div>
     </div>

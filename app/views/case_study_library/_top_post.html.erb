@@ -2,7 +2,7 @@
   <div class="ugpc-first">
     <span class="ugpc-rank">1<sup>st</sup></span>
     <h3>Top post</h3>
-    <p class="ugpc-kind"><i class="ug-icon i-organic"></i><%= post["sponsored_or_organic"] %></p>
+    <p class="ugpc-kind"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i><%= post["sponsored_or_organic"] %></p>
   </div>
 
   <div class="ugpc-attributes tall">
@@ -16,29 +16,29 @@
   <article class="ugpc-post bottom-image">
     <!-- <span class="ugpc-rank first">1<sup>st</sup></span> -->
     <header>
-      <figure class="ugpc-social-avatar"></figure>
+      <figure class="ugpc-social-avatar"><img src=<%= post["company_logo"]%>></figure>
       <div class="ugpc-social-info">
         <h5 class="name"><a href="#"><%= post["company_name"] %></a></h5>
-        <p class="date"><%= post["post_time"] %></p>
+        <p class="date"><%= formatted_time(post["post_time"]) %></p>
       </div>
       <a href="#!" class="ug-icon i-fb"></a>
     </header>
     <div class="content">
-      <p>A major trend will influence the way healthcare will be delivered around the world in the coming years: Big Data. This video points out the opportunities in making the data usable which could transform approaches ... <a href="#!">continue reading</a></p>
+      <p><%= post["post_content"]%> <a href="<%= post["post_url"]%>">continue reading</a></p>
       <figure class="ugpc-post-image">
         <a href="#!">
-          <img src="mockImages/post-image1.jpg" alt="">
+          <img src=<%=post["attachment_url"] %> alt="">
         </a>
       </figure>
       <div class="ugpc-stats">
         <div class="stat">
-          <p><i class="ug-icon i-likes"></i><span class="number">7.8K</span></p>
+          <p><i class="ug-icon i-likes"></i><span class="number"><%= post["likes"] %></span></p>
         </div>
         <div class="stat">
-          <p><i class="ug-icon i-comments"></i><span class="number">1.7K</span></p>
+          <p><i class="ug-icon i-comments"></i><span class="number"><%= post["comments"] %></span></p>
         </div>
         <div class="stat">
-          <p><i class="ug-icon i-shares"></i><span class="number">10K</span></p>
+          <p><i class="ug-icon i-shares"></i><span class="number"><%= post["shares"] %></span></p>
         </div>
       </div>
     </div>

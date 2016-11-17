@@ -19,11 +19,11 @@ function make_ajax(uri, method, data, path) {
 function frame_request(sort){
   var params = {filter: {}};
   if(($('.ugf-attribute').length > 0) && ($('.ugf-attribute').val() != null))
-    params['filter']['tratis.code'] = $('.ugf-attribute').val();
+    params['filter']['traits.code'] = $('.ugf-attribute').val();
   if(($('.ugf-country').length > 0) && ($('.ugf-country').val() != null))
     params['filter']['company_group_name'] = $('.ugf-country').val();
   if(($('.ugf-company').length > 0) && ($('.ugf-company').val() != null))
-    params['filter']['company_name'] = $('.ugf-company').val();
+    params['filter']['company_precode'] = $('.ugf-company').val();
   if(($('.ugf-industry').length > 0) && ($('.ugf-industry').val() != null))
     params['filter']['industry_type'] = $('.ugf-industry').val();
   if(($('.ugf-platform').length > 0) && ($('.ugf-platform').val() != null))

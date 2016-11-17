@@ -27,10 +27,10 @@
 
  <!-- start .page-content -->
 <section class="page-content">
-  <%= render 'shared/filters', data: @posts, filters: ["traits","company_groups","industries","companies","platforms"] %>
+  <%= render 'shared/filters', data: @posts["filters"], filters: ["traits","company_groups","industries","companies","platforms"] %>
   <!-- start .ug-hand-header -->
-  <div class="ug-hand-header">
-    <%= render 'case_study_content', data: @posts %>
+  <div class="ug-hand-header" id="ug-post-content">
+    <%= render 'case_study_content', data: @posts["data"] %>
   </div>
   <!-- END .ug-hand-header -->
 </section>

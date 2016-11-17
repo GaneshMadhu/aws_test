@@ -8,7 +8,7 @@
     <div class="ugf-content">
 
       <% filters.each do |type| %>
-        <%= react_component('FilterSelect', SelectFilterParams.new(data["filters"][type], type).options) %>
+        <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type).options) %>
       <% end %>
 
       <div class="ugf-filter">

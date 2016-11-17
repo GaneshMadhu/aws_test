@@ -8,7 +8,7 @@ module IrisEngine
       @conn = Faraday.new url: ENV["IRIS_ENDPOINT"]
     end
 
-    def case_study_search(url, query)
+    def search(url, query)
       json = _wrap_json do
         @conn.get do |r|
           r.url url
@@ -26,7 +26,7 @@ module IrisEngine
       if block_given?
         resp = block.call
         unless _response_good?(resp)
-          {"data" => "HTTP Token: Access denied.\n"}
+          {"data" => "#{resp.status} - #{resp.body}"}
         else
           JSON.parse resp.body
         end

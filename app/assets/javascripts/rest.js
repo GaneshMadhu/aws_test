@@ -1,5 +1,6 @@
 function rest_api_call(uri, page) {
-  apply_loaders(page);
+  if(page == undefined) clear_old_data();
+  apply_loaders()
   var page = page ? (parseInt(page) + 1) : 1;
   make_ajax(uri,"GET",frame_request(page));
 }

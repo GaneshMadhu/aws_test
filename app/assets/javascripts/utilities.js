@@ -15,3 +15,9 @@ function remove_loaders(){
     $(this).addClass('hide').removeClass('show');
   });
 }
+
+function clear_old_data(){
+  $('.mvp-top-post,.mvp-ranked-posts').each(function(){
+    if($(this).length) $(this).addClass('hide');
+  });
+}

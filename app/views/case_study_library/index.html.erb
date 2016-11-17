@@ -1,10 +1,4 @@
-<nav class="ug-breadcrumbs">
-    <ul class="ugb-nav">
-        <li><a href="#!">Iris Homepage</a></li>
-        <li><a href="#!">Case Study Library</a></li>
-    </ul>
-</nav>
-
+<%= render 'shared/breadcrumbs', navigation: {"Iris Homepage": dashboard_index_path, "Case Study Library": case_study_library_index_path} %>
 <!-- start .ug-header -->
 <header class="ug-header"> <!-- default is the light version - without adding "light" class to ug-header -->
   <div class="content">
@@ -17,17 +11,16 @@
     </div>
   </div>
 </header>
+
 <div class="mobile-subheader">
   <p>Case Study Library helps you create great content by showing you what is working, with what audience, and in which countries. Learn from the best and get inspired every single day. </p>
 </div>
 
-<div class="scroll-top-wrapper mvp">
-  <span class="scroll-top-inner"><i class="icon-arrow"></i></span>
-</div>
+<%= render "shared/scroll" %>
 
  <!-- start .page-content -->
 <section class="page-content">
-  <%= render 'shared/filters', data: @posts["filters"], filters: ["traits","company_groups","industries","companies","platforms"] %>
+  <%= render 'shared/filters', data: @posts["filters"], select_filters: ["traits","company_groups","industries","companies","platforms"], post_type: true, date_range: true, api_path: case_study_library_index_path %>
   <!-- start .ug-hand-header -->
   <div class="ug-hand-header" id="ug-post-content">
     <%= render 'case_study_content', data: @posts["data"] %>

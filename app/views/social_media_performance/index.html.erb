@@ -1,12 +1,4 @@
-<!-- start .ug-breadcrumbs -->
-<nav class="ug-breadcrumbs">
-    <ul class="ugb-nav">
-        <li><a href="#!">Iris Homepage</a></li>
-        <li><a href="#!">Employer Social Media Performance</a></li>
-    </ul>
-</nav>
-<!-- end .ug-breadcrumbs -->
-
+<%= render 'shared/breadcrumbs', navigation: {"Iris Homepage": dashboard_index_path, "Employer Social Media Performance": social_media_performance_path} %>
 <!-- start .ug-header -->
 <header class="ug-header"> <!-- default is the light version - without adding "light" class to ug-header -->
   <div class="content">
@@ -20,14 +12,12 @@
   </div>
 </header>
 
-<div class="scroll-top-wrapper mvp">
-  <span class="scroll-top-inner"><i class="icon-arrow"></i></span>
-</div>
+<%= render "shared/scroll" %>
 <!-- end .ug-header -->
 
 <!-- start .page-content -->
 <section class="page-content">
-  <%= render 'shared/filters', data: @tagging_metrics, filters: ["company_groups","companies","platforms"] %>
+  <%= render 'shared/filters', data: @tagging_metrics, select_filters: ["company_groups","companies","platforms"], post_type: true, date_range: true, api_path: social_media_performance_path %>
   <!-- start .ug-hand-header -->
   <div class="ug-hand-header">
     <%= render 'esmp_content', tagging_metrics: @tagging_metrics["data"] %>

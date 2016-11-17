@@ -6,56 +6,58 @@
       <h3>Filters</h3>
     </div>
     <div class="ugf-content">
-
-      <% filters.each do |type| %>
+      <% select_filters.each do |type| %>
         <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type).options) %>
       <% end %>
 
-      <div class="ugf-filter">
-        <header class="ugf-header">
-          <a href="#ugff-performance2" class="btn ugf-edit">Edit</a>
-          <h4>Type of Posts
-            <span href="#!" class="tooltip-trigger">
-              <i class="ug-icon i-info"></i>
-              <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
-            </span>
-          </h4>
-          <a href="!#close" class="clear-values"><span>Clear All</span> <i class="ug-icon i-remove"></i></a>
-          <span class="selected">0 selected</span>
-        </header>
-        <div id="#ugff-performance" class="ugf-checkboxes ugff-performance ugf-select">
-          <div class="checkbox">
-            <input id="ugffp-organic" type="checkbox" name="ugff-organic" value="Organic">
-            <label for="ugffp-organic"><i class="ug-icon i-organic"></i>Organic</label>
-            <span href="#!" class="tooltip-trigger">
-              <i class="ug-icon i-info"></i>
-              <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
-            </span>
+      <% if post_type %>
+        <div class="ugf-filter">
+          <header class="ugf-header">
+            <a href="#ugff-performance2" class="btn ugf-edit">Edit</a>
+            <h4>Type of Posts
+              <span href="#!" class="tooltip-trigger">
+                <i class="ug-icon i-info"></i>
+                <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
+              </span>
+            </h4>
+            <a href="!#close" class="clear-values"><span>Clear All</span> <i class="ug-icon i-remove"></i></a>
+            <span class="selected">0 selected</span>
+          </header>
+          <div id="#ugff-performance" class="ugf-checkboxes ugff-performance ugf-select">
+            <div class="checkbox">
+              <input id="ugffp-organic" type="checkbox" name="ugff-organic" value="Organic" onchange="javascript: rest_api_call('<%= api_path %>',true);">
+              <label for="ugffp-organic"><i class="ug-icon i-organic"></i>Organic</label>
+              <span href="#!" class="tooltip-trigger">
+                <i class="ug-icon i-info"></i>
+                <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
+              </span>
+            </div>
+            <div class="checkbox">
+              <input id="ugffp-sponsored" type="checkbox" name="ugff-sponsored" value="Sponsored" onchange="javascript: rest_api_call('<%= api_path %>',true);">
+              <label for="ugffp-sponsored"><i class="ug-icon i-sponsored"></i>Sponsored</label>
+              <span href="#!" class="tooltip-trigger">
+                <i class="ug-icon i-info"></i>
+                <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
+              </span>
+            </div>
           </div>
-          <div class="checkbox">
-            <input id="ugffp-sponsored" type="checkbox" name="ugff-sponsored" value="Sponsored">
-            <label for="ugffp-sponsored"><i class="ug-icon i-sponsored"></i>Sponsored</label>
-            <span href="#!" class="tooltip-trigger">
-              <i class="ug-icon i-info"></i>
-              <span class="tooltip">Posts that have been clicked, commented or replied to are counted as engagements.</span>
-            </span>
+          <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
+        </div>
+      <% end %>
+
+      <% if date_range %>
+        <div class="ugf-filter">
+          <header class="ugf-header">
+            <a href="#ugff-time" class="btn ugf-edit">Edit</a>
+            <h4>Date range</h4>
+          </header>
+          <div id="ugff-time-id" class="ugf-select ugff-time">
+            <div id="ugf-time-formatted"><strong>Start</strong><span class="start">10.03.2016</span><strong>End</strong><span class="end">31.03.2016</span></div>
+            <input type="text" id="ugf-time" onchange="javascript: rest_api_call('<%= api_path %>',true);"/>
           </div>
+          <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
         </div>
-        <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
-      </div>
-
-
-      <div class="ugf-filter">
-        <header class="ugf-header">
-          <a href="#ugff-time" class="btn ugf-edit">Edit</a>
-          <h4>Date range</h4>
-        </header>
-        <div id="ugff-time-id" class="ugf-select ugff-time">
-          <div id="ugf-time-formatted"><strong>Start</strong><span class="start">10.03.2016</span><strong>End</strong><span class="end">31.03.2016</span></div>
-          <input type="text" id="ugf-time" />
-        </div>
-        <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
-      </div>
+      <% end %>
     </div>
 
     <div class="btn ugf-apply">Apply Filters</div>

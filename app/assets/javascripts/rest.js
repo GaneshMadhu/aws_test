@@ -21,7 +21,7 @@ function make_ajax(uri, method, data, path) {
 function frame_request(page){
   var params = {filter: {}, page_number: page};
   if(($('.ugf-attribute').length > 0) && ($('.ugf-attribute').val() != null))
-    params['filter']['traits.code'] = $('.ugf-attribute').val();
+    params['filter']['trait.code'] = $('.ugf-attribute').val();
   if(($('.ugf-country').length > 0) && ($('.ugf-country').val() != null))
     params['filter']['company_group_id'] = $('.ugf-country').val();
   if(($('.ugf-company').length > 0) && ($('.ugf-company').val() != null))

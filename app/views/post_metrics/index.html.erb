@@ -1,0 +1,27 @@
+<%= render 'shared/breadcrumbs', navigation: {"Iris Homepage": dashboard_index_path, "Attribute Zoom In": post_metrics_path} %>
+<!-- start .ug-header -->
+<header class="ug-header"> <!-- default is the light version - without adding "light" class to ug-header -->
+  <div class="content">
+    <div class="ugh-page-title">
+      <div>
+        <h1>Attribute Zoom-In</h1>
+        <h4 class="subtitle">View the volume of posts within a particular attribute and the average post engagement<br>across time. Build your social media content strategy and plan when to post your content.</h4>
+        <a href="#!" class="btn btn-filters"><i class="ug-icon i-filter"></i><span class="btnf-hide">Hide</span><span class="btnf-show">Show</span><span class="show-on-small"> filters</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<%= render "shared/scroll" %>
+<!-- end .ug-header -->
+
+<!-- start .page-content -->
+<section class="page-content">
+  <%= render 'shared/filters', data: @post_metrics, select_filters: ["traits","company_groups","platforms"], post_type: false, date_range: true, api_path: post_metrics_path %>
+  <!-- start .ug-hand-header -->
+  <div class="ug-hand-header">
+    <%= render 'post_metric_content', post_metrics: @post_metrics["data"] %>
+  </div>
+  <!-- END .ug-hand-header -->
+
+</section>

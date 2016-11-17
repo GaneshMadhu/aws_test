@@ -1,0 +1,39 @@
+<!-- start post-performance cards  -->
+<section class="ug-hand">
+  <header>
+    <h3>Post rankings based on engagement </h3>
+    <div class="ugh-actions">
+      <div class="custom-select">
+        <select name="ugh-sortby" id="" class="ugh-sortby" placeholder="Sort by" onchange="javascript: rest_api_call('<%= filter_case_study_library_index_path %>',true);">
+          <option></option>
+          <option value="asc">Engagement (highest - lowest)</option>
+          <option value="desc">Engagement (lowest - highest)</option>
+        </select>
+      </div>
+      <a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a>
+    </div>
+    <div class="ugh-description">Post rankings based on engagement </div>
+  </header>
+  <% if data.is_a? String %>
+    <p> <%= data %> </p>
+  <% else %>
+    <% if data.empty? %>
+      <p> No Results found </p>
+    <% else %>
+      <% data.each_with_index do |post,index| %>
+        <% if index == 0 %>
+          <%= render 'top_post', post: post %>
+        <% else %>
+          <% if index == 1 %>
+            <div class="mvp-ranked-posts">
+          <% end %>
+            <%= render 'ranked_post', post: post, rank: index+1 %>
+              <% if index == data.count %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
+<!-- END post-performance cards

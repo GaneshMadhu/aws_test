@@ -40,3 +40,16 @@
 .icon-pdf {
   background-image: image_url("pdf.png");
 }
+
+#attributes-filters > li > a {
+  white-space: pre;
+}
+
+.pdf_container{
+  margin: 10px;
+
+  iframe, object{
+    width: 100%;
+    height: 800px;
+  }
+}

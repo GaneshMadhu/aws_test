@@ -1,0 +1,55 @@
+<div class="rpc-header">
+    <p class="ugpc-kind"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i> <%= post["sponsored_or_organic"] %></p>
+    <div>
+      <%if rank <= 10 && rank != 0 %>
+        <span class="ugpc-rank"><%=rank%> <sup><%= rank.ordinalize.last(2)%></sup></span>
+      <% end %>
+      <div class="rpc-attribute orange tooltip-trigger"><%= post["trait"]["code"]%>
+        <div class="ugpc-attribute orange tooltip">
+          <span><span class="aca-nickname"><%= post["trait"]["code"] %></span></span>
+          <span class="aca-name"><%= post["trait"]["name"]%></span>
+        </div>
+      </div>
+   <!--    <div class="rpc-attribute blue tooltip-trigger">Fx
+        <div class="ugpc-attribute blue tooltip">
+          <span><span class="aca-nickname">Fx</span></span>
+          <span class="aca-name">Enabling me to integrate personal interests in my schedule</span>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <article class="ugpc-post bottom-image">
+    <header>
+      <figure class="ugpc-social-avatar">
+        <img src=<%= post["company_logo"]%>>
+      </figure>
+      <div class="ugpc-social-info">
+        <h5 class="name"><%= post["company_name"] %></h5>
+        <p class="date"><%= formatted_time(post["post_time"]) %></p>
+      </div>
+      <% if post["url_type"] == "facebook"%>
+        <a href="#!" class="ug-icon i-fb"></a>
+      <% else %>
+        <a href="#!" class="ug-icon i-<%= "#{post["url_type"]}"%>>"></a>
+      <% end %>
+    </header>
+    <div class="content">
+      <p><%= post["post_content"] %> <a href="<%= post["post_url"]%>" target="_blank">continue reading</a></p>
+      <figure class="ugpc-post-image">
+        <a href="#!">
+          <img src=<%=post["attachment_url"] %> alt="">
+        </a>
+      </figure>
+      <div class="ugpc-stats">
+        <div class="stat">
+          <p><i class="ug-icon i-likes"></i><span class="number"><%= post["likes"] %></span></p>
+        </div>
+        <div class="stat">
+          <p><i class="ug-icon i-comments"></i><span class="number"><%= post["comments"] %></span></p>
+        </div>
+        <div class="stat">
+          <p><i class="ug-icon i-shares"></i><span class="number"><%= post["shares"] %></span></p>
+        </div>
+      </div>
+    </div>
+  </article>

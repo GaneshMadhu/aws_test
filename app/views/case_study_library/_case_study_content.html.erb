@@ -6,16 +6,15 @@
       <div class="custom-select">
         <select name="ugh-sortby" id="" class="ugh-sortby" placeholder="Sort by" onchange="javascript: rest_api_call('<%= filter_case_study_library_index_path %>');">
           <option></option>
-          <option value="asc">Engagement (highest - lowest)</option>
-          <option value="desc">Engagement (lowest - highest)</option>
+          <option value="desc">Engagement (highest - lowest)</option>
+          <option value="asc">Engagement (lowest - highest)</option>
         </select>
       </div>
       <a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a>
     </div>
     <div class="ugh-description">Post rankings based on engagement </div>
   </header>
-
-  <input type="hidden" id="post_current_page" value="<%= meta["page2"]["current"] rescue "1" %>">
+  <input type="hidden" id="post_current_page" value="<%= meta["page"]["current"] rescue "1" %>">
   <input type="hidden" id="post_total_page" value="<%= meta["page"]["total"] rescue "1" %>">
   <% if data.is_a? String %>
     <p> <%= data %> </p>

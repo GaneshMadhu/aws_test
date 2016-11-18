@@ -17,7 +17,7 @@
 
 <!-- start .page-content -->
 <section class="page-content">
-  <%= render 'shared/filters', data: @tagging_metrics, select_filters: ["company_groups","companies","platforms"], post_type: true, date_range: true, api_path: social_media_performance_index_path %>
+  <%= render 'shared/filters', data: @tagging_metrics["filters"], select_filters: ["company_groups","companies","platforms"], post_type: true, date_range: true, api_path: social_media_performance_index_path %>
   <!-- start .ug-hand-header -->
   <div class="ug-hand-header">
     <%= render 'esmp_content', tagging_metrics: @tagging_metrics["data"] %>

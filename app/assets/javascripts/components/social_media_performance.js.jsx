@@ -51,6 +51,11 @@ function generateLeftChart(chart_data){
           marginRight: md.phone() ? 50 : 236,
           style: {
               fontFamily: 'SourceSansPro'
+          },
+          events: {
+              load: function () {
+                  remove_loaders();
+              }
           }
       },
       credits: {

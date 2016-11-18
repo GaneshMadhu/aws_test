@@ -7,7 +7,8 @@ var Scrollable = React.createClass({
         if(page >= $('#post_total_page').val()) return false;
         rest_api_call(api_path, page);
       }
-    })
+    });
+    remove_loaders();
     return null;
   }
 });

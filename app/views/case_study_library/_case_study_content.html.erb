@@ -14,13 +14,14 @@
     </div>
     <div class="ugh-description">Post rankings based on engagement </div>
   </header>
+
   <input type="hidden" id="post_current_page" value="<%= meta["page2"]["current"] rescue "1" %>">
   <input type="hidden" id="post_total_page" value="<%= meta["page"]["total"] rescue "1" %>">
   <% if data.is_a? String %>
     <p> <%= data %> </p>
   <% else %>
     <% if data.empty? %>
-      <p> No Results found </p>
+      <p class="no_results_center"><img src="<%= image_path "no_results.png" %>" alt="No Results Found"></p>
     <% else %>
       <% data.each_with_index do |post,index| %>
         <% if index == 0 %>
@@ -38,5 +39,7 @@
     <% end %>
   <% end %>
 </section>
+
+<%= render 'shared/loader' %>
 
 <%= react_component("Scrollable", {api_path: api_path}) %>

@@ -12,9 +12,13 @@ Rails.application.routes.draw do
  		end
  	end
 
-  resources :social_media_performance
+  resources :social_media_performance do
+    get :filter, on: :collection
+  end
 
-  resources :post_metrics
+  resources :post_metrics do
+    get :filter, on: :collection
+  end
 
   root "dashboard#index"
 end

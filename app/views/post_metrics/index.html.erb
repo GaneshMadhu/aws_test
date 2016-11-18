@@ -17,7 +17,7 @@
 
 <!-- start .page-content -->
 <section class="page-content">
-  <%= render 'shared/filters', data: @post_metrics["filters"], select_filters: ["traits","company_groups","platforms"], post_type: false, date_range: true, api_path: post_metrics_path %>
+  <%= render 'shared/filters', data: @post_metrics["filters"], select_filters: ["traits","company_groups","platforms"], post_type: false, date_range: true, api_path: filter_post_metrics_path %>
   <!-- start .ug-hand-header -->
   <div class="ug-hand-header">
     <%= render 'post_metric_content', post_metrics: @post_metrics["data"] %>

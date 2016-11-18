@@ -15,12 +15,11 @@ function make_ajax(uri, method, data, path) {
           console.log("ajax error " + jqXHR.status);
       }
   };
-
   return $.ajax(request);
 };
 
 function frame_request(page){
-  var params = {filter: {}, page_number: page};
+  var params = {filter: {}, page: page};
   if(($('.ugf-attribute').length > 0) && ($('.ugf-attribute').val() != null))
     params['filter']['trait.code'] = $('.ugf-attribute').val();
   if(($('.ugf-country').length > 0) && ($('.ugf-country').val() != null))
@@ -30,14 +29,14 @@ function frame_request(page){
   if(($('.ugf-industry').length > 0) && ($('.ugf-industry').val() != null))
     params['filter']['industry_type'] = $('.ugf-industry').val();
   if(($('.ugf-platform').length > 0) && ($('.ugf-platform').val() != null))
-    params['filter']['platforms'] = $('.ugf-platform').val();
+    params['filter']['url_type'] = $('.ugf-platform').val();
   if(($('.ugf-checkboxes').length > 0)){
     if($('#ugffp-organic').prop('checked') || $('#ugffp-sponsored').prop('checked')){
-      params['filter']['post_type'] = []
+      params['filter']['sponsored_or_organic'] = []
       if($('#ugffp-organic').prop('checked'))
-        params['filter']['post_type'] << 'organic'
+        params['filter']['sponsored_or_organic'].push('Organic')
       if($('#ugffp-sponsored').prop('checked'))
-        params['filter']['post_type'] << 'sponsored'
+        params['filter']['sponsored_or_organic'].push('Sponsored')
     }
   }
   if(($('#ugff-time-id').length > 0)){
@@ -51,6 +50,5 @@ function frame_request(page){
   if(($('.ugh-sortby').length > 0) && ($('.ugh-sortby').val() != "")){
     params['sort'] = $('.ugh-sortby').val()
   }
-
   return params;
 }

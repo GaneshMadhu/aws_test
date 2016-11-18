@@ -6,7 +6,6 @@ function rest_api_call(uri, page) {
 }
 
 function make_ajax(uri, method, data, path) {
-  console.log(data)
   var request = {
       url: uri + (path ? ['/', path].join('') : ''),
       type: method,

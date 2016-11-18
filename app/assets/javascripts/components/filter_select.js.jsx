@@ -11,7 +11,7 @@ var FilterSelect = React.createClass({
     return (
       <div className="ugf-filter">
         <header className="ugf-header">
-          <a href="#ugff-{filter_group}" className="btn ugf-edit">Edit</a>
+          <a href={"#ugff-"+filter_group} className="btn ugf-edit">Edit</a>
           <h4>{filter_options.filter_title}
             <span className="tooltip-trigger">
               <i className="ug-icon i-info"></i>

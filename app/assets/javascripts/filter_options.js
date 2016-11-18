@@ -133,4 +133,41 @@ function custom_select(filter_options){
           updateFiltersCount(values, group);
       });
   });
+
+  var filtersWrapper = $('.ug-filters'),
+        filters = filtersWrapper.find('.ugf-filter');
+    // sticky filters
+
+    filtersWrapper.sticky({
+        offset: -290
+    });
+
+    filters.each(function() {
+        var filter = $(this).find('.ugf-filter'),
+            close = $(this).find('.ugf-done');
+
+        $(this).find('.ugf-edit').ugToggle({
+            container: $(this),
+            showClass: 'ugff-open',
+            closeButton: close,
+            beforeToggle: function(current) {
+                filters.not(filter).removeClass('ugff-open');
+            },
+            afterToggle: function(current) {
+                filtersWrapper.find('.ugf-edit').not(current).removeClass('active');
+            }
+        })
+    });
+
+    // Need to revisit here
+    // var openMobFilter = $('.btn-filters');
+    // openMobFilter.ugToggle({
+    //     container: '.page-content',
+    //     showClass: 'ugf-open',
+    //     closeButton: '.page-content .ugf-close',
+    //     onClose: function(current) {
+    //         $('#ugf-time').data('datepicker').hide();
+    //         $(window).trigger('scroll');
+    //     }
+    // });
 }

@@ -1,7 +1,7 @@
 @font-face {
     font-family:'SourceSansPro';
-    src: url('SourceSansPro-ExtraLight_latin_gdi.eot');
-    src: url('SourceSansPro-ExtraLight_latin_gdi.eot?#iefix') format('embedded-opentype'),
+    src: asset-url('SourceSansPro-ExtraLight_latin_gdi.eot');
+    src: asset-url('SourceSansPro-ExtraLight_latin_gdi.eot?#iefix') format('embedded-opentype'),
     url('SourceSansPro-ExtraLight_latin_gdi.woff') format('woff'),
     url('SourceSansPro-ExtraLight_latin_gdi.ttf') format('truetype'),
     url('SourceSansPro-ExtraLight_latin_gdi.otf') format('opentype'),
@@ -13,12 +13,12 @@
 
 @font-face {
     font-family:'SourceSansPro';
-    src: url('SourceSansPro-Light_latin_gdi.eot');
-    src: url('SourceSansPro-Light_latin_gdi.eot?#iefix') format('embedded-opentype'),
-    url('SourceSansPro-Light_latin_gdi.woff') format('woff'),
-    url('SourceSansPro-Light_latin_gdi.ttf') format('truetype'),
-    url('SourceSansPro-Light_latin_gdi.otf') format('opentype'),
-    url('SourceSansPro-Light_latin_gdi.svg#SourceSansPro-Light') format('svg');
+    src: asset-url('SourceSansPro-Light_latin_gdi.eot');
+    src: asset-url('SourceSansPro-Light_latin_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-Light_latin_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-Light_latin_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-Light_latin_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-Light_latin_gdi.svg#SourceSansPro-Light') format('svg');
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -26,12 +26,12 @@
 
 @font-face {
     font-family:'SourceSansPro';
-    src: url('SourceSansPro-Regular_latin_gdi.eot');
-    src: url('SourceSansPro-Regular_latin_gdi.eot?#iefix') format('embedded-opentype'),
-    url('SourceSansPro-Regular_latin_gdi.woff') format('woff'),
-    url('SourceSansPro-Regular_latin_gdi.ttf') format('truetype'),
-    url('SourceSansPro-Regular_latin_gdi.otf') format('opentype'),
-    url('SourceSansPro-Regular_latin_gdi.svg#SourceSansPro-Regular') format('svg');
+    src: asset-url('SourceSansPro-Regular_latin_gdi.eot');
+    src: asset-url('SourceSansPro-Regular_latin_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-Regular_latin_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-Regular_latin_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-Regular_latin_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-Regular_latin_gdi.svg#SourceSansPro-Regular') format('svg');
     font-weight: 400;
     font-style: normal;
     font-stretch: normal;
@@ -39,12 +39,12 @@
 
 @font-face {
     font-family:'SourceSansPro';
-    src: url('SourceSansPro-Semibold_latin_gdi.eot');
-    src: url('SourceSansPro-Semibold_latin_gdi.eot?#iefix') format('embedded-opentype'),
-    url('SourceSansPro-Semibold_latin_gdi.woff') format('woff'),
-    url('SourceSansPro-Semibold_latin_gdi.ttf') format('truetype'),
-    url('SourceSansPro-Semibold_latin_gdi.otf') format('opentype'),
-    url('SourceSansPro-Semibold_latin_gdi.svg#SourceSansPro-Semibold') format('svg');
+    src: asset-url('SourceSansPro-Semibold_latin_gdi.eot');
+    src: asset-url('SourceSansPro-Semibold_latin_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-Semibold_latin_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-Semibold_latin_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-Semibold_latin_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-Semibold_latin_gdi.svg#SourceSansPro-Semibold') format('svg');
     font-weight: 500;
     font-style: normal;
     font-stretch: normal;
@@ -52,12 +52,12 @@
 
 @font-face {
     font-family:'SourceSansPro';
-    src: url('SourceSansPro-Bold_gdi.eot');
-    src: url('SourceSansPro-Bold_gdi.eot?#iefix') format('embedded-opentype'),
-    url('SourceSansPro-Bold_gdi.woff') format('woff'),
-    url('SourceSansPro-Bold_gdi.ttf') format('truetype'),
-    url('SourceSansPro-Bold_gdi.otf') format('opentype'),
-    url('SourceSansPro-Bold_gdi.svg#SourceSansPro-Bold') format('svg');
+    src: asset-url('SourceSansPro-Bold_gdi.eot');
+    src: asset-url('SourceSansPro-Bold_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-Bold_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-Bold_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-Bold_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-Bold_gdi.svg#SourceSansPro-Bold') format('svg');
     font-weight: 700;
     font-style: normal;
     font-stretch: normal;

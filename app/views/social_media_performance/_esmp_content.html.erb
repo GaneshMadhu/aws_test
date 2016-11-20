@@ -5,17 +5,8 @@
     <div class="ugh-actions"><a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a></div>
     <div class="ugh-description">This view shows the attribute performance. On the left is the overall volume of the attributes where the length of the bar chart indicates how many posts talent thought was about these attributes. On the right is the average post engagement per attribute.</div>
   </header>
-  <div class="ug-card ug-chart">
-    <div class="chart-titles">
-      <div class="left">Volume of content associated with the attributes</div>
-      <div class="right">Average post engagement</div>
-    </div>
-    <div class="chart-container">
-      <div data-esmp-left-chart></div>
-      <div data-esmp-right-chart></div>
-      <%= react_component("SocialMediaPerformance", data: tagging_metrics) %>
-    </div>
-    <%= render 'shared/loader' %>
+  <div class="ug-card ug-chart" id="esmp_chart_wrapper">
+    <%= render 'charts', tagging_metrics: tagging_metrics %>
   </div>
 
 </section>

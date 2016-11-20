@@ -1,1 +1,3 @@
+$("#post_metrics_chart_wrapper").html("<%= escape_javascript(render partial: 'charts', locals: { post_metrics: @post_metrics["data"] }) %>");
+ReactRailsUJS.mountComponents();
 remove_loaders();

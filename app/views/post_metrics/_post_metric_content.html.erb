@@ -5,13 +5,8 @@
     <div class="ugh-actions"><a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a></div>
     <div class="ugh-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ipsum repudiandae vel totam, sequi adipisci recusandae corrupti, ea similique temporibus magni fuga nisi.</div>
   </header>
-  <div class="ug-card ug-chart">
-    <div class="chart-container">
-      <div data-zoom-in-chart>
-        <%= react_component("PostMetrics", data: post_metrics) %>
-      </div>
-    </div>
-    <%= render 'shared/loader' %>
+  <div class="ug-card ug-chart" id="post_metrics_chart_wrapper">
+    <%= render 'charts', post_metrics: post_metrics %>
   </div>
 </section>
 <!-- END zoom-in-chart card -->

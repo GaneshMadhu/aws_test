@@ -1,1 +1,3 @@
+$("#esmp_chart_wrapper").html("<%= escape_javascript(render partial: 'charts', locals: { tagging_metrics: @tagging_metrics['data'] }) %>");
+ReactRailsUJS.mountComponents();
 remove_loaders();

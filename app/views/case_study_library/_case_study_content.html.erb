@@ -20,7 +20,7 @@
     <p> <%= data %> </p>
   <% else %>
     <% if data.empty? %>
-      <p class="no_results_center"><img src="<%= image_path "no_results.png" %>" alt="No Results Found"></p>
+      <%= render 'shared/no_results' %>
     <% else %>
       <% data.each_with_index do |post,index| %>
         <% if index == 0 %>

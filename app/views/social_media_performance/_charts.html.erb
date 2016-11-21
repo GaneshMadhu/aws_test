@@ -5,6 +5,8 @@
 <div class="chart-container">
   <div data-esmp-left-chart></div>
   <div data-esmp-right-chart></div>
-  <%= react_component("SocialMediaPerformance", data: tagging_metrics) %>
+  <div id="esmp_react_wrapper">
+    <%= react_component("SocialMediaPerformance", data: tagging_metrics) %>
+  </div>
 </div>
 <%= render 'shared/loader' %>

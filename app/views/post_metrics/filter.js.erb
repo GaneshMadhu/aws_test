@@ -1,7 +1,7 @@
 var has_data = "<%= @post_metrics && @post_metrics['data'] && @post_metrics['data']['avg_time'].present? %>";
 if(has_data == 'true'){
   $("#post_metrics_chart_wrapper").html("<%= escape_javascript(render partial: 'charts', locals: { post_metrics: @post_metrics["data"] }) %>");
-  ReactRailsUJS.mountComponents();
+  ReactRailsUJS.mountComponents('#zoom_in_react_wrapper');
 }
 else{
   $("#post_metrics_chart_wrapper").html("<%= escape_javascript(render partial: 'shared/no_results' ) %>");

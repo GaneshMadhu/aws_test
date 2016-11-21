@@ -1,7 +1,7 @@
 var has_data = "<%= @tagging_metrics && @tagging_metrics['data'] && @tagging_metrics['data']['tags'].present? %>";
 if(has_data == 'true'){
   $("#esmp_chart_wrapper").html("<%= escape_javascript(render partial: 'charts', locals: { tagging_metrics: @tagging_metrics['data'] }) %>");
-  ReactRailsUJS.mountComponents();
+  ReactRailsUJS.mountComponents('#esmp_react_wrapper');
 }
 else{
   $("#esmp_chart_wrapper").html("<%= escape_javascript(render partial: 'shared/no_results' ) %>");

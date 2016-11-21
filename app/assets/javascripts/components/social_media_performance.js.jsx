@@ -34,7 +34,7 @@ function generateLeftChart(chart_data){
   for(var key in tagging_metrics){
     if (tagging_metrics.hasOwnProperty(key)) {
       var datum = tagging_metrics[key];
-      xAxisData.push(key)
+      xAxisData.push("<b>"+key+"</b><span>"+datum.name+"</span>")
       yAxisData.push({
         y: -(datum.tags_count),
         color: datum.color,

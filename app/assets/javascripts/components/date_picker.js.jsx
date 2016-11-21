@@ -1,4 +1,11 @@
-setTimeout(function(){
+var DatePicker = React.createClass({
+  render: function(){
+    apply_date_picker();
+    return null;
+  }
+});
+
+function apply_date_picker(){
   var timeInputFilter = $('#ugf-time'),
       timeElFilter = $('#ugf-time-formatted');
 
@@ -31,4 +38,4 @@ setTimeout(function(){
       event.preventDefault();
       timeInputFilter.data('datepicker').show();
   });
-},200);
+}

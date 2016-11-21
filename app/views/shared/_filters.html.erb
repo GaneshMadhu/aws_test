@@ -52,12 +52,15 @@
             <h4>Date range</h4>
           </header>
           <div id="ugff-time-id" class="ugf-select ugff-time">
-            <div id="ugf-time-formatted"><strong>Start</strong><span class="start">10.03.2016</span><strong>End</strong><span class="end">31.03.2016</span></div>
+            <div id="ugf-time-formatted">
+              <strong>Start</strong><span class="start"></span>
+              <strong>End</strong><span class="end"></span>
+            </div>
             <input type="text" id="ugf-time" onchange="javascript: rest_api_call('<%= api_path %>');"/>
           </div>
           <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
         </div>
-        <%= javascript_include_tag "utils/datepicker.js" %>
+        <%= react_component('DatePicker') %>
       <% end %>
     </div>
 

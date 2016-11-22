@@ -48,7 +48,7 @@ function generateLeftChart(chart_data){
   $('[data-esmp-left-chart]').highcharts({
       chart: {
           type: 'bar',
-          height: 2000,
+          height: (parseInt(yAxisData.length * 50)),
           marginRight: md.phone() ? 50 : 236,
           style: {
               fontFamily: 'SourceSansPro'
@@ -189,7 +189,7 @@ function generateRightChart(chart_data){
   $('[data-esmp-right-chart]').highcharts({
       chart: {
           type: 'bar',
-          height: 2000,
+          height: (parseInt(series.length * 50)),
           marginLeft: 0,
           style: {
               fontFamily: 'SourceSansPro'
@@ -282,7 +282,7 @@ function generateRightChart(chart_data){
               dataLabels: {
                   enabled: true,
                   color: '#565656',
-                  format: '{point.y:.1f}%',
+                  format: '{point.y:.1f}',
                   style: {
                       fontSize: '15px',
                       fontWeight: '400'
@@ -297,9 +297,7 @@ function generateRightChart(chart_data){
           lineColor: 'transparent',
           minorTickLength: 0,
           tickLength: 1,
-          labels: { enabled: false },
-          min: 0,
-          max: 37
+          labels: { enabled: false }
       },
       legend: {
           enabled: false

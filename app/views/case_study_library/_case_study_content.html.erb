@@ -14,29 +14,9 @@
     </div>
     <div class="ugh-description">Post rankings based on engagement </div>
   </header>
-  <input type="hidden" id="post_current_page" value="<%= meta["page"]["current"] rescue "1" %>">
-  <input type="hidden" id="post_total_page" value="<%= meta["page"]["total"] rescue "1" %>">
-  <% if data.is_a? String %>
-    <p> <%= data %> </p>
-  <% else %>
-    <% if data.empty? %>
-      <%= render 'shared/no_results' %>
-    <% else %>
-      <% data.each_with_index do |post,index| %>
-        <% if index == 0 %>
-          <%= render 'top_post', post: post %>
-        <% else %>
-          <% if index == 1 %>
-            <div class="mvp-ranked-posts">
-          <% end %>
-            <%= render 'ranked_post', post: post, rank: index+1 %>
-              <% if index == data.count %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
+  <div id="ug-post-content">
+    <%= render 'posts_content', data: data, meta: meta %>
+  </div>
 </section>
 
 <%= render 'shared/loader' %>

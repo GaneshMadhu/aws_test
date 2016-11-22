@@ -15,7 +15,7 @@ class SelectFilterParams
       results_containter: ".ugf-#{filter_group}-results",
       dropdown_parent:    ".ugff-#{filter_group}",
       placeholder:        "Search #{filter_group.capitalize}",
-      tooltip:            "All Filters",
+      tooltip:            "Search from the list of #{filter_group.pluralize}",
       filter_title:       filter_group.capitalize,
       filter_group:       filter_group,
       rest_url:           api_path

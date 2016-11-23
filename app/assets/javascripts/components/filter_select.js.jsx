@@ -3,7 +3,7 @@ var FilterSelect = React.createClass({
     var filter_options = this.props;
     var filter_group   = filter_options.filter_group;
     var placeholder    = filter_options.placeholder;
-    var select_wrapper = ["ugf-select"];
+    var select_wrapper = ["ugf-select","no-results"];
     select_wrapper.push("ugff-"+filter_group);
     window.requestAnimationFrame(function() {
       custom_select(filter_options);

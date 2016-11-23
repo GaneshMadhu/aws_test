@@ -297,7 +297,8 @@ function generateRightChart(chart_data){
           lineColor: 'transparent',
           minorTickLength: 0,
           tickLength: 1,
-          labels: { enabled: false }
+          labels: { enabled: false },
+          min: 0
       },
       legend: {
           enabled: false

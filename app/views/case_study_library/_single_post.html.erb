@@ -1,5 +1,5 @@
 <div class="rpc-header">
-    <p class="ugpc-kind"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i> <%= post["sponsored_or_organic"] %></p>
+    <p class="ugpc-kind type-<%= post["sponsored_or_organic"].downcase %>"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i> <%= post["sponsored_or_organic"] %></p>
     <div>
       <%if rank <= 10 && rank != 0 %>
         <span class="ugpc-rank"><%=rank%> <sup><%= rank.ordinalize.last(2)%></sup></span>

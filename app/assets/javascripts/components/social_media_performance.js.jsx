@@ -232,7 +232,7 @@ function generateRightChart(chart_data){
                   verticalAlign: 'top',
                   useHTML: true,
                   rotation: 0,
-                  text: '<span class="hc-plotband-label">Average post engagement - All Companies ('+(Math.round(avg * 100) / 100)+'%)</span>',
+                  text: '<span class="hc-plotband-label">Avg. engagement score -  '+(Math.round(avg * 100) / 100)+'</span>',
                   x: 0,
                   y: 415
               },

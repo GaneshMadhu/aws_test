@@ -6,6 +6,7 @@ function custom_select(filter_options){
   var dropdownParent   = $(filter_options.dropdown_parent);
   var placeholder      = filter_options.placeholder;
   var rest_url         = filter_options.rest_url;
+  var filter_group     = filter_options.filter_group;
 
   var resultsToAutocomplete = function(results) {
     var data = [];
@@ -22,8 +23,7 @@ function custom_select(filter_options){
   var populateResultsView = function (_results) {
       resultsContainer.html('');
       _results.map(function (_result) {
-          // TODO: _result should be replaced with resultsToAutocomplete to have better consistency
-          var resultCard = $.parseHTML("<div class='card mini-card'><span class='mcard-remove'><i class='ug-icon i-close'></i></span><span>"+_result.text+"</span></div>");
+          var resultCard = format_selected_card(filter_group,_result);
           resultsContainer.append(resultCard);
           $(resultCard).find('.mcard-remove').on('click', function () {
               removeResult(_result);
@@ -38,9 +38,9 @@ function custom_select(filter_options){
       })).trigger('change');
   };
 
-  //var formatResult = function (_result) {
-    //  return $($.templates(autocompleteRow).render(_result));
-  //};
+  var formatResult = function (_result) {
+    return format_select_row(filter_group,_result);
+  };
 
   var getSelected = function (results) {
       var selected = [];
@@ -81,7 +81,8 @@ function custom_select(filter_options){
       dropdownParent: dropdownParent,
       allowClear: true,
       data: options_data,
-      multiple: true
+      multiple: true,
+      templateResult: formatResult
   }).on('select2:unselecting', function() {
       $(this).data('unselecting', true);
   }).on('select2:opening', function(e) {
@@ -170,4 +171,46 @@ function custom_select(filter_options){
     //         $(window).trigger('scroll');
     //     }
     // });
+
+    var format_select_row = function(filter_group,row_data){
+      var html_string;
+      switch(filter_group) {
+        case 'attribute':
+            html_string = "<div><strong class='colored' style='color: "+row_data.label+"'>"+row_data.id+"</strong><span>"+row_data.text+"</span></div>";
+            break;
+        case 'country':
+            html_string = "<div><span class='flag-icon flag-icon-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+            break;
+        case 'company':
+            html_string = "<div><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
+            break;
+        case 'platform':
+            html_string = "<div><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+            break;
+        default:
+            html_string = "<div><span>"+row_data.text+"</span></div>";
+      }
+      return $.parseHTML(html_string);
+    };
+
+    var format_selected_card = function(filter_group,row_data){
+      var html_string;
+      switch(filter_group) {
+        case 'attribute':
+            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><strong class='colored' style='color: "+row_data.label+"'>"+row_data.id+"</strong><span>"+row_data.text+"</span></div>";
+            break;
+        case 'country':
+            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='flag-icon flag-icon-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+            break;
+        case 'company':
+            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><img src='"+row_data.label+"' alt=''><span>"+row_data.text+"</span></div>";
+            break;
+        case 'platform':
+            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+            break;
+        default:
+            html_string = "<div class='card mini-card'><span class='mcard-remove'><i class='ug-icon i-close'></i></span><span>"+row_data.text+"</span></div>";
+      }
+      return $.parseHTML(html_string);;
+    };
 }

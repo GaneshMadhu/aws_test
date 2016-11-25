@@ -27,7 +27,7 @@ function frame_request(page){
   if(($('.ugf-company').length > 0) && ($('.ugf-company').val() != null))
     params['filter']['company_precode'] = $('.ugf-company').val();
   if(($('.ugf-industry').length > 0) && ($('.ugf-industry').val() != null))
-    params['filter']['industry_type'] = $('.ugf-industry').val();
+    params['filter']['industry'] = $('.ugf-industry').val();
   if(($('.ugf-platform').length > 0) && ($('.ugf-platform').val() != null))
     params['filter']['url_type'] = $('.ugf-platform').val();
   if(($('.ugf-checkboxes').length > 0)){

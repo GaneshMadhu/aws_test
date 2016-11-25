@@ -182,7 +182,10 @@ function custom_select(filter_options){
             html_string = "<div><span class='flag-icon flag-icon-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
             break;
         case 'company':
-            html_string = "<div><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
+            if(row_data.label == null || row_data.label == undefined)
+              html_string = "<div><span>"+row_data.text+"</span></div>";
+            else
+              html_string = "<div><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
             break;
         case 'platform':
             html_string = "<div><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
@@ -203,7 +206,10 @@ function custom_select(filter_options){
             html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='flag-icon flag-icon-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
             break;
         case 'company':
-            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><img src='"+row_data.label+"' alt=''><span>"+row_data.text+"</span></div>";
+            if(row_data.label == null || row_data.label == undefined)
+              html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span>"+row_data.text+"</span></div>";
+            else
+              html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
             break;
         case 'platform':
             html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";

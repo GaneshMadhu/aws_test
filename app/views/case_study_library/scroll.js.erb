@@ -4,3 +4,4 @@ $(".mvp-ranked-posts").append("<%= escape_javascript(render partial: 'scroll', l
 	$('#post_current_page').val(<%= @posts['meta']['page']['current'] %>)
 	$('#post_total_page').val(<%= @posts['meta']['page']['total'] %>)
 <% end %>
+$('#post_scroller').val('true');

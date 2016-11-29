@@ -20,5 +20,10 @@ Rails.application.routes.draw do
     get :filter, on: :collection
   end
 
+  resources :home do
+    get :terms_and_conditions, on: :collection
+    get :privacy_policy, on: :collection
+  end
+
   root "dashboard#index"
 end

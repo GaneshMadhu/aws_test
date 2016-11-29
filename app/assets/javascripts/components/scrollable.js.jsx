@@ -10,16 +10,12 @@ var Scrollable = React.createClass({
 });
 
 function trigger_scroll(api_path){
-  var timeout;
   $(window).scroll(function(){
-    clearTimeout(timeout);
-    timeout = setTimeout(function() {
-      if ($(window).scrollTop() == $("#page").height() - $(window).height()){
-        var page = $('#post_current_page').val();
-        if(page >= $('#post_total_page').val()) return false;
-        rest_api_call(api_path, page);
-      }
-    }, 100);
+    if ($(window).scrollTop() == $("#page").height() - $(window).height()){
+      var page = $('#post_current_page').val();
+      if(page >= $('#post_total_page').val()) return false;
+      rest_api_call(api_path, page);
+    }
   });
   remove_loaders();
 }

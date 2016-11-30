@@ -187,8 +187,7 @@ function generate_chart(chart_data){
           minorGridLineWidth: 0,
           lineColor: 'transparent',
           minorTickLength: 0,
-          min: 1,
-          max: 12,
+          min: 0,
           tickLength: 0,
           plotBands: [{
               from: 0,

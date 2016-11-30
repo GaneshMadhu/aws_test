@@ -2,10 +2,10 @@
     font-family:'SourceSansPro';
     src: asset-url('SourceSansPro-ExtraLight_latin_gdi.eot');
     src: asset-url('SourceSansPro-ExtraLight_latin_gdi.eot?#iefix') format('embedded-opentype'),
-    url('SourceSansPro-ExtraLight_latin_gdi.woff') format('woff'),
-    url('SourceSansPro-ExtraLight_latin_gdi.ttf') format('truetype'),
-    url('SourceSansPro-ExtraLight_latin_gdi.otf') format('opentype'),
-    url('SourceSansPro-ExtraLight_latin_gdi.svg#SourceSansPro-ExtraLight') format('svg');
+    asset-url('SourceSansPro-ExtraLight_latin_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-ExtraLight_latin_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-ExtraLight_latin_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-ExtraLight_latin_gdi.svg#SourceSansPro-ExtraLight') format('svg');
     font-weight: 200;
     font-style: normal;
     font-stretch: normal;

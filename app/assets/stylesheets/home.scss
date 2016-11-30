@@ -1,66 +1,111 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$x-small: "(max-width: 480px)";
+$xsmall-only: "(min-width: 480px) and (max-width: 768px)";
+$xsmall-up: "(min-width: 480px)";
+
+$small-up: "(min-width: 480px)";
+$small-only: "(max-width: 768px)";
+
+$medium-up: "(min-width: 768px)";
+$medium-only: "(min-width: 768px) and (max-width: 1024px)";
+$medium: "(max-width: 1024px)";
+
+$large-up: "(min-width: 1024px)";
+$large-only: "(min-width: 1024px) and (max-width: 1280px)";
+$large: "(max-width: 1279px)";
+
+$xlarge-up: "(min-width: 1280px)";
 #page-wrapper
 {
 	background-color: #fff;
 }
 #pageHead
 {
-	padding: 0 30px 0px;
+  padding: 0 30px 0px;
   margin: 0 0 0px 0;
   text-align: left;
   background: #fff;
+
+		.inside 
+		{
+		  padding: 50px 0 30px;
+		  max-width: 66.5em;
+		  margin: 0 auto;
+		  position: relative;
+		  border-bottom: 1px solid #e9e9e9;
+		}
+		h1 
+		{
+		  font-size: 2em;
+		  line-height: 1.25em;
+		  padding-left: 40px;
+		  margin-bottom: 0;
+		  font-weight: 300;
+		  margin-top: 0;
+		  color:#404040;       
+ 		}
+       @media #{$xsmall-up}
+       { 
+        	font-size: 1em;
+        	padding-left:0px;
+       }
 }
-#pageHead .inside {
-  padding: 50px 0 30px;
-  max-width: 66.5em;
-  margin: 0 auto;
-  position: relative;
-  border-bottom: 1px solid #e9e9e9;
-}
-#pageHead h1 {
-  font-size: 2.5em;
-  line-height: 1.25em;
-  padding-left: 30px;
-  margin-bottom: 0;
-  font-weight: 300;
-  margin-top: 0;
-}
-#middle {
+#middle 
+{
   margin: 0 auto;
   background: #fff;
   position: relative;
-  max-width: 66.5em;
+  max-width: 66.5em; 
     
 }
-#content strong
-{
-	color: #4B4040;
-}
-#content p
-{
-	line-height: 1.7em;
-	font-weight: 200;
-}
-#content b
-{
-	color: #4B4040;
-}
-#content
+#content 
 {
 	padding:30px;
 	text-align:justify;
+		strong
+		{
+			color: #4B4040;
+		}
+		p
+		{
+			line-height: 1.7em;
+			font-weight: 200;
+		}
+		b
+		{
+			color: #4B4040;
+		}
+		ol 
+		{
+		  margin: 0 0 20px 20px;
+		  list-style-type: decimal!important;
+		  line-height: 1.7em;
+			font-weight: 200;
+			padding:0px;
+		}
+		ol li
+		{
+			line-height: 1.5em;
+		  margin-bottom: 10px;
+		}
 }
-#content ol {
-  margin: 0 0 20px 20px;
-  list-style-type: decimal!important;
-  line-height: 1.7em;
-	font-weight: 200;
-	padding:0px;
-}
-#content ol li
+
+ 
+/*@media (min-width: 320px) and (max-width: 360px)
 {
-	line-height: 1.5em;
-  margin-bottom: 10px;
+	 #pageHead h1
+    {
+    	font-size:7.5em;
+    }
 }
+@media (min-width: 320px) and (max-width: 980px)
+{
+    #pageHead h1
+    {
+    	font-size:4.5em;
+    }
+    #middle
+    {
+    	font-size:2.7em;
+    	padding:30px;
+    }
+}*/

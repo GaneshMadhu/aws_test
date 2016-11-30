@@ -25,7 +25,7 @@ $xlarge-up: "(min-width: 1280px)";
   text-align: left;
   background: #fff;
 
-		.inside 
+		.inside
 		{
 		  padding: 50px 0 30px;
 		  max-width: 66.5em;
@@ -33,7 +33,7 @@ $xlarge-up: "(min-width: 1280px)";
 		  position: relative;
 		  border-bottom: 1px solid #e9e9e9;
 		}
-		h1 
+		h1
 		{
 		  font-size: 2em;
 		  line-height: 1.25em;
@@ -41,23 +41,23 @@ $xlarge-up: "(min-width: 1280px)";
 		  margin-bottom: 0;
 		  font-weight: 300;
 		  margin-top: 0;
-		  color:#404040;       
+		  color:#404040;
  		}
        @media #{$xsmall-up}
-       { 
+       {
         	font-size: 1em;
         	padding-left:0px;
        }
 }
-#middle 
+#middle
 {
   margin: 0 auto;
   background: #fff;
   position: relative;
-  max-width: 66.5em; 
-    
+  max-width: 66.5em;
+
 }
-#content 
+#content
 {
 	padding:30px;
 	text-align:justify;
@@ -74,7 +74,7 @@ $xlarge-up: "(min-width: 1280px)";
 		{
 			color: #4B4040;
 		}
-		ol 
+		ol
 		{
 		  margin: 0 0 20px 20px;
 		  list-style-type: decimal!important;
@@ -88,24 +88,3 @@ $xlarge-up: "(min-width: 1280px)";
 		  margin-bottom: 10px;
 		}
 }
-
- 
-/*@media (min-width: 320px) and (max-width: 360px)
-{
-	 #pageHead h1
-    {
-    	font-size:7.5em;
-    }
-}
-@media (min-width: 320px) and (max-width: 980px)
-{
-    #pageHead h1
-    {
-    	font-size:4.5em;
-    }
-    #middle
-    {
-    	font-size:2.7em;
-    	padding:30px;
-    }
-}*/

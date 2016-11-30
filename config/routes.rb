@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   resources :attributes
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
  	resources :case_study_library do
  		collection do
  			get :filter, as: "filter"
@@ -20,9 +20,10 @@ Rails.application.routes.draw do
     get :filter, on: :collection
   end
 
-  resources :home 
-    get 'terms_and_conditions' => 'home#terms_and_conditions'
-    get 'privacy_policy' => 'home#privacy_policy'
-  
+  resources :home
+
+  get 'terms_and_conditions' => 'home#terms_and_conditions'
+  get 'privacy_policy' => 'home#privacy_policy'
+
   root "dashboard#index"
 end

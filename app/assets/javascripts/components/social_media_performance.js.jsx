@@ -16,7 +16,7 @@ function generate_basic_data(chart_data){
   for (var key in chart_data) {
     if (chart_data.hasOwnProperty(key)) {
       if(key == "avg_engagement")
-        avg_engagement = chart_data[key];
+        avg_engagement = Math.round(chart_data[key]);
       if(key == "tags_count")
         tags_count = chart_data[key];
       if(key == "tags"){
@@ -180,7 +180,7 @@ function generateRightChart(chart_data){
     if (tagging_metrics.hasOwnProperty(key)) {
       var datum = tagging_metrics[key];
       series.push({
-        y: datum.avg_engagement,
+        y: Math.round(datum.avg_engagement),
         color: datum.avg_engagement < avg ? '#39589A' : '#223B71'
       })
     }
@@ -282,7 +282,7 @@ function generateRightChart(chart_data){
               dataLabels: {
                   enabled: true,
                   color: '#565656',
-                  format: '{point.y:.1f}',
+                  format: '{point.y}',
                   style: {
                       fontSize: '15px',
                       fontWeight: '400'

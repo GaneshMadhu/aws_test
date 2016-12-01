@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :home 
     get 'terms_and_conditions' => 'home#terms_and_conditions'
     get 'privacy_policy' => 'home#privacy_policy'
-  
+    get 'faq' => 'home#faq'
+
   root "dashboard#index"
 end

@@ -55,7 +55,6 @@ $xlarge-up: "(min-width: 1280px)";
   background: #fff;
   position: relative;
   max-width: 66.5em;
-
 }
 #content
 {
@@ -95,7 +94,6 @@ $xlarge-up: "(min-width: 1280px)";
 	padding:20px;
 	color:#67D3E0;
 	font-weight:700;
-
 }
 .wrap
 {
@@ -104,31 +102,28 @@ $xlarge-up: "(min-width: 1280px)";
 	background-color: #fff;
 	padding:20px;
 
-     h2
-{
-   color:#529AC3;
-   padding:20px;
-   border-bottom: 1px solid #eae3e3;
-}
-
-}
-
-.question
+  h2
   {
-    display:block;
-    background-color: #ddd;
-    color:#7b7777;
-    font-weight:bold;
-    padding:10px;
-    margin:20px;
-    cursor:pointer;
+    color:#529AC3;
+    padding:20px;
+    border-bottom: 1px solid #eae3e3;
   }
+}
+.question
+{
+  display:block;
+  background-color: #ddd;
+  color:#7b7777;
+  font-weight:bold;
+  padding:10px;
+  margin:20px;
+  cursor:pointer;
+}
 .answer
 {
   display:block;
   padding:30px 20px;
   margin:5px;
-
 }
 .question:hover
 {

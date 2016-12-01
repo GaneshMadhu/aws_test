@@ -20,10 +20,10 @@ Rails.application.routes.draw do
     get :filter, on: :collection
   end
 
-  resources :home 
+  resources :home
     get 'terms_and_conditions' => 'home#terms_and_conditions'
     get 'privacy_policy' => 'home#privacy_policy'
-    get 'faq' => 'home#faq'
+    get 'faqs' => 'home#faqs'
 
   root "dashboard#index"
 end

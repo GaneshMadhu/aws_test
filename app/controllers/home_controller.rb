@@ -5,8 +5,9 @@ class HomeController < ApplicationController
 
 	def privacy_policy
 	end
-	
-	def faq
+
+	def faqs
+    @faqs = IrisEngine::IrisApi.new.search("faqs",{})
 	end
 
 end

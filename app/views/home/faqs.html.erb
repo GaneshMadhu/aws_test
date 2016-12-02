@@ -1,20 +1,41 @@
+<header class="ug-header"> <!-- default is the light version - without adding "light" class to ug-header -->
+  <div class="content">
+    <div class="ugh-page-title">
+      <div>
+        <h1>Case Study Library</h1>
+        <h4 class="subtitle">An ever-growing library of social media posts for your inspiration.<br>Analyze your competitors' posts and discover new ideas to create engaging content.</h4>
+        
+      </div>
+    </div>
+  </div>
+</header>
 <div class="wrap">
   <h2>Need support? We're here to help!</h2>
-  <div class="accordion">
-    <% @faqs.each do |faq| %>
+      <% @faqs.each do |faq| %>
+    <div class="acc_wrap">
       <div class="question"><%= faq["question"] %></div>
       <div class="answer"><%= faq["answer"] %></div>
+    </div>
     <% end if @faqs %>
   </div>
-</div>
 <script>
 $(document).ready(function()
 {
-    $('.accordion .answer').slideUp();
-    $('.accordion .question').click(function(){
-      $('.answer').hide();
-      $(this).next(".accordion .answer").slideToggle();
-
-    });
-});
+    $('.acc_wrap .answer').hide();
+    $('.acc_wrap > .question').click(function()
+      {  
+        if ( $( this ).siblings().hasClass( 'active' ) )
+        {
+          $('.answer').slideUp();
+          $('.answer').removeClass('active');
+        }
+        else
+        {
+          $('.answer').slideUp();
+          $('.answer').removeClass('active');
+          $(this).siblings().slideToggle();
+          $(this).siblings().addClass('active');
+        }
+      });   
+ });
 </script>

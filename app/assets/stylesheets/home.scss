@@ -16,7 +16,7 @@ $large: "(max-width: 1279px)";
 $xlarge-up: "(min-width: 1280px)";
 #page-wrapper
 {
-	background-color: #fff;
+  background-color: #fff;
 }
 #pageHead
 {
@@ -48,6 +48,7 @@ $xlarge-up: "(min-width: 1280px)";
     	font-size: 1em;
     	padding-left:0px;
     }
+
 }
 #middle
 {
@@ -87,13 +88,12 @@ $xlarge-up: "(min-width: 1280px)";
 		  margin-bottom: 10px;
 		}
 }
-
 .header
 {
-	background-color: #fff;
-	padding:20px;
-	color:#67D3E0;
-	font-weight:700;
+  background-color: #fff;
+  padding:20px;
+  color:#67D3E0;
+  font-weight:700;
 }
 .wrap
 {
@@ -101,6 +101,10 @@ $xlarge-up: "(min-width: 1280px)";
 	margin:20px auto;
 	background-color: #fff;
 	padding:20px;
+  width:80%;
+  margin:20px auto;
+  background-color: #fff;
+  padding:20px;
   h2
   {
     color:#529AC3;
@@ -128,7 +132,10 @@ $xlarge-up: "(min-width: 1280px)";
 {
   color: #67D3E0;
 }
-.question:focus
+.question:active
 {
-  background-color: red;
+  background-color: #67D3E0;
+  color:white;
 }
+
+

@@ -6,7 +6,7 @@
       <% end %>
       <div class="rpc-attribute tooltip-trigger" style="color: <%= post["trait_group"]["properties"]["color"] %>"><%= post["trait"]["code"] %>
         <input type="hidden" value='<%= post["trait_group"]["properties"]["color"] %>'>
-        <div class="ugpc-attribute tooltip" style="background: <%= post["trait"]["properties"]["color"] %>;">
+        <div class="ugpc-attribute tooltip" style="background: <%= post["trait_group"]["properties"]["color"] %>;">
           <span><span class="aca-nickname"><%= post["trait"]["code"] %></span></span>
           <span class="aca-name"><%= post["trait"]["name"]%></span>
         </div>

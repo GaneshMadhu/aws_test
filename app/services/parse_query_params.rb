@@ -21,7 +21,7 @@ class ParseQueryParams
             post_time_query["min"] = value["gte"] unless value["gte"].nil?
             filter_query[key]      = post_time_query unless post_time_query.blank?
           else
-            filter_query[key] = value.join(",") unless value.blank?
+            filter_query[key] = value.join("$") unless value.blank?
         end
       end
     end

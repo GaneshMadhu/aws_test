@@ -2,22 +2,22 @@
   <div class="content">
     <div class="ugh-page-title">
       <div>
-        <h1>Case Study Library</h1>
-        <h4 class="subtitle">An ever-growing library of social media posts for your inspiration.<br>Analyze your competitors' posts and discover new ideas to create engaging content.</h4>
-        
+        <h1>Frequently Asked Questions</h1>
+        <h4 class="subtitle">An ever-growing library of social media posts for your inspiration.<br>Analyze your competitors' posts and discover new ideas to create engaging content.</h4>        
       </div>
     </div>
   </div>
 </header>
-<div class="wrap">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+<section class="page-content">
   <h2>Need support? We're here to help!</h2>
       <% @faqs.each do |faq| %>
     <div class="acc_wrap">
-      <div class="question"><%= faq["question"] %></div>
+      <div class="question"><%= faq["question"] %><i class="fa fa-caret-down" aria-hidden="true"></i></div>
       <div class="answer"><%= faq["answer"] %></div>
     </div>
     <% end if @faqs %>
-  </div>
+   </section>
 <script>
 $(document).ready(function()
 {
@@ -27,12 +27,19 @@ $(document).ready(function()
         if ( $( this ).siblings().hasClass( 'active' ) )
         {
           $('.answer').slideUp();
+          $('.question').removeClass('question-active');
           $('.answer').removeClass('active');
+          $('.fa').removeClass('fa-flip');
+
         }
         else
         {
           $('.answer').slideUp();
+          $('.question').removeClass('question-active');
+          $('.fa').removeClass('fa-flip');
           $('.answer').removeClass('active');
+          $(this).addClass('question-active');
+          $(this).find('.fa').addClass('fa-flip');
           $(this).siblings().slideToggle();
           $(this).siblings().addClass('active');
         }

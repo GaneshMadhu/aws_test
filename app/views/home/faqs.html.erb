@@ -3,12 +3,13 @@
     <div class="ugh-page-title">
       <div>
         <h1>Frequently Asked Questions</h1>
-        <h4 class="subtitle">An ever-growing library of social media posts for your inspiration.<br>Analyze your competitors' posts and discover new ideas to create engaging content.</h4>        
+        <h4 class="subtitle">An ever-growing library of social media posts for your inspiration.<br>Analyze your competitors' posts and discover new ideas to create engaging content.</h4>
       </div>
     </div>
   </div>
 </header>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+<%= render "shared/scroll" %>
 <section class="page-content">
   <h2>Need support? We're here to help!</h2>
       <% @faqs.each do |faq| %>
@@ -23,7 +24,7 @@ $(document).ready(function()
 {
     $('.acc_wrap .answer').hide();
     $('.acc_wrap > .question').click(function()
-      {  
+      {
         if ( $( this ).siblings().hasClass( 'active' ) )
         {
           $('.answer').slideUp();
@@ -43,6 +44,6 @@ $(document).ready(function()
           $(this).siblings().slideToggle();
           $(this).siblings().addClass('active');
         }
-      });   
+      });
  });
 </script>

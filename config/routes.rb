@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get :filter, on: :collection
   end
 
-  resources :post_metrics do
+  resources :attribute_zoom_in do
     get :filter, on: :collection
   end
 

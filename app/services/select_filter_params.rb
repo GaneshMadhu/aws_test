@@ -58,7 +58,7 @@ class SelectFilterParams
           platform:  "Search from the list of social media platforms within your subscription",
           industry:  "Search from the list of industries within your subscription"
         }
-      when filter_post_metrics_path
+      when filter_attribute_zoom_in_index_path
         {
           attribute: "Search from the list of 40 attributes of employer attractiveness",
           country:   "Search from the list of countries available",

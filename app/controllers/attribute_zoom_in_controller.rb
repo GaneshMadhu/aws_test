@@ -1,4 +1,4 @@
-class PostMetricsController < ApplicationController
+class AttributeZoomInController < ApplicationController
   def index
     iris          = IrisEngine::IrisApi.new
     @post_metrics = iris.search("post_metrics", {})

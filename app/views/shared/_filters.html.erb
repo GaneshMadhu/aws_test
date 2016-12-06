@@ -1,0 +1,75 @@
+<div class="ug-filters">
+  <form method="GET" action="/" id="ug-filters-form">
+    <a href="#!" class="ugf-close ug-icon i-close"></a>
+    <div class="ugfc-header">
+      <i class="ug-icon i-filter"></i>
+      <h3>Filters</h3>
+    </div>
+    <div class="ugf-content">
+      <% select_filters.each do |type| %>
+        <% next if data[type].blank? or data[type].compact.blank? %>
+        <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type, api_path).options) %>
+      <% end %>
+
+      <% if post_type %>
+        <div class="ugf-filter">
+          <header class="ugf-header">
+            <a href="#ugff-performance2" class="btn ugf-edit">Edit</a>
+            <h4>Type of posts
+              <span href="#!" class="tooltip-trigger">
+                <i class="ug-icon i-info"></i>
+                <span class="tooltip">Search for the type of posts you are interested in</span>
+              </span>
+            </h4>
+          </header>
+          <div id="#ugff-performance" class="ugf-checkboxes ugff-performance ugf-select">
+            <div class="checkbox">
+              <input id="ugffp-organic" type="checkbox" name="ugff-organic" value="Organic" onchange="javascript: rest_api_call('<%= api_path %>');">
+              <label for="ugffp-organic" class="type-organic"><i class="ug-icon i-organic type-organic"></i>Organic</label>
+              <span href="#!" class="tooltip-trigger">
+                <i class="ug-icon i-info"></i>
+                <span class="tooltip">Posts without any money spent on promotion</span>
+              </span>
+            </div>
+            <div class="checkbox">
+              <input id="ugffp-sponsored" type="checkbox" name="ugff-sponsored" value="Sponsored" onchange="javascript: rest_api_call('<%= api_path %>');">
+              <label for="ugffp-sponsored" class="type-sponsored"><i class="ug-icon i-sponsored type-sponsored"></i>Sponsored</label>
+              <span href="#!" class="tooltip-trigger">
+                <i class="ug-icon i-info"></i>
+                <span class="tooltip">Posts with additional promotion (ads)</span>
+              </span>
+            </div>
+          </div>
+          <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
+        </div>
+      <% end %>
+
+      <% if date_range %>
+        <div class="ugf-filter">
+          <header class="ugf-header">
+            <a href="#ugff-time" class="btn ugf-edit">Edit</a>
+            <h4>
+              Date range
+              <span href="#!" class="tooltip-trigger">
+                <i class="ug-icon i-info"></i>
+                <span class="tooltip">From the earliest date available to the latest</span>
+              </span>
+            </h4>
+          </header>
+          <div id="ugff-time-id" class="ugf-select ugff-time">
+            <div id="ugf-time-formatted">
+              <strong>Start</strong><span class="start"></span>
+              <strong>End</strong><span class="end"></span>
+            </div>
+            <input type="text" id="ugf-time" onchange="javascript: rest_api_call('<%= api_path %>');"/>
+          </div>
+          <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
+        </div>
+        <%= react_component('DatePicker') %>
+      <% end %>
+    </div>
+
+    <div class="btn ugf-apply">Apply Filters</div>
+  </form>
+</div>
+

@@ -1,0 +1,2 @@
+$("#ug-post-content").html("<%= escape_javascript(render partial: 'posts_content', locals: { data: (@posts['data'] rescue []), meta: (@posts['meta'] rescue [])} ) %>");
+remove_loaders();

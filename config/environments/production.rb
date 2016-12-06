@@ -83,4 +83,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # For temp http auth
+  config.middleware.use '::Rack::Auth::Basic' do |u, p|
+    [u, p] == [ENV['AUTH_USER'], ENV['AUTH_PASS']]
+  end
 end

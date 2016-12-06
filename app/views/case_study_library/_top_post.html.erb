@@ -1,0 +1,46 @@
+<div class="ug-card post-card mvp-top-post">
+  <div class="ugpc-first">
+    <span class="ugpc-rank">1<sup>st</sup></span>
+    <h3>Top post</h3>
+    <p class="ugpc-kind type-<%= post["sponsored_or_organic"].downcase %>"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i><%= post["sponsored_or_organic"] %></p>
+  </div>
+
+  <div class="ugpc-attributes tall">
+    <h4>Most Associated Attributes</h4>
+    <div class="ugpc-attribute" style="background: <%= post["trait_group"]["properties"]["color"] %>">
+      <span><span class="aca-nickname"><%= post["trait"]["code"] %></span></span>
+      <span class="aca-name"><%= post["trait"]["name"] %></span>
+    </div>
+  </div>
+
+  <article class="ugpc-post bottom-image">
+    <!-- <span class="ugpc-rank first">1<sup>st</sup></span> -->
+    <header>
+      <figure class="ugpc-social-avatar"><img src=<%= post["company_logo"]%>></figure>
+      <div class="ugpc-social-info">
+        <h5 class="name"><a href="#"><%= post["company_name"] %></a></h5>
+        <p class="date"><%= formatted_time(post["post_time"]) %></p>
+      </div>
+      <a href="#!" class="ug-icon i-fb"></a>
+    </header>
+    <div class="content">
+      <p><%= post["post_content"]%> <a href="<%= post["post_url"]%>" target="_blank">continue reading</a></p>
+      <figure class="ugpc-post-image">
+        <a href="#!">
+          <%= image_view(post["attachment_url"], "") %>
+        </a>
+      </figure>
+      <div class="ugpc-stats">
+        <div class="stat">
+          <p><i class="ug-icon i-likes"></i><span class="number"><%= post["likes"] %></span></p>
+        </div>
+        <div class="stat">
+          <p><i class="ug-icon i-comments"></i><span class="number"><%= post["comments"] %></span></p>
+        </div>
+        <div class="stat">
+          <p><i class="ug-icon i-shares"></i><span class="number"><%= post["shares"] %></span></p>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>

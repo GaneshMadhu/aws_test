@@ -1,0 +1,12 @@
+<div class="chart-titles">
+  <div class="left">Volume of posts evaluated against the attributes</div>
+  <div class="right">Average engagement score</div>
+</div>
+<div class="chart-container">
+  <div data-esmp-left-chart></div>
+  <div data-esmp-right-chart></div>
+  <div id="esmp_react_wrapper">
+    <%= react_component("SocialMediaPerformance", data: tagging_metrics) %>
+  </div>
+</div>
+<%= render 'shared/loader' %>

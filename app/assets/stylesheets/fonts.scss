@@ -1,0 +1,64 @@
+@font-face {
+    font-family:'SourceSansPro';
+    src: asset-url('SourceSansPro-ExtraLight_latin_gdi.eot');
+    src: asset-url('SourceSansPro-ExtraLight_latin_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-ExtraLight_latin_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-ExtraLight_latin_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-ExtraLight_latin_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-ExtraLight_latin_gdi.svg#SourceSansPro-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family:'SourceSansPro';
+    src: asset-url('SourceSansPro-Light_latin_gdi.eot');
+    src: asset-url('SourceSansPro-Light_latin_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-Light_latin_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-Light_latin_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-Light_latin_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-Light_latin_gdi.svg#SourceSansPro-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family:'SourceSansPro';
+    src: asset-url('SourceSansPro-Regular_latin_gdi.eot');
+    src: asset-url('SourceSansPro-Regular_latin_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-Regular_latin_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-Regular_latin_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-Regular_latin_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-Regular_latin_gdi.svg#SourceSansPro-Regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family:'SourceSansPro';
+    src: asset-url('SourceSansPro-Semibold_latin_gdi.eot');
+    src: asset-url('SourceSansPro-Semibold_latin_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-Semibold_latin_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-Semibold_latin_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-Semibold_latin_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-Semibold_latin_gdi.svg#SourceSansPro-Semibold') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family:'SourceSansPro';
+    src: asset-url('SourceSansPro-Bold_gdi.eot');
+    src: asset-url('SourceSansPro-Bold_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('SourceSansPro-Bold_gdi.woff') format('woff'),
+    asset-url('SourceSansPro-Bold_gdi.ttf') format('truetype'),
+    asset-url('SourceSansPro-Bold_gdi.otf') format('opentype'),
+    asset-url('SourceSansPro-Bold_gdi.svg#SourceSansPro-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+}

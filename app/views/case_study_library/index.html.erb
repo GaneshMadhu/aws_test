@@ -1,0 +1,32 @@
+<%= render 'shared/breadcrumbs', navigation: {"Iris Homepage": dashboard_index_path, "Case Study Library": case_study_library_index_path} %>
+<!-- start .ug-header -->
+<header class="ug-header"> <!-- default is the light version - without adding "light" class to ug-header -->
+  <div class="content">
+    <div class="ugh-page-title">
+      <div>
+        <h1>Case Study Library</h1>
+        <h4 class="subtitle">An ever-growing library of social media posts for your inspiration.<br>Analyze your competitors' posts and discover new ideas to create engaging content.</h4>
+        <a href="#!" class="btn btn-filters"><i class="ug-icon i-filter"></i><span class="btnf-hide">Hide</span><span class="btnf-show">Show</span><span class="show-on-small"> filters</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-subheader">
+  <p>An ever-growing library of social media posts for your inspiration.Analyze your competitors' posts and discover new ideas to create engaging content.</p>
+</div>
+
+<%= render "shared/scroll" %>
+
+ <!-- start .page-content -->
+<section class="page-content">
+  <%= render 'shared/filters', data: @posts["filters"], select_filters: ["traits","company_groups","industries","companies","platforms"], post_type: true, date_range: true, api_path: filter_case_study_library_index_path %>
+  <!-- start .ug-hand-header -->
+  <div class="ug-hand-header">
+    <%= render 'case_study_content', data: (@posts["data"] rescue []), meta: (@posts["meta"] rescue []), api_path: scroll_case_study_library_index_path %>
+  </div>
+  <!-- END .ug-hand-header -->
+</section>
+<!-- end .ug-header -->
+<!-- end .ug-breadcrumbs -->
+<%#= @posts %>

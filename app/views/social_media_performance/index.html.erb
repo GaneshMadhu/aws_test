@@ -1,0 +1,29 @@
+<%= render 'shared/breadcrumbs', navigation: {"Iris Homepage": dashboard_index_path, "Employer Social Media Performance": social_media_performance_index_path} %>
+<!-- start .ug-header -->
+<header class="ug-header"> <!-- default is the light version - without adding "light" class to ug-header -->
+  <div class="content">
+    <div class="ugh-page-title">
+      <div>
+        <h1>Employer Social Media Performance</h1>
+        <h4 class="subtitle">Discover how your competition is leveraging their employer brand, what their focus is in terms of attributes,<br> how engaging their posts are and if your content themes are overlapping.</h4>
+        <a href="#!" class="btn btn-filters"><i class="ug-icon i-filter"></i><span class="btnf-hide">Hide</span><span class="btnf-show">Show</span><span class="show-on-small"> filters</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<%= render "shared/scroll" %>
+<!-- end .ug-header -->
+
+<!-- start .page-content -->
+<section class="page-content">
+  <%= render 'shared/filters', data: @tagging_metrics["filters"], select_filters: ["company_groups","companies","platforms"], post_type: true, date_range: true, api_path: filter_social_media_performance_index_path %>
+  <!-- start .ug-hand-header -->
+  <div class="ug-hand-header">
+    <%= render 'esmp_content', tagging_metrics: @tagging_metrics["data"] %>
+    <%= render 'attributes', attributes: @tagging_metrics["attributes"] %>
+  </div>
+  <!-- END .ug-hand-header -->
+</section>
+<!-- END #save-panel .ug-side-modal  -->
+

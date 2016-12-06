@@ -1,0 +1,7 @@
+remove_loaders();
+$(".mvp-ranked-posts").append("<%= escape_javascript(render partial: 'scroll', locals: { data: (@posts['data'] rescue []), rank: (0 rescue []), meta: (@posts['meta'] rescue []), api_path: scroll_case_study_library_index_path} ) %>");
+<% if @posts['meta'].present? && @posts['meta']['page'].present? && !@posts['meta']['page'].blank? %>
+	$('#post_current_page').val(<%= @posts['meta']['page']['current'] %>)
+	$('#post_total_page').val(<%= @posts['meta']['page']['total'] %>)
+<% end %>
+$('#post_scroller').val('true');

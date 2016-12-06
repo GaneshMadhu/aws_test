@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :dashboard do
+  resources :homepage do
     get :how_iris_works, on: :collection
   end
 
@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   get 'privacy_policy' => 'home#privacy_policy'
   get 'faqs' => 'home#faqs'
 
-  root "dashboard#index"
+  root "homepage#index"
 end

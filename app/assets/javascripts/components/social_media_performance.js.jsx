@@ -40,7 +40,9 @@ function generateLeftChart(chart_data){
         color: datum.color,
         name: datum.name,
         text: datum.definition,
-        code: key
+        code: key,
+        view_posts: datum.view_posts,
+        zoom_in: datum.zoom_in
       })
     }
   }
@@ -312,6 +314,6 @@ function generateRightChart(chart_data){
 }
 
 function generate_tooltip(point){
-  var ret_string = "<div class='tc-tooltip on-pie-chart' style='background: "+point.color+"'><div class='header'><h4><b>"+point.code+"</b><span>"+point.name+"</span></h4></div><div class='ugc-last-month-growth ugc-decrease'><p class='ugcf-info'>"+point.text+"</p></div><a href='http://www.google.com' class='btn' style='color: "+point.color+"'>Zoom-in</a><a href='http://www.google.com' class='btn'>View posts</a></div>"
+  var ret_string = "<div class='tc-tooltip on-pie-chart' style='background: "+point.color+"'><div class='header'><h4><b>"+point.code+"</b><span>"+point.name+"</span></h4></div><div class='ugc-last-month-growth ugc-decrease'><p class='ugcf-info'>"+point.text+"</p></div><a href="+point.zoom_in+" target='_blank' class='btn' style='color: "+point.color+"'>Zoom-in</a><a href="+point.view_posts+" target='_blank' class='btn'>View posts</a></div>"
   return ret_string;
 }

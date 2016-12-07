@@ -18,7 +18,7 @@ class CaseStudyLibraryController < ApplicationController
 	private
 
   def filter_data url
-    filters = ParseQueryParams.new(params).parse
+    filters = ParseQueryParams.new(params,true).parse
     iris    = IrisEngine::IrisApi.new
     @posts  = iris.search(url, filters)
   end

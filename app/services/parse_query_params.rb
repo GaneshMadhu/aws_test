@@ -1,8 +1,9 @@
 class ParseQueryParams
-  attr_reader :params
+  attr_reader :params, :sort
 
-  def initialize(params)
+  def initialize(params,sort=false)
     @params = params
+    @sort   = sort
   end
 
   def parse
@@ -25,9 +26,12 @@ class ParseQueryParams
         end
       end
     end
-    sort_params = params[:sort].blank? ? "desc" : params[:sort]
-    query[:sort] = [{"engagement_score_normalised" =>sort_params}]
     query[:filter] = filter_query
+
+    if sort
+      sort_params  = params[:sort].blank? ? "desc" : params[:sort]
+      query[:sort] = [{"engagement_score_normalised" => sort_params}]
+    end
 
     query
   end

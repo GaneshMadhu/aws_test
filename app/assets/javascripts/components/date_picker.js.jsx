@@ -31,7 +31,7 @@ function apply_date_picker(selected_options){
         timeElFilter = $('#ugf-time-formatted');
 
     timeElFilter.find('.start').text(start_date);
-    timeElFilter.find('.end').text(end_date););
+    timeElFilter.find('.end').text(end_date);
 
     timeInputFilter.datepicker({
         range: true,

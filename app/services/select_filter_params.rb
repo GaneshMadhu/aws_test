@@ -1,12 +1,13 @@
 class SelectFilterParams
   include Rails.application.routes.url_helpers
-  attr_reader :filter_data, :filter_type, :filter_group, :api_path
+  attr_reader :filter_data, :filter_type, :filter_group, :api_path, :selected_options
 
-  def initialize(data,filter_type,api_path)
-    @filter_data   = data
-    @filter_type   = filter_type
-    @filter_group  = filter_group
-    @api_path      = api_path
+  def initialize(data,filter_type,api_path,selected_options = {})
+    @filter_data      = data
+    @filter_type      = filter_type
+    @filter_group     = filter_group
+    @api_path         = api_path
+    @selected_options = selected_options || {}
   end
 
   def options
@@ -19,7 +20,8 @@ class SelectFilterParams
       tooltip:            filters[filter_group[0].to_sym],
       filter_title:       filter_group[1],
       filter_group:       filter_group[0],
-      rest_url:           api_path
+      rest_url:           api_path,
+      selected:           selected_options[filter_type]
     }
   end
 

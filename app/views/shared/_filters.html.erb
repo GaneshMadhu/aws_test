@@ -8,7 +8,7 @@
     <div class="ugf-content">
       <% select_filters.each do |type| %>
         <% next if data[type].blank? or data[type].compact.blank? %>
-        <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type, api_path).options) %>
+        <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type, api_path,selected_options).options) %>
       <% end %>
 
       <% if post_type %>

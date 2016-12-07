@@ -93,7 +93,7 @@ function custom_select(filter_options){
   };
 
   var removeResult = function (_result) {
-      var value = input.val();
+      var value = input.val() || [];
       input.val(value.filter(function (val) {
           return val != String(_result.id);
       })).trigger('change');

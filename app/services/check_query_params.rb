@@ -10,7 +10,7 @@ class CheckQueryParams
     filter_params = params['filter'] ||= {}
     params.each do |key,value|
       case key
-        when 'code'
+        when 'attribute'
           selected['traits'] = filter_params['trait.code'] = value.split(',')
         when 'platform'
           selected['platforms'] = filter_params['url_type'] = value.split(',')

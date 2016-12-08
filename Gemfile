@@ -34,6 +34,7 @@ gem 'faraday', '~> 0.9.2'
 # reactjs in rails
 gem 'react-rails'
 
+# flag icons
 gem 'flag-icons-rails'
 
 group :development, :test do

@@ -1,20 +1,37 @@
 var DatePicker = React.createClass({
   render: function(){
-    apply_date_picker();
+    var selected_options = this.props.selected_options;
+    apply_date_picker(selected_options);
     return null;
   }
 });
 
-function apply_date_picker(){
+function apply_date_picker(selected_options){
   setTimeout(function(){
+     var start_date = "";
+     var end_date   = "";
+
+     var startDate = new Date(),
+        endDate = new Date();
+
+     if(selected_options instanceof Object){
+        if('post_time' in selected_options){
+            if('min' in selected_options['post_time']){
+                start_date = selected_options['post_time']['min'];
+                startDate  = new Date(start_date);
+            }
+            if('max' in selected_options['post_time']){
+                end_date = selected_options['post_time']['max'];
+                endDate  = new Date(end_date);
+            }
+        }
+     }
+
     var timeInputFilter = $('#ugf-time'),
         timeElFilter = $('#ugf-time-formatted');
 
-    var startDate = new Date(),
-        endDate = new Date();
-
-    timeElFilter.find('.start').text('');
-    timeElFilter.find('.end').text('');
+    timeElFilter.find('.start').text(start_date);
+    timeElFilter.find('.end').text(end_date);
 
     timeInputFilter.datepicker({
         range: true,

@@ -34,6 +34,8 @@ gem 'faraday', '~> 0.9.2'
 # reactjs in rails
 gem 'react-rails'
 
+gem 'flag-icons-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

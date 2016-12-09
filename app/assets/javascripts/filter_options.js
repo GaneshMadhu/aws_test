@@ -62,7 +62,8 @@ function custom_select(filter_options){
             html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
           break;
       case 'platform':
-          html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+          var label = (row_data.label == 'facebook') ? 'fb' : row_data.label
+          html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='ug-icon i-"+label+"'></span><span>"+row_data.text+"</span></div>";
           break;
       default:
           html_string = "<div class='card mini-card'><span class='mcard-remove'><i class='ug-icon i-close'></i></span><span>"+row_data.text+"</span></div>";

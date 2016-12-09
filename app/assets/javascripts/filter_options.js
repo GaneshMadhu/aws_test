@@ -8,6 +8,7 @@ function custom_select(filter_options){
   var rest_url         = filter_options.rest_url;
   var filter_group     = filter_options.filter_group;
   var selected_values  = filter_options.selected || [];
+  var is_multiple      = filter_options.is_multiple;
 
     // Need to revisit here
     // var openMobFilter = $('.btn-filters');
@@ -61,7 +62,8 @@ function custom_select(filter_options){
             html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
           break;
       case 'platform':
-          html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+          var label = (row_data.label == 'facebook') ? 'fb' : row_data.label
+          html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='ug-icon i-"+label+"'></span><span>"+row_data.text+"</span></div>";
           break;
       default:
           html_string = "<div class='card mini-card'><span class='mcard-remove'><i class='ug-icon i-close'></i></span><span>"+row_data.text+"</span></div>";
@@ -104,22 +106,24 @@ function custom_select(filter_options){
   };
 
   var getSelected = function (results) {
-      var selected = [];
-      results.map(function(result) {
-          if (result.selected) {
-              selected.push(result.id);
-          }
-      });
-      populateResultsViewFromData(selected_values)
-      return selected;
+    var selected = [];
+    results.map(function(result) {
+        if (result.selected) {
+            selected.push(result.id);
+        }
+    });
+    populateResultsViewFromData(selected_values);
+    return selected;
   };
 
   var populateResultsViewFromData = function(values){
-    var value = values || [],
-          filtered = options_data.filter(function (_result) {
-              return ~value.indexOf(String(_result.id));
-          });
-    populateResultsView(filtered);
+    if(is_multiple){
+      var value = values || [],
+            filtered = options_data.filter(function (_result) {
+                return ~value.indexOf(String(_result.id));
+            });
+      populateResultsView(filtered);
+    }
   };
 
   function openNativeSelect(elem) {
@@ -151,7 +155,7 @@ function custom_select(filter_options){
       dropdownParent: dropdownParent,
       allowClear: true,
       data: options_data,
-      multiple: true,
+      multiple: is_multiple,
       templateResult: formatResult
   }).on('select2:unselecting', function() {
       $(this).data('unselecting', true);
@@ -179,7 +183,10 @@ function custom_select(filter_options){
       rest_api_call(rest_url);
   });
   // input.val(getSelected(_resultsData)).trigger('change');
-  input.val(getSelected(_resultsData));
+  if(is_multiple)
+    input.val(getSelected(_resultsData));
+  else
+    input.val(selected_values.join(',')).trigger('change.select2');
 
   if (clearButton instanceof jQuery) {
       clearButton.on('click', function(event) {

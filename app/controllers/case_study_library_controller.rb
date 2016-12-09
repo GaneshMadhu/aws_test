@@ -1,7 +1,7 @@
 class CaseStudyLibraryController < ApplicationController
 
-  before_filter :check_query_params, only: :index
-  before_filter :add_sort_param, only: :index
+  before_action :check_query_params, only: :index
+  before_action :add_sort_param, only: :index
 
 	def index
 		filter_data "report_tagged_posts"

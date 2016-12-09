@@ -227,8 +227,8 @@ function generate_chart(chart_data){
               label: {
                   align: 'right',
                   style: {
-                      color: 'rgba(255, 255, 255, .9)',
-                      fontWeight: '300',
+                      color: 'rgba(0, 0, 0, .8)',
+                      fontWeight: '400',
                       textShadow: "none"
                   },
                   verticalAlign: 'bottom',
@@ -237,9 +237,9 @@ function generate_chart(chart_data){
                   x: -10,
                   y: 16
               },
-              color: 'rgba(255, 255, 255, .4)',
+              color: 'rgba(0, 0, 0, .5)',
               value: avg_engagement,
-              width: 1,
+              width: 2,
               zIndex: 4
           }],
           plotBands: [{

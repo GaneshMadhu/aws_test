@@ -44,8 +44,6 @@ class CheckQueryParams
   def append_default_params
     params['filter_query'] ||= {}
     case params['controller']
-      when 'case_study_library'
-        params['filter_query']['trait.code'] = ENV['CSL_DEFAULT_TRAIT'] if params['filter_query']['trait.code'].blank?
       when 'attribute_zoom_in'
         params['filter_query']['trait.code'] = ENV['ZOOMIN_DEFAULT_TRAIT'] if params['filter_query']['trait.code'].blank?
     end

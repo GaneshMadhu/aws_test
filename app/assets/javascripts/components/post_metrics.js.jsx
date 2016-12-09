@@ -15,7 +15,7 @@ function initiliaze_data(chart_data){
   for (var key in chart_data) {
     if (chart_data.hasOwnProperty(key)) {
       if(key == "avg_engagement")
-        avg_engagement = chart_data[key];
+        avg_engagement = Math.round(chart_data[key]);
       if(key == "tags_count")
         tags_count = chart_data[key];
       if(key == "avg_time"){
@@ -155,7 +155,7 @@ function generate_chart(chart_data){
               dataLabels: {
                   color: legend_color,
                   enabled: true,
-                  format: '{point.y:.1f}',
+                  format: '{point.y}',
                   style: {
                       "fontWeight": "bold", "fontSize": "14px"
                   }
@@ -184,7 +184,7 @@ function generate_chart(chart_data){
               }
           },
           title: {
-              text: 'Time'
+              text: 'Date Range'
           },
           lineWidth: 0,
           minorGridLineWidth: 0,
@@ -203,7 +203,7 @@ function generate_chart(chart_data){
       yAxis: [{
           opposite: true,
           title: {
-              text: 'Post Engagement',
+              text: 'Engagement Score',
               offset: 0,
               x: 55,
               rotation: -90
@@ -233,7 +233,7 @@ function generate_chart(chart_data){
                   },
                   verticalAlign: 'bottom',
                   useHTML: false,
-                  text: "Average Post Engagement - "+(Math.round(avg_engagement * 100) / 100),
+                  text: "Average Engagement Score - "+(Math.round(avg_engagement * 100) / 100),
                   x: -10,
                   y: 16
               },
@@ -264,7 +264,7 @@ function generate_chart(chart_data){
               type: 'areaspline',
               color: "rgba(0, 0, 0, 0.1)",
               lineWidth: 0,
-              name: '<div class="tooltip-inline"><svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg-icon_ape-container" viewBox="0 0 24.000001 24.000001" height="24" width="24"><defs id="defs4431" /><metadata id="metadata4434"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><g transform="translate(0,-1028.3622)" id="svg-icon_ape"><path id="svg-icon_ape-fill" class="svg-icon_ape-fill" d="m -0.00167413,1046.951 c 0.00492642,-1.8083 1.37745123,-3.8279 2.75000003,-4.8215 1.0145371,-0.7345 1.9103992,-1.1658 2.9642857,-1.1116 0.9477389,0.049 1.7842207,0.7061 2.5491071,1.2678 0.9780611,0.7183 1.5632966,1.8815 2.5223213,2.625 0.35698,0.2768 0.729512,0.6363 1.180246,0.6658 0.750853,0.049 1.509749,-0.3693 2.09375,-0.8438 1.001659,-0.8138 1.442386,-2.1406 2.151785,-3.2187 0.799078,-1.2144 1.395301,-2.5826 2.370536,-3.6607 0.786243,-0.8692 1.702347,-1.6623 2.745536,-2.1965 0.883836,-0.4526 1.53956,-0.6134 2.687203,-0.6943 -9.43e-4,0.9834 -0.0067,2.3202 -0.007,3.3896 -9.23e-4,4.668 0.0073,14.0234 0.0073,14.0234 l -24.03125014,0 c 0,0 0.01095725,-3.5079 0.01617901,-5.4245 z" style="fill-opacity:1;fill-rule:evenodd;stroke:#B2B2B2;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" fill="#B2B2B2"/></g></svg> <span class="tooltip-hide">Average Post Engagement <span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip">View the volume of posts within a particular attribute and the average post engagement across time</span></span></span></div>',
+              name: '<div class="tooltip-inline"><svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg-icon_ape-container" viewBox="0 0 24.000001 24.000001" height="24" width="24"><defs id="defs4431" /><metadata id="metadata4434"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><g transform="translate(0,-1028.3622)" id="svg-icon_ape"><path id="svg-icon_ape-fill" class="svg-icon_ape-fill" d="m -0.00167413,1046.951 c 0.00492642,-1.8083 1.37745123,-3.8279 2.75000003,-4.8215 1.0145371,-0.7345 1.9103992,-1.1658 2.9642857,-1.1116 0.9477389,0.049 1.7842207,0.7061 2.5491071,1.2678 0.9780611,0.7183 1.5632966,1.8815 2.5223213,2.625 0.35698,0.2768 0.729512,0.6363 1.180246,0.6658 0.750853,0.049 1.509749,-0.3693 2.09375,-0.8438 1.001659,-0.8138 1.442386,-2.1406 2.151785,-3.2187 0.799078,-1.2144 1.395301,-2.5826 2.370536,-3.6607 0.786243,-0.8692 1.702347,-1.6623 2.745536,-2.1965 0.883836,-0.4526 1.53956,-0.6134 2.687203,-0.6943 -9.43e-4,0.9834 -0.0067,2.3202 -0.007,3.3896 -9.23e-4,4.668 0.0073,14.0234 0.0073,14.0234 l -24.03125014,0 c 0,0 0.01095725,-3.5079 0.01617901,-5.4245 z" style="fill-opacity:1;fill-rule:evenodd;stroke:#B2B2B2;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" fill="#B2B2B2"/></g></svg> <span class="tooltip-hide">Average Engagement Score<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip">View the volume of posts within a particular attribute and the average post engagement across time</span></span></span></div>',
               data: areaspline_data,
               zIndex: 1,
               yAxis: 1,

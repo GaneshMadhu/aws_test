@@ -9,6 +9,7 @@ var PostMetrics = React.createClass({
 
 var avg_engagement = 0, tags_count = 0;
 var post_metrics;
+var legend_color = "#F3622B";
 
 function initiliaze_data(chart_data){
   for (var key in chart_data) {
@@ -31,9 +32,10 @@ function generate_chart(chart_data){
       var datum = post_metrics[key];
       categories.push(datum.tags_count)
       areaspline_data.push({y: datum.avg_engagement})
+      legend_color = datum.trait_color;
       column_data.push({
         y: datum.posts_count,
-        color: "rgba(243,98,43, 0.75)",
+        color: datum.trait_color,
         areaSplineValue: datum.avg_engagement,
         borderColor: "transparent",
         view_posts: datum.view_posts
@@ -151,7 +153,7 @@ function generate_chart(chart_data){
               borderColor: "transparent",
               color: "transparent",
               dataLabels: {
-                  color: "#F3622B",
+                  color: legend_color,
                   enabled: true,
                   format: '{point.y:.1f}',
                   style: {
@@ -253,7 +255,7 @@ function generate_chart(chart_data){
       series: [{
           type: 'column',
           color: "transparent",
-          name: '<div class="tooltip-inline"><svg id="svg-icon_pv-container" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 24.000001 24.000001"><metadata id="metadata3345"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work> </rdf:RDF></metadata><g id="svg-icon_pv" transform="translate(0 -1028.4)"><g id="g4180" transform="matrix(.49566 0 0 .50501 -300.21 582.84)"><rect id="rect3359" fill-rule="evenodd" class="svg-icon_pv-rect1" width="15.784" y="899.45" x="605.71" height="30.431" fill="#F68156"/><rect id="rect4161" class="svg-icon_pv-rect2" width="16.794" y="882.15" x="621.52" height="47.73" fill="#F3622B"/><rect id="rect3359-1" fill-rule="evenodd" class="svg-icon_pv-rect1" width="15.91" y="889.68" x="638.24" height="40.175" fill="#F68155"/></g></g></svg> <span class="tooltip-hide"> Post Volume</span></div>',
+          name: '<div class="tooltip-inline"><svg id="svg-icon_pv-container" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 24.000001 24.000001"><metadata id="metadata3345"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work> </rdf:RDF></metadata><g id="svg-icon_pv" transform="translate(0 -1028.4)"><g id="g4180" transform="matrix(.49566 0 0 .50501 -300.21 582.84)"><rect id="rect3359" fill-rule="evenodd" class="svg-icon_pv-rect1" width="15.784" y="899.45" x="605.71" height="30.431" fill='+legend_color+' /><rect id="rect4161" class="svg-icon_pv-rect2" width="16.794" y="882.15" x="621.52" height="47.73" fill='+legend_color+' /><rect id="rect3359-1" fill-rule="evenodd" class="svg-icon_pv-rect1" width="15.91" y="889.68" x="638.24" height="40.175" fill='+legend_color+' /></g></g></svg> <span class="tooltip-hide"> Post Volume</span></div>',
           zIndex: 2,
           enableMouseTracking: true,
           data: column_data
@@ -272,7 +274,7 @@ function generate_chart(chart_data){
               labels: {
                   format: '{value} mb',
                   style: {
-                      color: "#F3622B"
+                      color: legend_color
                   }
               },
               tooltip: {
@@ -283,6 +285,6 @@ function generate_chart(chart_data){
 }
 
 function chart_tooltip(point){
-  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in'><div class='header'><h4>"+point.category+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"</span>Post volume</p><p class='ugcs'><span>"+(Math.round(point.areaSplineValue * 100) / 100)+"</span>Avg engagement</p></div><a href="+point.view_posts+" target='_blank' class='btn'>View posts</a></div>";
+  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in' style='background: "+point.color+"'><div class='header' style='background: "+point.color+"'><h4 style='color: #fff'>"+point.category+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"</span>Post volume</p><p class='ugcs'><span>"+(Math.round(point.areaSplineValue * 100) / 100)+"</span>Avg engagement</p></div><a href="+point.view_posts+" target='_blank' class='btn' style='color: "+point.color+"'>View posts</a></div>";
   return ret_string;
 }

@@ -13,7 +13,7 @@ function trigger_scroll(api_path){
   $(window).scroll(function(){
     if ($(window).scrollTop() == $(document).height() - $(window).height()){
       var page = $('#post_current_page').val();
-      if(page >= $('#post_total_page').val()) return false;
+      if(parseInt(page) >= parseInt($('#post_total_page').val())) return false;
       if($('#post_scroller').val() == "true"){
         $('#post_scroller').val('false');
         rest_api_call(api_path, page);

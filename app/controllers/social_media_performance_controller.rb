@@ -18,17 +18,17 @@ class SocialMediaPerformanceController < ApplicationController
   private
 
   def set_company_and_country
-    session['company_name'] = params['company_name']
-    session['country'] = params['country']
+    session['company_name']       = params['company_name'] if params['company_name']
+    session['company_group_name'] = params['company_group_name'] if params['company_group_name']
   end
 
   def set_company_filter
     if session['company_name']
       if params['filter'].blank?
-        params['filter'] = {'company_name': [session['company_name']], 'company_group_name': [session['country']]}
+        params['filter'] = {'company_name': session['company_name'].split('$'), 'company_group_name': session['company_group_name'].split('$')}
       else
-        params['filter']['company_name'] = [session['company_name']] if params['filter']['company_precode'].blank?
-        params['filter']['company_group_name'] = [session['country']] if params['filter']['company_group_id'].blank?
+        params['filter']['company_name'] = session['company_name'].split('$') if params['filter']['company_precode'].blank?
+        params['filter']['company_group_name'] = session['company_group_name'].split('$') if params['filter']['company_group_id'].blank?
       end
     end
   end

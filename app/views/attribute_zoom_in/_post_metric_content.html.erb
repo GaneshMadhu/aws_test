@@ -6,7 +6,11 @@
     <div class="ugh-description">View the volume of posts for a particular attribute and the average engagement scores.</div>
   </header>
   <div class="ug-card ug-chart" id="post_metrics_chart_wrapper">
-    <%= render 'charts', post_metrics: post_metrics %>
+    <% if post_metrics && (post_metrics.has_key? "avg_time") && !post_metrics['avg_time'].blank? %>
+      <%= render 'charts', post_metrics: post_metrics %>
+    <% else %>
+      <%= render 'shared/no_results' %>
+    <% end %>
   </div>
 </section>
 <!-- END zoom-in-chart card -->

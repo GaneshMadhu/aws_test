@@ -30,8 +30,8 @@ function generate_chart(chart_data){
   for(var key in post_metrics){
     if (post_metrics.hasOwnProperty(key)) {
       var datum = post_metrics[key];
-      categories.push(datum.tags_count)
-      areaspline_data.push({y: datum.avg_engagement})
+      categories.push(datum.time);
+      areaspline_data.push({y: datum.avg_engagement});
       legend_color = datum.trait_color;
       column_data.push({
         y: datum.posts_count,
@@ -39,7 +39,7 @@ function generate_chart(chart_data){
         areaSplineValue: datum.avg_engagement,
         borderColor: "transparent",
         view_posts: datum.view_posts
-      })
+      });
     }
   }
 

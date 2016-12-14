@@ -11,12 +11,13 @@
           <span class="aca-name"><%= post["trait"]["name"]%></span>
         </div>
       </div>
-   <!--    <div class="rpc-attribute blue tooltip-trigger">Fx
-        <div class="ugpc-attribute blue tooltip">
-          <span><span class="aca-nickname">Fx</span></span>
-          <span class="aca-name">Enabling me to integrate personal interests in my schedule</span>
+      <% if post['country_code'] %>
+        <div class="rpc-attribute">
+          <div class="ugpc-attribute" title="<%= post['company_group_name'] %>">
+            <span class="flag-icon flag-icon-<%= post['country_code'] %>"></span>
+          </div>
         </div>
-      </div> -->
+      <% end %>
     </div>
   </div>
   <article class="ugpc-post bottom-image">

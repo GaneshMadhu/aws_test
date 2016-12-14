@@ -1,6 +1,6 @@
 class AttributeZoomInController < ApplicationController
 
-  before_filter :check_query_params, only: :index
+  before_action :check_query_params, only: :index
 
   def index
     filter_data "post_metrics"

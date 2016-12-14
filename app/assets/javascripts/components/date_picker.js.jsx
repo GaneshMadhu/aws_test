@@ -24,6 +24,7 @@ function apply_date_picker(selected_options){
                 end_date = selected_options['post_time']['max'];
                 endDate  = new Date(end_date);
             }
+            $('.dateclear').removeClass('hide');
         }
      }
 
@@ -62,23 +63,23 @@ function apply_date_picker(selected_options){
                 timeInputFilter.data('datepicker').hide();
     });*/
     timeElFilter.on('click', function(event) {
-            event.preventDefault();
-            if(event.target.nodeName!="SPAN"){
-                timeInputFilter.data('datepicker').show();
-            }   
-            else{ 
-                if(timeElFilter.find('.start').text()!=""){
-                    timeInputFilter.data('datepicker').clear();
-                    timeElFilter.find('.end').text('');
-                    $('#calendar-start').addClass('calendar-highlight').removeClass('calendar-highlighted');
-                    $('#calendar-end').addClass('calendar-highlight').removeClass('calendar-highlighted');
-                    $('.dateclear').addClass('hide');
-                    timeInputFilter.data('datepicker').hide();
-                }
-                else{
-                    timeInputFilter.data('datepicker').hide();
-                }
+        event.preventDefault();
+        if(!$(event.target).hasClass('dateclear')){
+            timeInputFilter.data('datepicker').show();
+        }
+        else{
+            if(timeElFilter.find('.start').text()!=""){
+                timeInputFilter.data('datepicker').clear();
+                timeElFilter.find('.end').text('');
+                $('#calendar-start').addClass('calendar-highlight').removeClass('calendar-highlighted');
+                $('#calendar-end').addClass('calendar-highlight').removeClass('calendar-highlighted');
+                $('.dateclear').addClass('hide');
+                timeInputFilter.data('datepicker').hide();
             }
+            else{
+                timeInputFilter.data('datepicker').hide();
+            }
+        }
     });
   },500);
 

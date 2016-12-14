@@ -62,8 +62,9 @@
           </header>
           <div id="ugff-time-id" class="ugf-select ugff-time">
             <div id="ugf-time-formatted">
-              <strong>Start</strong><span class="start"></span>
-              <strong>End</strong><span class="end"></span>
+              <strong id="calendar-start" class="calendar-highlight">Start</strong><span class="start"></span>
+              <strong id="calendar-end" class="calendar-highlight">End</strong><span class="end"></span>
+              <span class="dateclear hide"></span>
             </div>
             <input type="text" id="ugf-time" onchange="javascript: rest_api_call('<%= api_path %>');"/>
           </div>

@@ -41,20 +41,45 @@ function apply_date_picker(selected_options){
         startDate: startDate,
         onSelect: function(formatted, date, inst) {
             var dates = formatted.split(',');
+            if (typeof dates[0] !== "undefined") {
+                $('#calendar-start').addClass('calendar-highlighted').removeClass('calendar-highlight');
+                $('.dateclear').removeClass('hide');
+            }
+            if (typeof dates[1] !== "undefined") {
+                $('#calendar-end').addClass('calendar-highlighted').removeClass('calendar-highlight');
+            }
             timeElFilter.find('.start').text(dates[0]);
             timeElFilter.find('.end').text(dates[1]);
             timeInputFilter.trigger('change');
+            timeInputFilter.data('datepicker').hide();
         }
     });
 
-    $(document).on('click', function(event) {
+
+   /* $(document).on('click', function(event) {
         if (!$(event.target).is('#ugff-time-id, #ugff-time-id *, #datepickers-container, #datepickers-container *'))
             if (timeInputFilter.length)
                 timeInputFilter.data('datepicker').hide();
-    });
+    });*/
     timeElFilter.on('click', function(event) {
-        event.preventDefault();
-        timeInputFilter.data('datepicker').show();
+            event.preventDefault();
+            if(event.target.nodeName!="SPAN"){
+                timeInputFilter.data('datepicker').show();
+            }   
+            else{ 
+                if(timeElFilter.find('.start').text()!=""){
+                    timeInputFilter.data('datepicker').clear();
+                    timeElFilter.find('.end').text('');
+                    $('#calendar-start').addClass('calendar-highlight').removeClass('calendar-highlighted');
+                    $('#calendar-end').addClass('calendar-highlight').removeClass('calendar-highlighted');
+                    $('.dateclear').addClass('hide');
+                    timeInputFilter.data('datepicker').hide();
+                }
+                else{
+                    timeInputFilter.data('datepicker').hide();
+                }
+            }
     });
   },500);
+
 }

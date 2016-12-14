@@ -60,19 +60,18 @@ function generate_chart(chart_data){
       title: false,
       subtitle: false,
       legend: {
-          layout: 'vertical',
+          /*layout: 'vertical', //to fix the legends to the horizontal format*/
           backgroundColor: 'none',
           shadow: false,
           align: 'left',
           verticalAlign: 'top',
-          x: 20,
-          y: 20,
+          x: 0,
+          y: -30,
           useHTML: true,
           floating: true,
-          padding: 3,
+          padding: 2,
           symbolHeight: 0,
           symbolWidth: 0,
-          itemMarginTop: 10,
           itemMarginBottom: 10,
           itemStyle: {
               lineHeight: '14px',

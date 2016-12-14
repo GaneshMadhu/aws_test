@@ -28,7 +28,7 @@ function custom_select(filter_options){
           html_string = "<div><strong class='colored' style='color: "+row_data.label+"'>"+row_data.id+"</strong><span>"+row_data.text+"</span></div>";
           break;
       case 'country':
-          html_string = "<div><span class='flag-icon flag-icon-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+          html_string = "<div><span class='flag-icon flag-icon-"+row_data.label+"'></span><span class='country-spaced'>"+row_data.text+"</span></div>";
           break;
       case 'company':
           if(row_data.label == null || row_data.label == undefined)

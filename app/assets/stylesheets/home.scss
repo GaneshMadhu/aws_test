@@ -145,4 +145,36 @@ $xlarge-up: "(min-width: 1280px)";
   transform: rotate(180deg);
   transition-delay: 200ms;
 }
+.country-spaced{
+	margin-left: 10px;
+}
 
+.dateclear{
+	&:after {
+	content: '\2716';
+    font-style: normal;
+    font-weight: normal;
+    vertical-align: middle;
+    position: absolute;
+    right: 35px;
+    color: #414041;
+    font-size: 20px;
+    z-index: 10;
+    cursor:pointer;
+    top:4px;
+}
+}
+
+.calendar-highlight{
+	color: #ababab !important;
+}
+.calendar-highlighted{
+	color: #38589b !important;
+}
+.ugff-time .start {
+    color: #38589b !important;
+}
+/* to remove the selected attributes from the select2 list */
+.select2-results__option[aria-selected=true] {
+    display: none;
+}

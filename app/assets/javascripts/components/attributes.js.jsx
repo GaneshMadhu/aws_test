@@ -88,7 +88,7 @@ var Trait = React.createClass({
     var classnames = ['attribute']
     classnames.push(category.id)
     return (
-      <div className={classnames.join(" ")}>
+      <div className={classnames.join(" ")} data-driver-id={category.id}>
         <div className="wrapper" style={style}>
           <div>
             <div className="attribute-title">
@@ -135,12 +135,12 @@ function apply_effects(attributes){
       if (!attribute.hasClass('opened') && !$(event.target).hasClass('atr-close')) {
           $('#attributes-container').find('.attribute .atr-close').trigger('click');
           attribute.addClass('opened');
-          refreshLayout();
+          refreshLayout(attribute.data('driver-id'));
       }
     });
     attribute.find('.atr-close').on('click', function(event) {
         attribute.removeClass('opened');
-        refreshLayout();
+        refreshLayout(attribute.data('driver-id'));
         event.preventDefault();
     });
   });
@@ -178,11 +178,11 @@ function apply_effects(attributes){
       }
   };
 
-  let refreshLayout = () => {
+  let refreshLayout = (category) => {
       let container = $('.attribute-grid');
       container.isotope({
           masonry: {
-              columnWidth: $('.attribute').not('.opened')[0]
+              columnWidth: category ? $('.attribute.'+category).not('.opened')[0] : $('.attribute').not('.opened')[0]
           }
       });
   };

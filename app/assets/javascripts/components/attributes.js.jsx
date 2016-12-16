@@ -7,7 +7,10 @@ var Attributes = React.createClass({
   getCategories: function(){
     var all_category = {
       id: 999999,
-      name: "All Attributes"
+      name: "All Attributes",
+      properties: {
+        color: "#38589b"
+      }
     }
     return (
       <div className="sp-results mvpsp-results">
@@ -69,6 +72,7 @@ var TraitGroup = React.createClass({
     var active = (index == 0) ? "active" : "";
     return (
       <li className={active}>
+          <input type='hidden' class='driver_color' value={this.props.category.properties.color} />
           <a href="#" data-filter={this.props.filter}>
               {this.props.category.name.replace(" ","\n")}
           </a>
@@ -126,6 +130,7 @@ function apply_effects(attributes){
   bindFilters();
   var filtersContainer  = $('#attributes-container');
   var attribute_objects = $('#attributes-container .attribute');
+  var attribute_drivers = $('#attributes-filters li');
   var searchRegex;
   var autocompleteAttributes = []
 
@@ -144,6 +149,24 @@ function apply_effects(attributes){
         event.preventDefault();
     });
   });
+
+  attribute_drivers.on('click mouseenter mouseleave', function(event) {
+    var color = $(this).find('input').val();
+    if(event.type == "click"){
+      $('#attributes-filters li a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+      $(this).find('a').css({"color": color,"border-bottom-color": color});
+    }
+    if(event.type == "mouseenter"){
+      $(this).find('a').css({"color": color,"border-bottom-color": color});
+    }
+    if(event.type == "mouseleave"){
+      if($(this).hasClass('active'))
+        $(this).find('a').css({"color": color,"border-bottom-color": color});
+      else
+        $('#attributes-filters li').not('.active').find('a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+    }
+  });
+  
 
   var mobileAttributes = $('#m-attributes-filters');
   attributes.map(function(category){

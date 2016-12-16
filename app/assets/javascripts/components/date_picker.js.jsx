@@ -69,8 +69,8 @@ function apply_date_picker(selected_options){
         }
         else{
             if(timeElFilter.find('.start').text()!=""){
+                timeElFilter.find('.end').html('');
                 timeInputFilter.data('datepicker').clear();
-                timeElFilter.find('.end').text('');
                 $('#calendar-start').addClass('calendar-highlight').removeClass('calendar-highlighted');
                 $('#calendar-end').addClass('calendar-highlight').removeClass('calendar-highlighted');
                 $('.dateclear').addClass('hide');

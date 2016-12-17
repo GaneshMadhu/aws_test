@@ -152,18 +152,20 @@ function apply_effects(attributes){
 
   attribute_drivers.on('click mouseenter mouseleave', function(event) {
     var color = $(this).find('input').val();
-    if(event.type == "click"){
-      $('#attributes-filters li a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
-      $(this).find('a').css({"color": color,"border-bottom-color": color});
-    }
-    if(event.type == "mouseenter"){
-      $(this).find('a').css({"color": color,"border-bottom-color": color});
-    }
-    if(event.type == "mouseleave"){
-      if($(this).hasClass('active'))
+    if($(this).find('a').length>0){
+      if(event.type == "click"){
+        $('#attributes-filters li a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
         $(this).find('a').css({"color": color,"border-bottom-color": color});
-      else
-        $('#attributes-filters li').not('.active').find('a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+      }
+      if(event.type == "mouseenter"){
+        $(this).find('a').css({"color": color,"border-bottom-color": color});
+      }
+      if(event.type == "mouseleave"){
+        if($(this).hasClass('active'))
+          $(this).find('a').css({"color": color,"border-bottom-color": color});
+        else
+          $('#attributes-filters li').not('.active').find('a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+      }
     }
   });
   

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe SocialMediaPerformanceController, type: :controller do
 
+  let(:empty_precode){"0123"}
+
   before(:each) do
     session['company_name']       = 'Google'
     session['company_group_name'] = 'India'
@@ -23,7 +25,7 @@ RSpec.describe SocialMediaPerformanceController, type: :controller do
 
   describe 'filter' do
     it 'filters the data' do
-      process :filter, method: :post, xhr: true, params: {"filter":{"company_precode":["0123"]}}
+      process :filter, method: :post, xhr: true, params: {"filter":{"company_precode":[empty_precode]}}
       tagging_metrics = controller.instance_variable_get(:@tagging_metrics)
       expect(tagging_metrics.count).to be > 0
       expect(tagging_metrics['data']['tags_count']).to be_kind_of(Integer)

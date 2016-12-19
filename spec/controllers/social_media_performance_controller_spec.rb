@@ -23,7 +23,7 @@ RSpec.describe SocialMediaPerformanceController, type: :controller do
 
   describe 'filter' do
     it 'filters the data' do
-      xhr :post, :filter, {"filter":{"company_precode":["0123"]}}
+      process :filter, method: :post, xhr: true, params: {"filter":{"company_precode":["0123"]}}
       tagging_metrics = controller.instance_variable_get(:@tagging_metrics)
       expect(tagging_metrics.count).to be > 0
       expect(tagging_metrics['data']['tags_count']).to be_kind_of(Integer)

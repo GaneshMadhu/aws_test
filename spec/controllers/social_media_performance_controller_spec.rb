@@ -14,6 +14,7 @@ RSpec.describe SocialMediaPerformanceController, type: :controller do
         tagging_metrics = controller.instance_variable_get(:@tagging_metrics)
         expect(tagging_metrics.count).to be > 0
         expect(tagging_metrics['data']['tags_count']).to be_kind_of(Integer)
+        expect(tagging_metrics['data']).to have_key('tags')
         expect(tagging_metrics['data']['tags']).to be_kind_of(Hash)
         expect(tagging_metrics['data']['tags']).to be_truthy
       end
@@ -22,10 +23,11 @@ RSpec.describe SocialMediaPerformanceController, type: :controller do
 
   describe 'filter' do
     it 'filters the data' do
-      xhr :post, :filter, {"filter"=>{"company_precode"=>["0123"]}}
+      xhr :post, :filter, {"filter":{"company_precode":["0123"]}}
       tagging_metrics = controller.instance_variable_get(:@tagging_metrics)
       expect(tagging_metrics.count).to be > 0
       expect(tagging_metrics['data']['tags_count']).to be_kind_of(Integer)
+      expect(tagging_metrics['data']).not_to have_key('tags')
       expect(tagging_metrics['data']['tags']).to be_nil
       expect(tagging_metrics['data']['tags']).not_to be_truthy
     end

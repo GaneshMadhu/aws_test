@@ -13,7 +13,7 @@ RSpec.describe CaseStudyLibraryController, type: :controller do
 
     context 'with filter_query applied' do
       it 'gets the API response' do
-        get :index, {"filter_query"=>{"trait.code"=>"Ps"}}
+        get :index, {"filter_query":{"trait.code":"Ps"}}
         posts = controller.instance_variable_get(:@posts)
         expect(posts.count).to be > 0
         expect(posts['data'].count).to be > 0
@@ -23,7 +23,7 @@ RSpec.describe CaseStudyLibraryController, type: :controller do
 
   describe 'filter' do
     it 'filters the data' do
-      xhr :post, :filter, {"filter"=>{"trait.code"=>["Fg"]}}
+      xhr :post, :filter, {"filter":{"trait.code":["Fg"]}}
       posts = controller.instance_variable_get(:@posts)
       expect(posts.count).to be > 0
       expect(posts['data'].count).to eq(0)

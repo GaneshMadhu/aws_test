@@ -236,7 +236,7 @@ function generateRightChart(chart_data){
                   rotation: 0,
                   text: '<span class="hc-plotband-label">Avg. engagement score -  '+(Math.round(avg * 100) / 100)+'</span>',
                   x: 0,
-                  y: 415
+                  y: (parseInt(series.length * 50)/2)
               },
               color: 'rgba(216, 148, 255, .95)',
               value: avg,

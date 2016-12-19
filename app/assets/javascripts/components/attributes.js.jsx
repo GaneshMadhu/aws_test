@@ -168,7 +168,7 @@ function apply_effects(attributes){
       }
     }
   });
-  
+
 
   var mobileAttributes = $('#m-attributes-filters');
   attributes.map(function(category){
@@ -187,6 +187,8 @@ function apply_effects(attributes){
       value: '*',
       selected: 'selected'
   }));
+
+  auto_suggestion();
 
   let debounce = (fn, threshold) => {
       let timeout;
@@ -244,14 +246,20 @@ function apply_effects(attributes){
               filterValue = '';
           container.isotope({filter: filterValue});
       });
+  };
+
+  function auto_suggestion(){
+    if(autocompleteAttributes != undefined){
+      let container = $('.attribute-grid');
 
       let quicksearch = $('#attribute-filter');
+
       if (quicksearch.length) {
-          //let autocomplete = new Awesomplete(quicksearch[0], {
-            //  minChars: 1,
-            //  list: autocompleteAttributes,
-            //  maxItems: 5
-          //});
+         let autocomplete = new Awesomplete(quicksearch[0], {
+             minChars: 1,
+             list: autocompleteAttributes,
+             maxItems: 5
+         });
       }
 
       quicksearch.on('keydown keypress keyup', (e) => {
@@ -265,6 +273,7 @@ function apply_effects(attributes){
               }
           });
       });
+    }
+  }
 
-  };
 }

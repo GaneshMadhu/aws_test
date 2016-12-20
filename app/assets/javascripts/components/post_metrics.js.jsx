@@ -90,7 +90,7 @@ function generate_chart(chart_data){
           borderWidth: 1,
           shadow: false,
           followPointer: false,
-          hideDelay: 10,
+          hideDelay: 1000,
           formatter: function () {
               return chart_tooltip(this.point)
           },

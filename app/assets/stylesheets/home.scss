@@ -117,7 +117,7 @@ $xlarge-up: "(min-width: 1280px)";
   padding:10px;
   margin:20px;
   cursor:pointer;
-  border-radius: 8px;
+  border-radius: 3px;
 }
 .fa
 {
@@ -126,10 +126,11 @@ $xlarge-up: "(min-width: 1280px)";
 }
 .answer
 {
+  color:#545454;
   display:block;
-  padding:30px 20px;
-  margin:30px;
-  background-color: rgba(56, 88, 155, 0.35);
+  padding:15px 10px;
+  margin:20px;
+  background-color: rgba(56, 88, 155, 0.22);
 }
 .question:hover
 {
@@ -177,4 +178,8 @@ $xlarge-up: "(min-width: 1280px)";
 /* to remove the selected attributes from the select2 list */
 .select2-results__option[aria-selected=true] {
     display: none;
+}
+.iframe-player{
+	margin: 25px 15px 5px 15px;
+    text-align: center;
 }

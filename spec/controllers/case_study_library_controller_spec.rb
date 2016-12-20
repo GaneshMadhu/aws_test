@@ -5,7 +5,7 @@ RSpec.describe CaseStudyLibraryController, type: :controller do
   let(:default_trait){"Ps"}
   let(:empty_trait){"Fg"}
 
-  describe 'index' do
+  describe '#index' do
     context 'without filter_query' do
       it 'gets the API response' do
         get :index
@@ -24,9 +24,15 @@ RSpec.describe CaseStudyLibraryController, type: :controller do
         expect(posts['data'].count).to be > 0
       end
     end
+
+    after(:each) do
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template('index')
+    end
   end
 
-  describe 'filter' do
+  describe '#filter' do
     context 'filters the trait data' do
       it 'for empty data' do
         process :filter, method: :post, xhr: true, params: {"filter":{"trait.code":[empty_trait]}}
@@ -42,6 +48,12 @@ RSpec.describe CaseStudyLibraryController, type: :controller do
         expect(posts['data'][0]['trait']['code']).to eq(default_trait)
         expect(posts['data'].count).to be > 0
       end
+    end
+
+    after(:each) do
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template('filter')
     end
   end
 end

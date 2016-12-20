@@ -7,6 +7,69 @@ function custom_select(filter_options){
   var placeholder      = filter_options.placeholder;
   var rest_url         = filter_options.rest_url;
   var filter_group     = filter_options.filter_group;
+  var selected_values  = filter_options.selected || [];
+  var is_multiple      = filter_options.is_multiple;
+
+    // Need to revisit here
+    // var openMobFilter = $('.btn-filters');
+    // openMobFilter.ugToggle({
+    //     container: '.page-content',
+    //     showClass: 'ugf-open',
+    //     closeButton: '.page-content .ugf-close',
+    //     onClose: function(current) {
+    //         $('#ugf-time').data('datepicker').hide();
+    //         $(window).trigger('scroll');
+    //     }
+    // });
+
+  var format_select_row = function(filter_group,row_data){
+    var html_string;
+    switch(filter_group) {
+      case 'attribute':
+          html_string = "<div><strong class='colored' style='color: "+row_data.label+"'>"+row_data.id+"</strong><span>"+row_data.text+"</span></div>";
+          break;
+      case 'country':
+          html_string = "<div><span class='flag-icon flag-icon-"+row_data.label+"'></span><span class='country-spaced'>"+row_data.text+"</span></div>";
+          break;
+      case 'company':
+          if(row_data.label == null || row_data.label == undefined)
+            html_string = "<div><span>"+row_data.text+"</span></div>";
+          else
+            html_string = "<div><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
+          break;
+      case 'platform':
+          html_string = "<div><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+          break;
+      default:
+          html_string = "<div><span>"+row_data.text+"</span></div>";
+    }
+    return $.parseHTML(html_string);
+  };
+
+  var format_selected_card = function(filter_group,row_data){
+    var html_string;
+    switch(filter_group) {
+      case 'attribute':
+          html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><strong class='colored' style='color: "+row_data.label+"'>"+row_data.id+"</strong><span>"+row_data.text+"</span></div>";
+          break;
+      case 'country':
+          html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='flag-icon flag-icon-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
+          break;
+      case 'company':
+          if(row_data.label == null || row_data.label == undefined)
+            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span>"+row_data.text+"</span></div>";
+          else
+            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
+          break;
+      case 'platform':
+          var label = (row_data.label == 'facebook') ? 'fb' : row_data.label
+          html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='ug-icon i-"+label+"'></span><span>"+row_data.text+"</span></div>";
+          break;
+      default:
+          html_string = "<div class='card mini-card'><span class='mcard-remove'><i class='ug-icon i-close'></i></span><span>"+row_data.text+"</span></div>";
+    }
+    return $.parseHTML(html_string);;
+  };
 
   var resultsToAutocomplete = function(results) {
     var data = [];
@@ -14,7 +77,7 @@ function custom_select(filter_options){
         data.push({
             id: result.id,
             text: result.text,
-            selected: 'selected' in result ? result.selected : false
+            selected: (selected_values.indexOf(result.id) > -1) ? true : false
         });
     });
     return data;
@@ -32,7 +95,7 @@ function custom_select(filter_options){
   };
 
   var removeResult = function (_result) {
-      var value = input.val();
+      var value = input.val() || [];
       input.val(value.filter(function (val) {
           return val != String(_result.id);
       })).trigger('change');
@@ -43,13 +106,24 @@ function custom_select(filter_options){
   };
 
   var getSelected = function (results) {
-      var selected = [];
-      results.map(function(result) {
-          if (result.selected) {
-              selected.push(result.id);
-          }
-      });
-      return selected;
+    var selected = [];
+    results.map(function(result) {
+        if (result.selected) {
+            selected.push(result.id);
+        }
+    });
+    populateResultsViewFromData(selected_values);
+    return selected;
+  };
+
+  var populateResultsViewFromData = function(values){
+    if(is_multiple){
+      var value = values || [],
+            filtered = options_data.filter(function (_result) {
+                return ~value.indexOf(String(_result.id));
+            });
+      populateResultsView(filtered);
+    }
   };
 
   function openNativeSelect(elem) {
@@ -81,7 +155,7 @@ function custom_select(filter_options){
       dropdownParent: dropdownParent,
       allowClear: true,
       data: options_data,
-      multiple: true,
+      multiple: is_multiple,
       templateResult: formatResult
   }).on('select2:unselecting', function() {
       $(this).data('unselecting', true);
@@ -99,19 +173,20 @@ function custom_select(filter_options){
   }
   // populate custom tags
   input.on('change', function () {
-      var value = $(this).val() || [],
-          filtered = options_data.filter(function (_result) {
-              return ~value.indexOf(String(_result.id));
-          });
+      var value = $(this).val() || [];
       if (!value.length) {
           dropdownParent.addClass('no-results');
       } else {
           dropdownParent.removeClass('no-results');
       }
-      populateResultsView(filtered);
+      populateResultsViewFromData(value);
       rest_api_call(rest_url);
   });
   // input.val(getSelected(_resultsData)).trigger('change');
+  if(is_multiple)
+    input.val(getSelected(_resultsData));
+  else
+    input.val(selected_values.join(',')).trigger('change.select2');
 
   if (clearButton instanceof jQuery) {
       clearButton.on('click', function(event) {
@@ -159,64 +234,4 @@ function custom_select(filter_options){
             }
         })
     });
-
-    // Need to revisit here
-    // var openMobFilter = $('.btn-filters');
-    // openMobFilter.ugToggle({
-    //     container: '.page-content',
-    //     showClass: 'ugf-open',
-    //     closeButton: '.page-content .ugf-close',
-    //     onClose: function(current) {
-    //         $('#ugf-time').data('datepicker').hide();
-    //         $(window).trigger('scroll');
-    //     }
-    // });
-
-    var format_select_row = function(filter_group,row_data){
-      var html_string;
-      switch(filter_group) {
-        case 'attribute':
-            html_string = "<div><strong class='colored' style='color: "+row_data.label+"'>"+row_data.id+"</strong><span>"+row_data.text+"</span></div>";
-            break;
-        case 'country':
-            html_string = "<div><span class='flag-icon flag-icon-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
-            break;
-        case 'company':
-            if(row_data.label == null || row_data.label == undefined)
-              html_string = "<div><span>"+row_data.text+"</span></div>";
-            else
-              html_string = "<div><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
-            break;
-        case 'platform':
-            html_string = "<div><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
-            break;
-        default:
-            html_string = "<div><span>"+row_data.text+"</span></div>";
-      }
-      return $.parseHTML(html_string);
-    };
-
-    var format_selected_card = function(filter_group,row_data){
-      var html_string;
-      switch(filter_group) {
-        case 'attribute':
-            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><strong class='colored' style='color: "+row_data.label+"'>"+row_data.id+"</strong><span>"+row_data.text+"</span></div>";
-            break;
-        case 'country':
-            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='flag-icon flag-icon-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
-            break;
-        case 'company':
-            if(row_data.label == null || row_data.label == undefined)
-              html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span>"+row_data.text+"</span></div>";
-            else
-              html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><img src='"+row_data.label+"' alt='"+row_data.text+"'><span>"+row_data.text+"</span></div>";
-            break;
-        case 'platform':
-            html_string = "<div class='card mini-card'><a href='#!' class='mcard-remove'><i class='ug-icon i-close'></i></a><span class='ug-icon i-"+row_data.label+"'></span><span>"+row_data.text+"</span></div>";
-            break;
-        default:
-            html_string = "<div class='card mini-card'><span class='mcard-remove'><i class='ug-icon i-close'></i></span><span>"+row_data.text+"</span></div>";
-      }
-      return $.parseHTML(html_string);;
-    };
 }

@@ -21,7 +21,16 @@
         <h5 class="name"><a href="#"><%= post["company_name"] %></a></h5>
         <p class="date"><%= formatted_time(post["post_time"]) %></p>
       </div>
-      <a href="#!" class="ug-icon i-fb"></a>
+      <% if post["url_type"] == "facebook"%>
+        <a href="#!" class="ug-icon i-fb">
+          <span title="<%= post['company_group_name'] %>" class="flag-icon flag-icon-<%= post['country_code'] %> top_post_flag_style"></span>
+        </a>
+      <% else %>
+        <a href="#!" class="ug-icon i-<%= "#{post["url_type"]}"%>">
+          <span title="<%= post['company_group_name'] %>" class="flag-icon flag-icon-<%= post['country_code'] %> top_post_flag_style"></span>
+        </a>
+      <% end %>
+
     </header>
     <div class="content">
       <p><%= post["post_content"]%> <a href="<%= post["post_url"]%>" target="_blank">continue reading</a></p>

@@ -1,12 +1,13 @@
 class SelectFilterParams
   include Rails.application.routes.url_helpers
-  attr_reader :filter_data, :filter_type, :filter_group, :api_path
+  attr_reader :filter_data, :filter_type, :filter_group, :api_path, :selected_options
 
-  def initialize(data,filter_type,api_path)
-    @filter_data   = data
-    @filter_type   = filter_type
-    @filter_group  = filter_group
-    @api_path      = api_path
+  def initialize(data,filter_type,api_path,selected_options = {})
+    @filter_data      = data
+    @filter_type      = filter_type
+    @filter_group     = filter_group
+    @api_path         = api_path
+    @selected_options = selected_options || {}
   end
 
   def options
@@ -19,7 +20,9 @@ class SelectFilterParams
       tooltip:            filters[filter_group[0].to_sym],
       filter_title:       filter_group[1],
       filter_group:       filter_group[0],
-      rest_url:           api_path
+      rest_url:           api_path,
+      selected:           selected_options[filter_type],
+      is_multiple:        filters[:is_multiple]
     }
   end
 
@@ -48,7 +51,8 @@ class SelectFilterParams
           country:   "Search from the list of countries available",
           company:   "Search from the list of employers available",
           platform:  "Search from the list of social media platforms available",
-          industry:  "Search from the list of industries available"
+          industry:  "Search from the list of industries available",
+          is_multiple: true
         }
       when filter_social_media_performance_index_path
         {
@@ -56,15 +60,17 @@ class SelectFilterParams
           country:   "The country/s of your subscription",
           company:   "Search from the list of employers within your subscription",
           platform:  "Search from the list of social media platforms within your subscription",
-          industry:  "Search from the list of industries within your subscription"
+          industry:  "Search from the list of industries within your subscription",
+          is_multiple: true
         }
-      when filter_post_metrics_path
+      when filter_attribute_zoom_in_index_path
         {
           attribute: "Search from the list of 40 attributes of employer attractiveness",
           country:   "Search from the list of countries available",
           company:   "Search from the list of employers available",
           platform:  "Search from the list of social media platforms available",
-          industry:  "Search from the list of industries available"
+          industry:  "Search from the list of industries available",
+          is_multiple: (filter_type && (filter_type.eql? 'traits')) ? false : true
         }
       else
         {
@@ -72,7 +78,8 @@ class SelectFilterParams
           country:   "Search from the list of countries available",
           company:   "Search from the list of employers available",
           platform:  "Search from the list of social media platforms available",
-          industry:  "Search from the list of industries available"
+          industry:  "Search from the list of industries available",
+          is_multiple: true
         }
     end
   end

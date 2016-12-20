@@ -6,7 +6,11 @@
     <div class="ugh-description">Select your company or your competitors in the filter and see how social media posts are perceived and if they are engaging.</div>
   </header>
   <div class="ug-card ug-chart" id="esmp_chart_wrapper">
-    <%= render 'charts', tagging_metrics: tagging_metrics %>
+    <% if tagging_metrics && (tagging_metrics.has_key? "tags") %>
+      <%= render 'charts', tagging_metrics: tagging_metrics %>
+    <% else %>
+      <%= render 'shared/no_results' %>
+    <% end %>
   </div>
 
 </section>

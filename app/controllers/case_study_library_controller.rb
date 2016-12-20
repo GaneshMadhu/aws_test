@@ -1,23 +1,29 @@
 class CaseStudyLibraryController < ApplicationController
 
+  before_action :check_query_params, only: :index
+  before_action :add_sort_param, only: :index
+
 	def index
-		iris = IrisEngine::IrisApi.new
-    @posts = iris.search("report_tagged_posts", {"sort"=> {"engagement_score_normalised"=>"desc"}})
+		filter_data "report_tagged_posts"
 	end
-	
+
 	def filter
-		filter_data
+		filter_data "report_tagged_posts/filter"
 	end
 
 	def scroll
-		filter_data
+		filter_data "report_tagged_posts/filter"
 	end
 
 	private
 
-  def filter_data
-    filters = ParseQueryParams.new(params).parse
+  def filter_data url
+    filters = ParseQueryParams.new(params,true).parse
     iris    = IrisEngine::IrisApi.new
-    @posts  = iris.search("report_tagged_posts/filter", filters)
+    @posts  = iris.search(url, filters)
+  end
+
+  def add_sort_param
+    params['sort'] = "desc"
   end
 end

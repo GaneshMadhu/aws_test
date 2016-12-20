@@ -7,7 +7,10 @@ var Attributes = React.createClass({
   getCategories: function(){
     var all_category = {
       id: 999999,
-      name: "All Attributes"
+      name: "All Attributes",
+      properties: {
+        color: "#38589b"
+      }
     }
     return (
       <div className="sp-results mvpsp-results">
@@ -69,6 +72,7 @@ var TraitGroup = React.createClass({
     var active = (index == 0) ? "active" : "";
     return (
       <li className={active}>
+          <input type='hidden' class='driver_color' value={this.props.category.properties.color} />
           <a href="#" data-filter={this.props.filter}>
               {this.props.category.name.replace(" ","\n")}
           </a>
@@ -88,7 +92,7 @@ var Trait = React.createClass({
     var classnames = ['attribute']
     classnames.push(category.id)
     return (
-      <div className={classnames.join(" ")}>
+      <div className={classnames.join(" ")} data-driver-id={category.id}>
         <div className="wrapper" style={style}>
           <div>
             <div className="attribute-title">
@@ -126,6 +130,7 @@ function apply_effects(attributes){
   bindFilters();
   var filtersContainer  = $('#attributes-container');
   var attribute_objects = $('#attributes-container .attribute');
+  var attribute_drivers = $('#attributes-filters li');
   var searchRegex;
   var autocompleteAttributes = []
 
@@ -135,15 +140,35 @@ function apply_effects(attributes){
       if (!attribute.hasClass('opened') && !$(event.target).hasClass('atr-close')) {
           $('#attributes-container').find('.attribute .atr-close').trigger('click');
           attribute.addClass('opened');
-          refreshLayout();
+          refreshLayout(attribute.data('driver-id'));
       }
     });
     attribute.find('.atr-close').on('click', function(event) {
         attribute.removeClass('opened');
-        refreshLayout();
+        refreshLayout(attribute.data('driver-id'));
         event.preventDefault();
     });
   });
+
+  attribute_drivers.on('click mouseenter mouseleave', function(event) {
+    var color = $(this).find('input').val();
+    if($(this).find('a').length>0){
+      if(event.type == "click"){
+        $('#attributes-filters li a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+        $(this).find('a').css({"color": color,"border-bottom-color": color});
+      }
+      if(event.type == "mouseenter"){
+        $(this).find('a').css({"color": color,"border-bottom-color": color});
+      }
+      if(event.type == "mouseleave"){
+        if($(this).hasClass('active'))
+          $(this).find('a').css({"color": color,"border-bottom-color": color});
+        else
+          $('#attributes-filters li').not('.active').find('a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+      }
+    }
+  });
+
 
   var mobileAttributes = $('#m-attributes-filters');
   attributes.map(function(category){
@@ -163,6 +188,8 @@ function apply_effects(attributes){
       selected: 'selected'
   }));
 
+  auto_suggestion();
+
   let debounce = (fn, threshold) => {
       let timeout;
       return function debounced() {
@@ -178,11 +205,11 @@ function apply_effects(attributes){
       }
   };
 
-  let refreshLayout = () => {
+  let refreshLayout = (category) => {
       let container = $('.attribute-grid');
       container.isotope({
           masonry: {
-              columnWidth: $('.attribute').not('.opened')[0]
+              columnWidth: category ? $('.attribute.'+category).not('.opened')[0] : $('.attribute').not('.opened')[0]
           }
       });
   };
@@ -219,14 +246,20 @@ function apply_effects(attributes){
               filterValue = '';
           container.isotope({filter: filterValue});
       });
+  };
+
+  function auto_suggestion(){
+    if(autocompleteAttributes != undefined){
+      let container = $('.attribute-grid');
 
       let quicksearch = $('#attribute-filter');
+
       if (quicksearch.length) {
-          //let autocomplete = new Awesomplete(quicksearch[0], {
-            //  minChars: 1,
-            //  list: autocompleteAttributes,
-            //  maxItems: 5
-          //});
+         let autocomplete = new Awesomplete(quicksearch[0], {
+             minChars: 1,
+             list: autocompleteAttributes,
+             maxItems: 5
+         });
       }
 
       quicksearch.on('keydown keypress keyup', (e) => {
@@ -240,6 +273,7 @@ function apply_effects(attributes){
               }
           });
       });
+    }
+  }
 
-  };
 }

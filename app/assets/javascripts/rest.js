@@ -20,8 +20,12 @@ function make_ajax(uri, method, data, path) {
 
 function frame_request(page){
   var params = {filter: {}, page: page};
-  if(($('.ugf-attribute').length > 0) && ($('.ugf-attribute').val() != null))
-    params['filter']['trait.code'] = $('.ugf-attribute').val();
+  if(($('.ugf-attribute').length > 0) && ($('.ugf-attribute').val() != null)){
+    var value = $('.ugf-attribute').val();
+    if(typeof value == 'string')
+      value = [value];
+    params['filter']['trait.code'] = value;
+  }
   if(($('.ugf-country').length > 0) && ($('.ugf-country').val() != null))
     params['filter']['company_group_id'] = $('.ugf-country').val();
   if(($('.ugf-company').length > 0) && ($('.ugf-company').val() != null))
@@ -44,7 +48,7 @@ function frame_request(page){
     if($('#ugf-time-formatted').find('.start').html() != "")
       params['filter']['post_time']['gte'] = $('#ugf-time-formatted').find('.start').html()
     if(($('#ugf-time-formatted').find('.end').html() != "") && ($('#ugf-time-formatted').find('.end').html() != "-"))
-    params['filter']['post_time']['lte'] = $('#ugf-time-formatted').find('.end').html()
+      params['filter']['post_time']['lte'] = $('#ugf-time-formatted').find('.end').html()
   }
 
   if(($('.ugh-sortby').length > 0) && ($('.ugh-sortby').val() != "")){

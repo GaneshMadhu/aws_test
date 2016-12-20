@@ -7,8 +7,8 @@
     </div>
     <div class="ugf-content">
       <% select_filters.each do |type| %>
-        <% next if data[type].blank? or data[type].compact.blank? %>
-        <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type, api_path).options) %>
+        <% next if data.blank? or data[type].blank? or data[type].compact.blank? %>
+        <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type, api_path,selected_options).options) %>
       <% end %>
 
       <% if post_type %>
@@ -22,9 +22,13 @@
               </span>
             </h4>
           </header>
+          <%
+            organic_checked = (selected_options && selected_options['sponsored_or_organic'] && (selected_options['sponsored_or_organic'].include? 'Organic')) || false
+            sponsored_checked = (selected_options && selected_options['sponsored_or_organic'] && (selected_options['sponsored_or_organic'].include? 'Sponsored')) || false
+          %>
           <div id="#ugff-performance" class="ugf-checkboxes ugff-performance ugf-select">
             <div class="checkbox">
-              <input id="ugffp-organic" type="checkbox" name="ugff-organic" value="Organic" onchange="javascript: rest_api_call('<%= api_path %>');">
+              <input id="ugffp-organic" type="checkbox" name="ugff-organic" <%= 'checked' if organic_checked %> value="Organic" onchange="javascript: rest_api_call('<%= api_path %>');">
               <label for="ugffp-organic" class="type-organic"><i class="ug-icon i-organic type-organic"></i>Organic</label>
               <span href="#!" class="tooltip-trigger">
                 <i class="ug-icon i-info"></i>
@@ -32,7 +36,7 @@
               </span>
             </div>
             <div class="checkbox">
-              <input id="ugffp-sponsored" type="checkbox" name="ugff-sponsored" value="Sponsored" onchange="javascript: rest_api_call('<%= api_path %>');">
+              <input id="ugffp-sponsored" type="checkbox" name="ugff-sponsored" <%= 'checked' if sponsored_checked %> value="Sponsored" onchange="javascript: rest_api_call('<%= api_path %>');">
               <label for="ugffp-sponsored" class="type-sponsored"><i class="ug-icon i-sponsored type-sponsored"></i>Sponsored</label>
               <span href="#!" class="tooltip-trigger">
                 <i class="ug-icon i-info"></i>
@@ -58,14 +62,15 @@
           </header>
           <div id="ugff-time-id" class="ugf-select ugff-time">
             <div id="ugf-time-formatted">
-              <strong>Start</strong><span class="start"></span>
-              <strong>End</strong><span class="end"></span>
+              <strong id="calendar-start" class="calendar-highlight">Start</strong><span class="start"></span>
+              <strong id="calendar-end" class="calendar-highlight">End</strong><span class="end"></span>
+              <span class="dateclear hide"></span>
             </div>
             <input type="text" id="ugf-time" onchange="javascript: rest_api_call('<%= api_path %>');"/>
           </div>
           <a href="#!" class="btn ugf-done"><i class="icon-arrow"></i></a>
         </div>
-        <%= react_component('DatePicker') %>
+        <%= react_component('DatePicker', selected_options: selected_options) %>
       <% end %>
     </div>
 

@@ -219,7 +219,7 @@ function generateRightChart(chart_data){
           pointWidth: 0,
           pointInterval: 0,
           labels: { enabled: false },
-          min:0,
+          min: 0,
           plotLines: [{
               label: {
                   align: 'left',
@@ -276,7 +276,8 @@ function generateRightChart(chart_data){
               pointPadding: 0,
               groupPadding: 0,
               borderWidth: 0,
-              shadow: false
+              shadow: false,
+              minPointLength: 3
           },
           bar: {
               groupPadding: 0,

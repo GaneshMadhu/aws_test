@@ -42,20 +42,25 @@ function apply_date_picker(selected_options){
         startDate: startDate,
         onSelect: function(formatted, date, inst) {
             var dates = formatted.split(',');
+            timeElFilter.find('.start').text(dates[0]);
+            timeElFilter.find('.end').text(dates[1]);
             if (typeof dates[0] !== "undefined") {
                 $('#calendar-start').addClass('calendar-highlighted').removeClass('calendar-highlight');
                 $('.dateclear').removeClass('hide');
             }
+            else{
+                timeElFilter.find('.start').text("");
+            }
             if (typeof dates[1] !== "undefined") {
                 $('#calendar-end').addClass('calendar-highlighted').removeClass('calendar-highlight');
+                timeInputFilter.trigger('change');
             }
-            timeElFilter.find('.start').text(dates[0]);
-            timeElFilter.find('.end').text(dates[1]);
-            timeInputFilter.trigger('change');
+            else{
+                timeElFilter.find('.end').text("");
+            }
             timeInputFilter.data('datepicker').hide();
         }
     });
-
 
    /* $(document).on('click', function(event) {
         if (!$(event.target).is('#ugff-time-id, #ugff-time-id *, #datepickers-container, #datepickers-container *'))
@@ -75,6 +80,7 @@ function apply_date_picker(selected_options){
                 $('#calendar-end').addClass('calendar-highlight').removeClass('calendar-highlighted');
                 $('.dateclear').addClass('hide');
                 timeInputFilter.data('datepicker').hide();
+                timeInputFilter.trigger('change');
             }
             else{
                 timeInputFilter.data('datepicker').hide();

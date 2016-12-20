@@ -20,8 +20,8 @@
   <%= render 'shared/filters', data: @tagging_metrics["filters"], select_filters: ["company_groups","companies","platforms"], post_type: true, date_range: true, api_path: filter_social_media_performance_index_path, selected_options: @selected_options %>
   <!-- start .ug-hand-header -->
   <div class="ug-hand-header">
-    <%= render 'esmp_content', tagging_metrics: @tagging_metrics["data"] %>
-    <%= render 'attributes', attributes: @tagging_metrics["attributes"] %>
+    <%= render 'esmp_content', tagging_metrics: @tagging_metrics["data"] if @tagging_metrics["data"] %>
+    <%= render 'attributes', attributes: @tagging_metrics["attributes"] if @tagging_metrics["attributes"] %>
   </div>
   <!-- END .ug-hand-header -->
 </section>

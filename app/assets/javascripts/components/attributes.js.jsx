@@ -273,6 +273,10 @@ function apply_effects(attributes){
               }
           });
       });
+
+      quicksearch.on('awesomplete-selectcomplete',function(){
+        quicksearch.keypress();
+      });
     }
   }
 

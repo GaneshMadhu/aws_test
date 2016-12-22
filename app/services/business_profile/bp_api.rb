@@ -1,20 +1,20 @@
-module IrisEngine
+module BusinessProfile
 
-  class IrisApi
+  class BpApi
 
     attr_accessor :conn
 
     def initialize
-      @conn = Faraday.new url: ENV["IE_ENDPOINT"]
+      @conn = Faraday.new url: ENV["BP_ENDPOINT"]
     end
 
-    def search(url, query)
+    def company_details(url)
+      response = @conn.get url
       json = _wrap_json do
         @conn.get do |r|
           r.url url
           r.headers['Content-Type'] = 'application/json'
-          r.headers = {'Accept' => 'application/api.v1', 'Authorization' => %-Token token="#{ENV["FRONT_END_KEY"]}"-}
-          r.params = query
+          r.headers = {'Accept' => 'application/api.v1', 'Authorization' => %-Token token="#{ENV["BP_TOKEN"]}"-}
         end
       end
       json

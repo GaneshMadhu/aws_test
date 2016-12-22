@@ -47,6 +47,8 @@ class CheckQueryParams
       when 'attribute_zoom_in'
         params['filter_query']['trait.code'] = ENV['ZOOMIN_DEFAULT_TRAIT'] if params['filter_query']['trait.code'].blank?
         params['filter_query']['post_time']  = {'max': Date.today.strftime("%m/%d/%y"), 'min': (Date.today - 1.years).strftime("%m/%d/%y")} if params['filter_query']['post_time'].blank?
+      when 'social_media_performance'
+        params["filter_query"]["company_precode"] = [params[:precode]]
     end
   end
 end

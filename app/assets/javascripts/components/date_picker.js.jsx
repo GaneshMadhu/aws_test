@@ -79,6 +79,7 @@ function apply_date_picker(selected_options){
                 $('#calendar-start').addClass('calendar-highlight').removeClass('calendar-highlighted');
                 $('#calendar-end').addClass('calendar-highlight').removeClass('calendar-highlighted');
                 $('.dateclear').addClass('hide');
+                timeInputFilter.data('datepicker').date = new Date();
                 timeInputFilter.data('datepicker').hide();
                 timeInputFilter.trigger('change');
             }

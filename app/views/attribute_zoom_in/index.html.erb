@@ -20,7 +20,7 @@
   <%= render 'shared/filters', data: @post_metrics["filters"], select_filters: ["traits","company_groups","platforms"], post_type: false, date_range: true, api_path: filter_attribute_zoom_in_index_path, selected_options: @selected_options %>
   <!-- start .ug-hand-header -->
   <div class="ug-hand-header">
-    <%= render 'post_metric_content', post_metrics: @post_metrics["data"] %>
+    <%= render 'post_metric_content', post_metrics: @post_metrics["data"] if @post_metrics["data"] %>
   </div>
   <!-- END .ug-hand-header -->
 

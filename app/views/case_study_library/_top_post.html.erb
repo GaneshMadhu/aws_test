@@ -33,7 +33,10 @@
 
     </header>
     <div class="content">
-      <p><%= post["post_content"]%> <a href="<%= post["post_url"]%>" target="_blank">continue reading</a></p>
+      <div class="ugpc-entry-text">
+        <p><%= post["post_content"]%></p>
+        <a class="lnk-continue" href="<%= post["post_url"]%>" target="_blank">continue reading</a>
+      </div>
       <figure class="ugpc-post-image">
         <a href="#!">
           <%= image_view(post["attachment_url"], "") %>

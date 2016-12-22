@@ -27,6 +27,7 @@ function initiliaze_data(chart_data){
 
 function generate_chart(chart_data){
   var areaspline_data = [],column_data = [], categories = [];
+  var index = 0;
   for(var key in post_metrics){
     if (post_metrics.hasOwnProperty(key)) {
       var datum = post_metrics[key];
@@ -36,16 +37,18 @@ function generate_chart(chart_data){
       column_data.push({
         y: datum.posts_count,
         original_color: datum.trait_color,
-        color: hexToRgbA(datum.trait_color,.6),
+        color: ((index%2==0) ? hexToRgbA(datum.trait_color,.5) : hexToRgbA(datum.trait_color,.7)),
         areaSplineValue: datum.avg_engagement,
         borderColor: "transparent",
         view_posts: datum.view_posts
       });
     }
+    index += 1;
   }
 
-  var legend_light = hexToRgbA(legend_color,.6);
-  var legend_dark  = hexToRgbA(legend_color,.2);
+  var legend_light = hexToRgbA(legend_color,.5);
+  var legend_dark  = hexToRgbA(legend_color,.7);
+  var areaspline_color  = hexToRgbA(legend_color,.3);
 
   var chart = $('[data-zoom-in-chart]').highcharts({
       chart: {
@@ -258,16 +261,16 @@ function generate_chart(chart_data){
       series: [{
           type: 'column',
           color: "transparent",
-          name: '<div class="tooltip-inline"><svg id="svg-icon_pv-container" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 24.000001 24.000001"><metadata id="metadata3345"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work> </rdf:RDF></metadata><g id="svg-icon_pv" transform="translate(0 -1028.4)"><g id="g4180" transform="matrix(.49566 0 0 .50501 -300.21 582.84)"><rect id="rect3359" fill-rule="evenodd" class="svg-icon_pv-rect1" width="15.784" y="899.45" x="605.71" height="30.431" fill='+legend_light+' /><rect id="rect4161" class="svg-icon_pv-rect2" width="16.794" y="882.15" x="621.52" height="47.73" fill='+legend_light+' /><rect id="rect3359-1" fill-rule="evenodd" class="svg-icon_pv-rect1" width="15.91" y="889.68" x="638.24" height="40.175" fill='+legend_light+' /></g></g></svg> <span class="tooltip-hide"> Post Volume</span></div>',
+          name: '<div class="tooltip-inline"><svg id="svg-icon_pv-container" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 24.000001 24.000001"><metadata id="metadata3345"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work> </rdf:RDF></metadata><g id="svg-icon_pv" transform="translate(0 -1028.4)"><g id="g4180" transform="matrix(.49566 0 0 .50501 -300.21 582.84)"><rect id="rect3359" fill-rule="evenodd" class="svg-icon_pv-rect1" width="15.784" y="899.45" x="605.71" height="30.431" fill='+legend_light+' /><rect id="rect4161" class="svg-icon_pv-rect2" width="16.794" y="882.15" x="621.52" height="47.73" fill='+legend_dark+' /><rect id="rect3359-1" fill-rule="evenodd" class="svg-icon_pv-rect1" width="15.91" y="889.68" x="638.24" height="40.175" fill='+legend_light+' /></g></g></svg> <span class="tooltip-hide"> Post Volume</span></div>',
           zIndex: 2,
           enableMouseTracking: true,
           data: column_data
       },
           {
               type: 'areaspline',
-              color: legend_dark,
+              color: areaspline_color,
               lineWidth: 0,
-              name: '<div class="tooltip-inline"><svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg-icon_ape-container" viewBox="0 0 24.000001 24.000001" height="24" width="24"><defs id="defs4431" /><metadata id="metadata4434"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><g transform="translate(0,-1028.3622)" id="svg-icon_ape"><path id="svg-icon_ape-fill" class="svg-icon_ape-fill" d="m -0.00167413,1046.951 c 0.00492642,-1.8083 1.37745123,-3.8279 2.75000003,-4.8215 1.0145371,-0.7345 1.9103992,-1.1658 2.9642857,-1.1116 0.9477389,0.049 1.7842207,0.7061 2.5491071,1.2678 0.9780611,0.7183 1.5632966,1.8815 2.5223213,2.625 0.35698,0.2768 0.729512,0.6363 1.180246,0.6658 0.750853,0.049 1.509749,-0.3693 2.09375,-0.8438 1.001659,-0.8138 1.442386,-2.1406 2.151785,-3.2187 0.799078,-1.2144 1.395301,-2.5826 2.370536,-3.6607 0.786243,-0.8692 1.702347,-1.6623 2.745536,-2.1965 0.883836,-0.4526 1.53956,-0.6134 2.687203,-0.6943 -9.43e-4,0.9834 -0.0067,2.3202 -0.007,3.3896 -9.23e-4,4.668 0.0073,14.0234 0.0073,14.0234 l -24.03125014,0 c 0,0 0.01095725,-3.5079 0.01617901,-5.4245 z" style="fill-opacity:1;fill-rule:evenodd;stroke:#B2B2B2;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" fill='+legend_dark+' /></g></svg> <span class="tooltip-hide">Average Engagement Score<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip">View the volume of posts within a particular attribute and the average post engagement across time</span></span></span></div>',
+              name: '<div class="tooltip-inline"><svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg-icon_ape-container" viewBox="0 0 24.000001 24.000001" height="24" width="24"><defs id="defs4431" /><metadata id="metadata4434"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><g transform="translate(0,-1028.3622)" id="svg-icon_ape"><path id="svg-icon_ape-fill" class="svg-icon_ape-fill" d="m -0.00167413,1046.951 c 0.00492642,-1.8083 1.37745123,-3.8279 2.75000003,-4.8215 1.0145371,-0.7345 1.9103992,-1.1658 2.9642857,-1.1116 0.9477389,0.049 1.7842207,0.7061 2.5491071,1.2678 0.9780611,0.7183 1.5632966,1.8815 2.5223213,2.625 0.35698,0.2768 0.729512,0.6363 1.180246,0.6658 0.750853,0.049 1.509749,-0.3693 2.09375,-0.8438 1.001659,-0.8138 1.442386,-2.1406 2.151785,-3.2187 0.799078,-1.2144 1.395301,-2.5826 2.370536,-3.6607 0.786243,-0.8692 1.702347,-1.6623 2.745536,-2.1965 0.883836,-0.4526 1.53956,-0.6134 2.687203,-0.6943 -9.43e-4,0.9834 -0.0067,2.3202 -0.007,3.3896 -9.23e-4,4.668 0.0073,14.0234 0.0073,14.0234 l -24.03125014,0 c 0,0 0.01095725,-3.5079 0.01617901,-5.4245 z" style="fill-opacity:1;fill-rule:evenodd;stroke:#B2B2B2;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" fill='+areaspline_color+' /></g></svg> <span class="tooltip-hide">Average Engagement Score<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip">View the volume of posts within a particular attribute and the average post engagement across time</span></span></span></div>',
               data: areaspline_data,
               zIndex: 1,
               yAxis: 1,

@@ -8,7 +8,7 @@ module BusinessProfile
       @conn = Faraday.new url: ENV["BP_ENDPOINT"]
     end
 
-    def company_details(url)
+    def bu_details(url)
       response = @conn.get url
       json = _wrap_json do
         @conn.get do |r|
@@ -20,6 +20,15 @@ module BusinessProfile
       json
     end
 
+    def parse_results(response)
+      bu_ids = response["permissions"].map{|x| x["business_unit_id"]}
+    end
+
+    def parse_bu_details(response)
+      countries = response["business_unit"]["represented_country"]
+      logo_urls = response["business_unit"]["memberships"].map{|x| x["logo"]["url"]}.uniq.compact
+      [logo_urls, countries]
+    end
   private
 
    def _wrap_json(&block)

@@ -32,7 +32,6 @@ class ParseQueryParams
       sort_params  = params[:sort].blank? ? "desc" : params[:sort]
       query[:sort] = [{"engagement_score_normalised" => sort_params}]
     end
-
     query
   end
 end

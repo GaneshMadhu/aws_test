@@ -19,6 +19,8 @@ class CheckQueryParams
           selected['companies'] = filter_params['company_precode'] = value.split('$') if value
         when 'company_group_id'
           selected['company_groups'] = filter_params['company_group_id'] = value.split('$') if value
+        when 'country_codes'
+          selected['country_codes'] = filter_params['country_codes'] = value.split('$') if value
         when 'industry'
           selected['industries'] = filter_params['industry'] = value.split('$') if value
         when 'sponsored_or_organic'
@@ -49,6 +51,7 @@ class CheckQueryParams
         params['filter_query']['post_time']  = {'max': Date.today.strftime("%m/%d/%y"), 'min': (Date.today - 1.years).strftime("%m/%d/%y")} if params['filter_query']['post_time'].blank?
       when 'social_media_performance'
         params["filter_query"]["company_precode"] = [params[:precode]]
+        params["filter_query"]["country_codes"] = [params[:country_codes].split('$')]
     end
   end
 end

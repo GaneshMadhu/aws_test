@@ -4,8 +4,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def check_query_params(precode=nil)
+  def check_query_params(precode=nil, company_groups=nil)
     params[:precode] = precode
+    params[:country_codes] = company_groups
     filter_params     = CheckQueryParams.new(params).append
     params['filter']  = filter_params[0]
     @selected_options = filter_params[1]
@@ -43,10 +44,22 @@ class ApplicationController < ActionController::Base
 
   def set_company_params
     if current_user
-      if session[:company_precode].nil?
+      if session[:company_precode].nil? || session[:country_codes].nil?
         bp_api = BusinessProfile::BpApi.new
-        user_permissions = bp_api.company_details("users/#{current_user.bp_id}/company")
-        session[:company_precode] = user_permissions["company"]["precode"]
+        user_permissions = bp_api.bu_details("users/#{current_user.bp_id}/permissions")
+        business_units = bp_api.parse_results(user_permissions)
+        precodes = []
+        company_groups = []
+        gems = []
+        business_units.each do |bu|
+          business_details = bp_api.bu_details("business_units/#{bu}")
+          gems << bp_api.parse_bu_details(business_details)[0]
+          company_groups << bp_api.parse_bu_details(business_details)[1]
+        end
+        company_precode = bp_api.bu_details("users/#{current_user.bp_id}/company")["company"]["precode"]
+        session[:logo_urls] = gems.flatten.flatten
+        session[:country_codes] = company_groups.flatten.compact
+        session[:company_precode] = company_precode.flatten
       end
     end
   end
@@ -60,6 +73,8 @@ class ApplicationController < ActionController::Base
 
     if UniversumSsoClient.signed_out?(current_user.uid)
       session[:user_id] = nil
+      session[:company_precode] = nil
+      session[:country_codes] = nil
       @current_user = nil
     end
   end

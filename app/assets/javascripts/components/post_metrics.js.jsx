@@ -3,14 +3,15 @@ var PostMetrics = React.createClass({
     var chart_data = this.props.data;
     initiliaze_data(chart_data);
     generate_chart(chart_data);
+    set_trait_details();
     return null;
   }
 });
 
 var avg_engagement = 0, tags_count = 0;
 var post_metrics;
-var legend_color = "#F3622B";
-
+var legend_color    = "#F3622B";
+var trait_props     = {};
 function initiliaze_data(chart_data){
   for (var key in chart_data) {
     if (chart_data.hasOwnProperty(key)) {
@@ -70,7 +71,11 @@ function generate_chart(chart_data){
       credits: {
           enabled: false
       },
-      title: false,
+      title: {
+        useHTML: true,
+        style: {color: legend_color, fontSize: '14px'},
+        text: "<p id='zoomin_trait_label'></p>"
+      },
       subtitle: false,
       legend: {
           /*layout: 'vertical', //to fix the legends to the horizontal format*/
@@ -244,7 +249,7 @@ function generate_chart(chart_data){
                   },
                   verticalAlign: 'bottom',
                   useHTML: false,
-                  text: "Average Engagement Score - "+(Math.round(avg_engagement * 100) / 100),
+                  text: "Average Engagement Score - "+avg_engagement,
                   x: -10,
                   y: 16
               },
@@ -296,7 +301,7 @@ function generate_chart(chart_data){
 }
 
 function chart_tooltip(point){
-  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in' style='background: "+point.original_color+"'><div class='header' style='background: "+point.original_color+"'><h4 style='color: #fff'>"+point.category+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"</span>Post volume</p><p class='ugcs'><span>"+(Math.round(point.areaSplineValue * 100) / 100)+"</span>Avg engagement</p></div><a href="+point.view_posts+" target='_blank' class='btn' style='color: "+point.original_color+"'>View posts</a></div>";
+  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in' style='background: "+point.original_color+"'><div class='header' style='background: "+point.original_color+"'><h4 style='color: #fff'>"+point.category + " - " + trait_props.code+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"</span>Volume of posts</p><p class='ugcs'><span>"+Math.round(point.areaSplineValue)+"</span>Avg engagement score</p></div><a href="+point.view_posts+" target='_blank' class='btn' style='color: "+point.original_color+"'>View posts</a></div>";
   return ret_string;
 }
 
@@ -324,4 +329,12 @@ function add_start_end_dummy(areaspline,column,category,data,index){
     borderColor: "transparent",
     view_posts: data.view_posts
   });
+}
+
+function set_trait_details(){
+  setTimeout(function(){
+    var selected_trait  = $(".ugf-attribute option:selected");
+    trait_props         = {code: selected_trait.val(), name: selected_trait.text()}
+    $('#zoomin_trait_label').text(trait_props.name);
+  },500);
 }

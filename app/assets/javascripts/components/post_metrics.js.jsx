@@ -1,6 +1,5 @@
 var PostMetrics = React.createClass({
   render: function(){
-    console.log('selc');
     var chart_data = this.props.data;
     initiliaze_data(chart_data);
     generate_chart(chart_data);
@@ -72,9 +71,7 @@ function generate_chart(chart_data){
       credits: {
           enabled: false
       },
-      title: {
-        text: ""
-      },
+      title: false,
       subtitle: false,
       legend: {
           /*layout: 'vertical', //to fix the legends to the horizontal format*/
@@ -328,12 +325,4 @@ function add_start_end_dummy(areaspline,column,category,data,index){
     borderColor: "transparent",
     view_posts: data.view_posts
   });
-}
-
-function set_trait_details(){
-  setTimeout(function(){
-    var selected_trait  = $(".ugf-attribute option:selected");
-    trait_props         = {code: selected_trait.val(), name: selected_trait.text()}
-    $('#zoomin_trait_label').text(trait_props.name);
-  },100);
 }

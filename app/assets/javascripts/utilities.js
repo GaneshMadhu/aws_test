@@ -35,3 +35,11 @@ function apply_hover_for_attributes(){
     $(this).css('background-color','#fff');
   });
 }
+
+function set_trait_details(){
+  setTimeout(function(){
+    var selected_trait  = $(".ugf-attribute option:selected");
+    trait_props         = {code: selected_trait.val(), name: selected_trait.text()}
+    $('#zoomin_trait_label').text(trait_props.name);
+  },150);
+}

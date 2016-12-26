@@ -1,5 +1,6 @@
 var PostMetrics = React.createClass({
   render: function(){
+    console.log('selc');
     var chart_data = this.props.data;
     initiliaze_data(chart_data);
     generate_chart(chart_data);
@@ -72,9 +73,7 @@ function generate_chart(chart_data){
           enabled: false
       },
       title: {
-        useHTML: true,
-        style: {color: legend_color, fontSize: '14px'},
-        text: "<p id='zoomin_trait_label'></p>"
+        text: ""
       },
       subtitle: false,
       legend: {
@@ -336,5 +335,5 @@ function set_trait_details(){
     var selected_trait  = $(".ugf-attribute option:selected");
     trait_props         = {code: selected_trait.val(), name: selected_trait.text()}
     $('#zoomin_trait_label').text(trait_props.name);
-  },500);
+  },100);
 }

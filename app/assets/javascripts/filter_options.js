@@ -179,6 +179,7 @@ function custom_select(filter_options){
       } else {
           dropdownParent.removeClass('no-results');
       }
+      set_trait_details();
       populateResultsViewFromData(value);
       rest_api_call(rest_url);
   });

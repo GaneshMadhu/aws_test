@@ -18,8 +18,8 @@ class CheckQueryParams
           selected['platforms'] = filter_params['url_type'] = value.split('$') if value
         when 'company_precode'
           selected['companies'] = filter_params['company_precode'] = value.split('$') if value
-        when 'company_group_id'
-          selected['company_groups'] = filter_params['company_group_id'] = value.split('$') if value
+        when 'country_code'
+          selected['company_groups'] = filter_params['country_code'] = value.split('$') if value
         when 'country_codes'
           selected['country_codes'] = filter_params['country_codes'] = value.split('$') if value
         when 'industry'
@@ -51,8 +51,8 @@ class CheckQueryParams
         params['filter_query']['trait.code'] = ENV['ZOOMIN_DEFAULT_TRAIT'] if params['filter_query']['trait.code'].blank?
         params['filter_query']['post_time']  = {'max': Date.today.strftime("%m/%d/%y"), 'min': (Date.today - 1.years).strftime("%m/%d/%y")} if params['filter_query']['post_time'].blank?
       when 'social_media_performance'
-        params["filter_query"]["company_precode"] = [session[:precode]]
-        params["filter_query"]["country_codes"] = [session[:country_codes].split('$')]
+        params["filter_query"]["company_precode"] = [session[:precode]] if session[:precode] && params['filter_query']['company_precode'].blank?
+        params["filter_query"]["country_code"] = [session[:country_codes].split('$')] if params['filter_query']['country_code'].blank?
     end
   end
 end

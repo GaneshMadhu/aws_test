@@ -5,15 +5,19 @@ class SocialMediaPerformanceController < ApplicationController
   before_action :check_query_params, only: :index
 
   def index
-    filters          = ParseQueryParams.new(params).parse
-    iris             = IrisEngine::IrisApi.new
-    @tagging_metrics = iris.search("tagging_metrics", filters)
+    filter_data "tagging_metrics"
   end
 
   def filter
+    filter_data "tagging_metrics/filter"
+  end
+
+  private
+
+  def filter_data url
     filters           = ParseQueryParams.new(params).parse
     iris              = IrisEngine::IrisApi.new
-    @tagging_metrics  = iris.search("tagging_metrics/filter", filters)
+    @tagging_metrics  = iris.search(url, filters)
   end
 
   # private

@@ -1,9 +1,10 @@
 class CheckQueryParams
-  attr_reader :params, :selected
+  attr_reader :params, :selected, :session
 
-  def initialize(params)
+  def initialize(params,session)
     @params   = params
     @selected = {}
+    @session  = session
   end
 
   def append
@@ -50,8 +51,8 @@ class CheckQueryParams
         params['filter_query']['trait.code'] = ENV['ZOOMIN_DEFAULT_TRAIT'] if params['filter_query']['trait.code'].blank?
         params['filter_query']['post_time']  = {'max': Date.today.strftime("%m/%d/%y"), 'min': (Date.today - 1.years).strftime("%m/%d/%y")} if params['filter_query']['post_time'].blank?
       when 'social_media_performance'
-        params["filter_query"]["company_precode"] = [params[:precode]]
-        params["filter_query"]["country_codes"] = [params[:country_codes].split('$')]
+        params["filter_query"]["company_precode"] = [session[:precode]]
+        params["filter_query"]["country_codes"] = [session[:country_codes].split('$')]
     end
   end
 end

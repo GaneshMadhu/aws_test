@@ -2,7 +2,7 @@ class SocialMediaPerformanceController < ApplicationController
 
   # before_action :set_company_and_country, only: [:index]
   # before_action :set_company_filter
-  before_action only: [:index] {check_query_params(session['company_precode'], session['country_codes'])}
+  before_action :check_query_params, only: :index
 
   def index
     filters          = ParseQueryParams.new(params).parse

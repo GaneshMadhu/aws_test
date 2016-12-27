@@ -4,10 +4,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def check_query_params(precode=nil, company_groups=nil)
-    params[:precode] = precode
-    params[:country_codes] = company_groups
-    filter_params     = CheckQueryParams.new(params).append
+  def check_query_params
+    filter_params     = CheckQueryParams.new(params,session).append
     params['filter']  = filter_params[0]
     @selected_options = filter_params[1]
   end
@@ -59,7 +57,7 @@ class ApplicationController < ActionController::Base
         company_precode = bp_api.bu_details("users/#{current_user.bp_id}/company")["company"]["precode"]
         session[:logo_urls] = gems.flatten.flatten
         session[:country_codes] = company_groups.flatten.compact
-        session[:company_precode] = company_precode.flatten
+        session[:company_precode] = company_precode
       end
     end
   end

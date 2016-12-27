@@ -5,7 +5,7 @@ module IrisEngine
     attr_accessor :conn
 
     def initialize
-      @conn = Faraday.new url: ENV["IE_ENDPOINT"]
+      @conn = Faraday.new url: ENV["IRIS_ENDPOINT"]
     end
 
     def search(url, query)

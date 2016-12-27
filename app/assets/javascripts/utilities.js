@@ -43,3 +43,14 @@ function set_trait_details(){
     $('#zoomin_trait_label').text(trait_props.name);
   },150);
 }
+
+$(document).ready(function(){
+  var path= $(location).attr('pathname');
+  $("#mega-menu ul li").each(function() {
+    var loop= $(this);
+    if (loop.find('a').attr('href') == path) {
+      loop.addClass('active');
+      loop.after("<li class='divider'></li>");
+    }
+  });
+});

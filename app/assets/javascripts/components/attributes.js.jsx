@@ -151,23 +151,18 @@ function apply_effects(attributes){
   });
 
   attribute_drivers.on('click mouseenter mouseleave', function(event) {
-    var color  = $(this).find('input').val();
-    var anchor = $(this).find('a');
-    if(anchor.length > 0){
+    var color = $(this).find('input').val();
+    if($(this).find('a').length>0){
       if(event.type == "click"){
-        attribute_drivers.removeClass('active');
-        $(this).addClass('active');
-        let filterValue = anchor.attr('data-filter');
-        $('.attribute-grid').isotope({filter: filterValue});
         $('#attributes-filters li a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
-        anchor.css({"color": color,"border-bottom-color": color});
+        $(this).find('a').css({"color": color,"border-bottom-color": color});
       }
       if(event.type == "mouseenter"){
-        anchor.css({"color": color,"border-bottom-color": color});
+        $(this).find('a').css({"color": color,"border-bottom-color": color});
       }
       if(event.type == "mouseleave"){
         if($(this).hasClass('active'))
-          anchor.css({"color": color,"border-bottom-color": color});
+          $(this).find('a').css({"color": color,"border-bottom-color": color});
         else
           $('#attributes-filters li').not('.active').find('a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
       }

@@ -183,3 +183,27 @@ $xlarge-up: "(min-width: 1280px)";
 	margin: 25px 15px 5px 15px;
     text-align: center;
 }
+
+#esmp_chart_wrapper .ug-loading{
+  top:100px;
+}
+
+.tooltip-left{
+    right: 35px;
+    left: unset !important;
+  &:before{
+    display: none;
+  }
+  &:after{
+    content: '';
+    position: absolute;
+    top: 21px;
+    left: 100%;
+    margin-right: -1px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 0px 9px 11px;
+    border-color: transparent transparent transparent #38589b;
+  }
+}

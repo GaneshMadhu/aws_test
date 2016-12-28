@@ -60,6 +60,7 @@ class ApplicationController < ActionController::Base
     current_user.update last_sign_in_check: Time.now
     session[:company_precode] = nil
     session[:country_codes] = nil
+    session[:logo_urls] = nil
 
     if UniversumSsoClient.signed_out?(current_user.uid)
       session[:user_id] = nil

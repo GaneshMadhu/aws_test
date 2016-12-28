@@ -9,11 +9,13 @@
     </ul>
 
     <ul class="right">
-      <li>
-        <a href="#!" class="logo-graystone">
-         <img src="<%= image_url "graystone.png" %>" alt="">
-        </a>
-      </li>
+      <% session[:logo_urls].each do |url| %>
+        <li>
+          <a href="#!" class="logo-graystone">
+           <img src="<%= url %>" alt="">
+          </a>
+        </li>
+      <% end %>
       <li class="divider"></li>
       <li>
         <a href="#!" class="logo-stone">

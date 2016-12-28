@@ -50,7 +50,6 @@ $(document).ready(function(){
     var loop= $(this);
     if (loop.find('a').attr('href') == path) {
       loop.addClass('active');
-      loop.after("<li class='divider'></li>");
     }
   });
 });

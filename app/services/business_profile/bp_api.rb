@@ -21,7 +21,14 @@ module BusinessProfile
     end
 
     def parse_results(response)
-      bu_ids = response["permissions"].map{|x| x["business_unit_id"]}
+      company_precode = response["user"]["company"]["precode"]
+      bu = response["user"]["business_units"]
+      country_codes = bu.map{|x| x["represented_country"]}
+      logo_urls = []
+      bu.each do |unit|
+        logo_urls << unit["memberships"].map{|x| x["logo"]["url"] }
+      end
+      [company_precode, country_codes, logo_urls.flatten.compact.uniq]
     end
 
     def parse_bu_details(response)

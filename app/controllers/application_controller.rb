@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     ensure_last_signed_in_at_set
-    set_company_params
     sign_out_expired_session
+    set_company_params
     if !current_user
       respond_to do |format|
         format.json {
@@ -44,20 +44,10 @@ class ApplicationController < ActionController::Base
     if current_user
       if session[:company_precode].nil? || session[:country_codes].nil?
         bp_api = BusinessProfile::BpApi.new
-        user_permissions = bp_api.bu_details("users/#{current_user.bp_id}/permissions")
-        business_units = bp_api.parse_results(user_permissions)
-        precodes = []
-        company_groups = []
-        gems = []
-        business_units.each do |bu|
-          business_details = bp_api.bu_details("business_units/#{bu}")
-          gems << bp_api.parse_bu_details(business_details)[0]
-          company_groups << bp_api.parse_bu_details(business_details)[1]
-        end
-        company_precode = bp_api.bu_details("users/#{current_user.bp_id}/company")["company"]["precode"]
-        session[:logo_urls] = gems.flatten.flatten
-        session[:country_codes] = company_groups.flatten.compact
-        session[:company_precode] = company_precode
+        user_company = bp_api.bu_details("get_company_detail/#{current_user.bp_id}")
+        session[:company_precode] = bp_api.parse_results(user_company)[0]
+        session[:country_codes] = bp_api.parse_results(user_company)[1]
+        session[:logo_urls] = bp_api.parse_results(user_company)[2]
       end
     end
   end
@@ -68,11 +58,11 @@ class ApplicationController < ActionController::Base
     return if current_user.last_sign_in_check.present? && current_user.last_sign_in_check <= 5.minutes.ago
 
     current_user.update last_sign_in_check: Time.now
+    session[:company_precode] = nil
+    session[:country_codes] = nil
 
     if UniversumSsoClient.signed_out?(current_user.uid)
       session[:user_id] = nil
-      session[:company_precode] = nil
-      session[:country_codes] = nil
       @current_user = nil
     end
   end

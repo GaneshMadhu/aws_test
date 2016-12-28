@@ -20,8 +20,6 @@ class CheckQueryParams
           selected['companies'] = filter_params['company_precode'] = value.split('$') if value
         when 'country_code'
           selected['company_groups'] = filter_params['country_code'] = value.split('$') if value
-        when 'country_codes'
-          selected['country_codes'] = filter_params['country_codes'] = value.split('$') if value
         when 'industry'
           selected['industries'] = filter_params['industry'] = value.split('$') if value
         when 'sponsored_or_organic'

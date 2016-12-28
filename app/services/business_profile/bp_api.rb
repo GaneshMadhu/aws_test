@@ -31,11 +31,6 @@ module BusinessProfile
       [company_precode, country_codes, logo_urls.flatten.compact.uniq]
     end
 
-    def parse_bu_details(response)
-      countries = response["business_unit"]["represented_country"]
-      logo_urls = response["business_unit"]["memberships"].map{|x| x["logo"]["url"]}.uniq.compact
-      [logo_urls, countries]
-    end
   private
 
    def _wrap_json(&block)

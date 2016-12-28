@@ -4,6 +4,7 @@ if(has_data == 'true'){
   ReactRailsUJS.mountComponents('#zoom_in_react_wrapper');
 }
 else{
-  $("#post_metrics_chart_wrapper").html("<%= escape_javascript(render partial: 'shared/no_results' ) %>");
+  	$("#post_metrics_chart_wrapper").html("<%= escape_javascript(render partial: 'shared/no_results' ) %>");
+   	set_trait_details();
 }
 remove_loaders();

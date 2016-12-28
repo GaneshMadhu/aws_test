@@ -151,22 +151,29 @@ function apply_effects(attributes){
   });
 
   attribute_drivers.on('click mouseenter mouseleave', function(event) {
-    var color = $(this).find('input').val();
-    if(event.type == "click"){
-      $('#attributes-filters li a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
-      $(this).find('a').css({"color": color,"border-bottom-color": color});
-    }
-    if(event.type == "mouseenter"){
-      $(this).find('a').css({"color": color,"border-bottom-color": color});
-    }
-    if(event.type == "mouseleave"){
-      if($(this).hasClass('active'))
-        $(this).find('a').css({"color": color,"border-bottom-color": color});
-      else
-        $('#attributes-filters li').not('.active').find('a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+    var color  = $(this).find('input').val();
+    var anchor = $(this).find('a');
+    if(anchor.length > 0){
+      if(event.type == "click"){
+        attribute_drivers.removeClass('active');
+        $(this).addClass('active');
+        let filterValue = anchor.attr('data-filter');
+        $('.attribute-grid').isotope({filter: filterValue});
+        $('#attributes-filters li a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+        anchor.css({"color": color,"border-bottom-color": color});
+      }
+      if(event.type == "mouseenter"){
+        anchor.css({"color": color,"border-bottom-color": color});
+      }
+      if(event.type == "mouseleave"){
+        if($(this).hasClass('active'))
+          anchor.css({"color": color,"border-bottom-color": color});
+        else
+          $('#attributes-filters li').not('.active').find('a').css({"color":"hsla(0,0%,60%,.5)","border-bottom-color": "transparent"});
+      }
     }
   });
-  
+
 
   var mobileAttributes = $('#m-attributes-filters');
   attributes.map(function(category){
@@ -185,6 +192,8 @@ function apply_effects(attributes){
       value: '*',
       selected: 'selected'
   }));
+
+  auto_suggestion();
 
   let debounce = (fn, threshold) => {
       let timeout;
@@ -242,14 +251,20 @@ function apply_effects(attributes){
               filterValue = '';
           container.isotope({filter: filterValue});
       });
+  };
+
+  function auto_suggestion(){
+    if(autocompleteAttributes != undefined){
+      let container = $('.attribute-grid');
 
       let quicksearch = $('#attribute-filter');
+
       if (quicksearch.length) {
-          //let autocomplete = new Awesomplete(quicksearch[0], {
-            //  minChars: 1,
-            //  list: autocompleteAttributes,
-            //  maxItems: 5
-          //});
+         let autocomplete = new Awesomplete(quicksearch[0], {
+             minChars: 1,
+             list: autocompleteAttributes,
+             maxItems: 5
+         });
       }
 
       quicksearch.on('keydown keypress keyup', (e) => {
@@ -264,5 +279,10 @@ function apply_effects(attributes){
           });
       });
 
-  };
+      quicksearch.on('awesomplete-selectcomplete',function(){
+        quicksearch.keypress();
+      });
+    }
+  }
+
 }

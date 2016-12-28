@@ -14,7 +14,14 @@
       <% @faqs.each do |faq| %>
     <div class="acc_wrap">
       <div class="question"><%= faq["question"] %><i class="fa fa-caret-down" aria-hidden="true"></i></div>
-      <div class="answer"><%= faq["answer"] %></div>
+      <div class="answer">
+        <%= faq["answer"] %>
+        <% unless faq["video_url"].blank? %>
+          <div class="iframe-player">
+            <%= youtube_embed(faq["video_url"]).html_safe %>
+          </div>
+        <% end %>
+      </div>
     </div>
     <% end if @faqs %>
    </section>

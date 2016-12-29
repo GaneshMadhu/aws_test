@@ -50,7 +50,7 @@ class CheckQueryParams
         params['filter_query']['post_time']  = {'max': Date.today.strftime("%m/%d/%y"), 'min': (Date.today - 1.years).strftime("%m/%d/%y")} if params['filter_query']['post_time'].blank?
       when 'social_media_performance'
         params["filter_query"]["company_precode"] = [session[:company_precode]] if session[:company_precode]
-        params["filter_query"]["country_code"] = [session[:country_codes].split('$')] if if session[:country_codes]
+        params["filter_query"]["country_code"] = [session[:country_codes].split('$')] if session[:country_codes]
     end
   end
 end

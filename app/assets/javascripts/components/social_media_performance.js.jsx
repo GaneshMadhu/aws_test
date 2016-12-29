@@ -244,7 +244,7 @@ function generateRightChart(chart_data){
               color: 'rgba(216, 148, 255, .95)',
               value: avg,
               width: 1,
-              zIndex: 6
+              zIndex: 600000
           }
               // ,
               //     {
@@ -287,9 +287,9 @@ function generateRightChart(chart_data){
               pointPadding: 0,
               dataLabels: {
                   enabled: true,
-                  color: '#565656',
+                  color: '#000',
                   format: '{point.y}',
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  backgroundColor: 'rgb(255, 255, 255)',
                   borderRadius: '20px',
                   x: 10,
                   style: {

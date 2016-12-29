@@ -2,7 +2,7 @@
 <input type="hidden" id="post_total_page" value="<%= meta["page"]["total"] rescue "1" %>">
 <input type="hidden" id="post_scroller" value="true">
 <% if data.is_a? String %>
-  <p> <%= data %> </p>
+  <%= render 'shared/no_results' %>
 <% else %>
   <% if data.empty? %>
     <%= render 'shared/no_results' %>

@@ -1,4 +1,4 @@
-efault: &default
+default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
@@ -13,6 +13,10 @@ development:
 test:
   <<: *default
   database: iris_fe_test
+
+staging:
+  <<: *default
+  database: iris_fe_stage
 
 production:
   <<: *default

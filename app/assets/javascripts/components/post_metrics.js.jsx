@@ -297,7 +297,7 @@ function generate_chart(chart_data){
 }
 
 function chart_tooltip(point){
-  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in' style='background: "+point.original_color+"'><div class='header' style='background: "+point.original_color+"'><h4 style='color: #fff'>"+point.category + " - " + trait_props.code+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"</span>Volume of posts</p><p class='ugcs'><span>"+Math.round(point.areaSplineValue)+"</span>Avg engagement score</p></div><a href="+point.view_posts+" target='_blank' class='btn' style='color: "+point.original_color+"'>View posts</a></div>";
+  var ret_string = "<div class='tc-tooltip on-pie-chart tooltip-zoom-in' style='background: "+point.original_color+"'><div class='header' style='background: "+point.original_color+"'><h4 style='color: #fff'>"+point.category+"</h4></div><div class='ugc-split'><p class='ugcs'><span>"+point.y+"</span>Volume of posts</p><p class='ugcs'><span>"+Math.round(point.areaSplineValue)+"</span>Avg engagement score</p></div><a href="+point.view_posts+" target='_blank' class='btn' style='color: "+point.original_color+"'>View posts</a></div>";
   return ret_string;
 }
 

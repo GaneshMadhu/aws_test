@@ -1,7 +1,6 @@
 <div class="ug-card post-card mvp-top-post">
   <div class="ugpc-first">
     <span class="ugpc-rank">1<sup>st</sup></span>
-    <h3>Top post</h3>
     <p class="ugpc-kind type-<%= post["sponsored_or_organic"].downcase %>"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i><%= post["sponsored_or_organic"] %></p>
   </div>
 
@@ -23,11 +22,11 @@
       </div>
       <% if post["url_type"] == "facebook"%>
         <a href="#!" class="ug-icon i-fb">
-          <span title="<%= post['company_group_name'] %>" class="flag-icon flag-icon-<%= post['country_code'] %> top_post_flag_style"></span>
+          <span title="<%= post['company_group_name'] %>" class="flag-icon flag-icon-<%= (post['country_code'] || "").downcase %> top_post_flag_style"></span>
         </a>
       <% else %>
         <a href="#!" class="ug-icon i-<%= "#{post["url_type"]}"%>">
-          <span title="<%= post['company_group_name'] %>" class="flag-icon flag-icon-<%= post['country_code'] %> top_post_flag_style"></span>
+          <span title="<%= post['company_group_name'] %>" class="flag-icon flag-icon-<%= (post['country_code'] || "").downcase %> top_post_flag_style"></span>
         </a>
       <% end %>
 

@@ -14,7 +14,7 @@
       <% if post['country_code'] %>
         <div class="rpc-attribute">
           <div class="ugpc-attribute" title="<%= post['company_group_name'] %>">
-            <span class="flag-icon flag-icon-<%= post['country_code'] %>"></span>
+            <span class="flag-icon flag-icon-<%= (post['country_code'] || "").downcase %>"></span>
           </div>
         </div>
       <% end %>

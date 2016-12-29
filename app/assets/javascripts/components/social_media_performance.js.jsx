@@ -130,6 +130,9 @@ function generateLeftChart(chart_data){
                       let num = Math.abs(this.y);
                       return num > 999 ? (num/1000).toFixed(1) + 'k' : num
                   },
+                  backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                  borderRadius: '20px',
+                  x: -10,
                   style: {
                       fontSize: '13px',
                       fontWeight: '400',
@@ -286,9 +289,13 @@ function generateRightChart(chart_data){
                   enabled: true,
                   color: '#565656',
                   format: '{point.y}',
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  borderRadius: '20px',
+                  x: 10,
                   style: {
                       fontSize: '15px',
-                      fontWeight: '400'
+                      fontWeight: '400',
+                      textShadow:'none'
                   }
               }
           }

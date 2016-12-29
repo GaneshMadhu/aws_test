@@ -59,9 +59,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pg'
 
 # for integrarion with access
-gem 'universum_sso_client', '0.3.0',   git: 'git@github.com:Universum/sso_client_engine.git', tag: '0.3.0'
+gem 'universum_sso_client', '0.3.0',   git: 'https://github.com/Universum/sso_client_engine.git', tag: '0.3.0'
 
-gem 'universum_bp_models',  '~> 1.11.0',   git: 'git@github.com:Universum/bp_models', tag: '1.11.0'
+gem 'universum_bp_models',  '~> 1.11.0',   git: 'https://github.com/Universum/bp_models', tag: '1.11.0'
 
 group :development, :test do
   gem 'sqlite3'

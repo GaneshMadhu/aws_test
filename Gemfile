@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+# gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -55,7 +55,14 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Use sqlite3 as the database for Active Record
+# Use postgres as the database for Active Record
+gem 'pg'
+
+# for integrarion with access
+gem 'universum_sso_client', '0.3.0',   git: 'git@github.com:Universum/sso_client_engine.git', tag: '0.3.0'
+
+gem 'universum_bp_models',  '~> 1.11.0',   git: 'git@github.com:Universum/bp_models', tag: '1.11.0'
+
 group :development, :test do
   gem 'sqlite3'
 end
@@ -66,6 +73,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end

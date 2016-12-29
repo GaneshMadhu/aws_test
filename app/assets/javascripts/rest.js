@@ -27,7 +27,7 @@ function frame_request(page){
     params['filter']['trait.code'] = value;
   }
   if(($('.ugf-country').length > 0) && ($('.ugf-country').val() != null))
-    params['filter']['company_group_id'] = $('.ugf-country').val();
+    params['filter']['country_code'] = $('.ugf-country').val();
   if(($('.ugf-company').length > 0) && ($('.ugf-company').val() != null))
     params['filter']['company_precode'] = $('.ugf-company').val();
   if(($('.ugf-industry').length > 0) && ($('.ugf-industry').val() != null))

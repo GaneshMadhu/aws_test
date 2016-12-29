@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:Universum/bp_models
+  remote: https://github.com/Universum/bp_models
   revision: b280bf7553741bee8be356e185bd6b82d6eba090
   tag: 1.11.0
   specs:
@@ -8,7 +8,7 @@ GIT
       her
 
 GIT
-  remote: git@github.com:Universum/sso_client_engine.git
+  remote: https://github.com/Universum/sso_client_engine.git
   revision: 83e19debee798ae8225f7b7525d575df8a0d0e83
   tag: 0.3.0
   specs:
@@ -120,8 +120,8 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    oauth2 (1.2.0)
-      faraday (>= 0.8, < 0.10)
+    oauth2 (1.3.0)
+      faraday (>= 0.8, < 0.11)
       jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)

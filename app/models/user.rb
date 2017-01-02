@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	after_create :add_bp_id
+	# after_create :add_bp_id
 
 	protected
 	def add_bp_id

@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
     if current_user
       if session[:company_precode].nil? || session[:country_codes].nil?
         bp_api = BusinessProfile::BpApi.new
-        user_company = bp_api.bu_details("get_company_detail/#{current_user.bp_id}")
+        user_company = bp_api.bu_details("get_company_detail/#{current_user.uid.to_i}")
         session[:company_precode] = bp_api.parse_results(user_company)[0]
         session[:country_codes] = bp_api.parse_results(user_company)[1]
         session[:logo_urls] = bp_api.parse_results(user_company)[2]

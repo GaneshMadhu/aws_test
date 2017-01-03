@@ -21,7 +21,7 @@ module BusinessProfile
     end
 
     def parse_results(response)
-      user_object = response["user"]
+      user_object = response["user"] rescue nil
       if user_object.present?
         company_precode = user_object["company"] ?  user_object["company"]["precode"] : nil
         bu = user_object["business_units"] ? user_object["business_units"] : nil

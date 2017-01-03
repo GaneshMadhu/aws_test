@@ -21,14 +21,19 @@ module BusinessProfile
     end
 
     def parse_results(response)
-      company_precode = response["user"]["company"]["precode"]
-      bu = response["user"]["business_units"]
-      country_codes = bu.map{|x| x["represented_country"]}
-      logo_urls = []
-      bu.each do |unit|
-        logo_urls << unit["memberships"].map{|x| x["logo"]["url"] }
+      user_object = response["user"] rescue nil
+      if user_object.present?
+        company_precode = user_object["company"] ?  user_object["company"]["precode"] : nil
+        bu = user_object["business_units"] ? user_object["business_units"] : nil
+        country_codes = bu.map{|x| x["represented_country"]} if bu
+        logo_urls = []
+        bu.each do |unit|
+          logo_urls << unit["memberships"].map{|x| x["logo"]["url"] } if unit["memberships"]
+        end if bu
+        [company_precode, country_codes, logo_urls.flatten.compact.uniq]
+      else
+        [nil, nil, []]
       end
-      [company_precode, country_codes, logo_urls.flatten.compact.uniq]
     end
 
   private

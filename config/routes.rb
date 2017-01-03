@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'terms_and_conditions' => 'home#terms_and_conditions'
   get 'privacy_policy' => 'home#privacy_policy'
   get 'faqs' => 'home#faqs'
+  get 'clear_session' => 'home#clear_session'
 
   root "homepage#index"
 end

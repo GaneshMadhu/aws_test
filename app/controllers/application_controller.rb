@@ -59,13 +59,13 @@ class ApplicationController < ActionController::Base
     return if current_user.last_sign_in_check.present? && current_user.last_sign_in_check <= 5.minutes.ago
 
     current_user.update last_sign_in_check: Time.now
-    session[:company_precode] = nil
-    session[:country_codes] = nil
-    session[:logo_urls] = nil
 
     if UniversumSsoClient.signed_out?(current_user.uid)
       session[:user_id] = nil
       @current_user = nil
+      session[:company_precode] = nil
+      session[:country_codes] = nil
+      session[:logo_urls] = nil
     end
   end
 

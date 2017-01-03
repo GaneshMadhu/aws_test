@@ -52,4 +52,10 @@ $(document).ready(function(){
       loop.addClass('active');
     }
   });
+    $(".ugm-column").click(function () {
+    $(".ugm-column").removeClass("expanded");
+    $(this).addClass("expanded");
+  });
 });
+
+

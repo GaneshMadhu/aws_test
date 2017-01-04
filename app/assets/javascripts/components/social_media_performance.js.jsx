@@ -135,7 +135,8 @@ function generateLeftChart(chart_data){
                   style: {
                       fontSize: '13px',
                       fontWeight: '400',
-                      marginRight: '10px'
+                      marginRight: '10px',
+                      textShadow:'none'
                   }
               }
           }

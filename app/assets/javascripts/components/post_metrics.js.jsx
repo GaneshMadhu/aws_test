@@ -3,14 +3,15 @@ var PostMetrics = React.createClass({
     var chart_data = this.props.data;
     initiliaze_data(chart_data);
     generate_chart(chart_data);
+    set_trait_details();
     return null;
   }
 });
 
 var avg_engagement = 0, tags_count = 0;
 var post_metrics;
-var legend_color = "#F3622B";
-
+var legend_color    = "#F3622B";
+var trait_props     = {};
 function initiliaze_data(chart_data){
   for (var key in chart_data) {
     if (chart_data.hasOwnProperty(key)) {
@@ -28,6 +29,8 @@ function initiliaze_data(chart_data){
 function generate_chart(chart_data){
   var areaspline_data = [],column_data = [], categories = [];
   var index = 0;
+  var min_length = 1, max_length = post_metrics.length;
+
   for(var key in post_metrics){
     if (post_metrics.hasOwnProperty(key)) {
       var datum = post_metrics[key];
@@ -42,6 +45,8 @@ function generate_chart(chart_data){
         borderColor: "transparent",
         view_posts: datum.view_posts
       });
+      if((index == 0) || (index == (max_length - 1)))
+        add_start_end_dummy(areaspline_data,column_data,categories,datum,index);
     }
     index += 1;
   }
@@ -196,7 +201,8 @@ function generate_chart(chart_data){
           minorGridLineWidth: 0,
           lineColor: 'transparent',
           minorTickLength: 0,
-          min: 0,
+          min: min_length,
+          max: max_length,
           tickLength: 0,
           plotBands: [{
               from: 0,
@@ -239,7 +245,7 @@ function generate_chart(chart_data){
                   },
                   verticalAlign: 'bottom',
                   useHTML: false,
-                  text: "Average Engagement Score - "+(Math.round(avg_engagement * 100) / 100),
+                  text: "Average Engagement Score - "+avg_engagement,
                   x: -10,
                   y: 16
               },
@@ -306,4 +312,17 @@ function hexToRgbA(hex,opacity){
         return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+opacity+')';
     }
     throw new Error('Bad Hex');
+}
+
+function add_start_end_dummy(areaspline,column,category,data,index){
+  areaspline.push({y: data.avg_engagement});
+  category.push(data.time)
+  column.push({
+    y: data.posts_count,
+    original_color: data.trait_color,
+    color: ((index%2==0) ? hexToRgbA(data.trait_color,.5) : hexToRgbA(data.trait_color,.7)),
+    areaSplineValue: data.avg_engagement,
+    borderColor: "transparent",
+    view_posts: data.view_posts
+  });
 }

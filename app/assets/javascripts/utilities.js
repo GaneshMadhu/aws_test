@@ -45,6 +45,7 @@ function set_trait_details(){
 }
 
 $(document).ready(function(){
+  safe_img_load();
   var path= $(location).attr('pathname');
   $("#mega-menu ul li").each(function() {
     var loop= $(this);
@@ -53,3 +54,21 @@ $(document).ready(function(){
     }
   });
 });
+
+function safe_img_load(){
+  var safeimageregex = new RegExp('https*%3A[^&]+');
+  $( ".ugpc-post-image" ).each(function() {
+    var img_tag = $(this).find('img');
+    var url=img_tag.attr('src');
+    if (safeimageregex.test(url)) {
+      var decodedurl = decodeURIComponent(url.match(safeimageregex)[0]);
+      var youtubeurlregex = new RegExp('i.ytimg.com[^.]+');
+      if(youtubeurlregex.test(decodedurl)) {
+        var youtubeembed = decodedurl.match(youtubeurlregex)[0].split('/')[2]; 
+        img_tag.remove();
+        $(this).html("<iframe class='postcard-video' src='https://www.youtube.com/embed/"+youtubeembed+"' frameborder='0' allowfullscreen></iframe>");
+      }
+      img_tag.attr('src',decodedurl);
+    }
+  });
+}

@@ -188,9 +188,14 @@ $xlarge-up: "(min-width: 1280px)";
   top:100px;
 }
 
+.highcharts-legend .tooltip-hide{
+  font-weight:400;
+}
+
 .tooltip-left{
     right: 35px;
     left: unset !important;
+    width: 270px !important;
   &:before{
     display: none;
   }
@@ -206,4 +211,12 @@ $xlarge-up: "(min-width: 1280px)";
     border-width: 9px 0px 9px 11px;
     border-color: transparent transparent transparent #38589b;
   }
+}
+/*the css added here to overwite the iris.js as this temp */
+.ugpc-post-image{
+  height:auto !important;
+}
+.postcard-video{
+  display: block;
+  margin: auto;
 }

@@ -1,9 +1,10 @@
 class CheckQueryParams
-  attr_reader :params, :selected
+  attr_reader :params, :selected, :session
 
-  def initialize(params)
+  def initialize(params,session)
     @params   = params
     @selected = {}
+    @session  = session
   end
 
   def append
@@ -17,8 +18,8 @@ class CheckQueryParams
           selected['platforms'] = filter_params['url_type'] = value.split('$') if value
         when 'company_precode'
           selected['companies'] = filter_params['company_precode'] = value.split('$') if value
-        when 'company_group_id'
-          selected['company_groups'] = filter_params['company_group_id'] = value.split('$') if value
+        when 'country_code'
+          selected['company_groups'] = filter_params['country_code'] = value.split('$') if value
         when 'industry'
           selected['industries'] = filter_params['industry'] = value.split('$') if value
         when 'sponsored_or_organic'
@@ -47,6 +48,9 @@ class CheckQueryParams
       when 'attribute_zoom_in'
         params['filter_query']['trait.code'] = ENV['ZOOMIN_DEFAULT_TRAIT'] if params['filter_query']['trait.code'].blank?
         params['filter_query']['post_time']  = {'max': Date.today.strftime("%m/%d/%y"), 'min': (Date.today - 1.years).strftime("%m/%d/%y")} if params['filter_query']['post_time'].blank?
+      when 'social_media_performance'
+        params["filter_query"]["company_precode"] = [session[:company_precode]] if session[:company_precode]
+        params["filter_query"]["country_code"] = [session[:country_codes].split('$')] if session[:country_codes]
     end
   end
 end

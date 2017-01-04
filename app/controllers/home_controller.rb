@@ -10,4 +10,9 @@ class HomeController < ApplicationController
     @faqs = IrisEngine::IrisApi.new.search("faqs",{})
 	end
 
+	def clear_session
+		clear_iris_session
+		redirect_to main_app.logout_user_sessions_path
+	end
+
 end

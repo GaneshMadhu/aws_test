@@ -19,10 +19,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate_user!
-    if current_user && UniversumSsoClient.signed_out?(current_user.uid)
-      clear_iris_session
-      redirect_to main_app.logout_user_sessions_path
-    end
+    clear_session_if_ua_signed_out
     ensure_last_signed_in_at_set
     sign_out_expired_session
     set_company_params
@@ -77,4 +74,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def clear_session_if_ua_signed_out
+    if current_user && UniversumSsoClient.signed_out?(current_user.uid)
+      clear_iris_session
+      redirect_to main_app.logout_user_sessions_path
+    end
+  end
 end

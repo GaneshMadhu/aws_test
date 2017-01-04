@@ -10,9 +10,19 @@ class ApplicationController < ActionController::Base
     @selected_options = filter_params[1]
   end
 
+  def clear_iris_session
+    session[:company_precode] = nil
+    session[:country_codes] = nil
+    session[:logo_urls] = nil
+  end
+
   protected
 
   def authenticate_user!
+    if current_user && UniversumSsoClient.signed_out?(current_user.uid)
+      clear_iris_session
+      redirect_to main_app.logout_user_sessions_path
+    end
     ensure_last_signed_in_at_set
     sign_out_expired_session
     set_company_params
@@ -63,9 +73,7 @@ class ApplicationController < ActionController::Base
     if UniversumSsoClient.signed_out?(current_user.uid)
       session[:user_id] = nil
       @current_user = nil
-      session[:company_precode] = nil
-      session[:country_codes] = nil
-      session[:logo_urls] = nil
+      clear_iris_session
     end
   end
 

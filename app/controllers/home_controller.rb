@@ -11,9 +11,7 @@ class HomeController < ApplicationController
 	end
 
 	def clear_session
-		session[:company_precode] = nil
-		session[:country_codes] = nil
-		session[:logo_urls] = nil
+		clear_iris_session
 		redirect_to main_app.logout_user_sessions_path
 	end
 

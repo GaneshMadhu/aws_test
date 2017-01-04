@@ -10,9 +10,16 @@ class ApplicationController < ActionController::Base
     @selected_options = filter_params[1]
   end
 
+  def clear_iris_session
+    session[:company_precode] = nil
+    session[:country_codes] = nil
+    session[:logo_urls] = nil
+  end
+
   protected
 
   def authenticate_user!
+    clear_session_if_ua_signed_out
     ensure_last_signed_in_at_set
     sign_out_expired_session
     set_company_params
@@ -59,14 +66,18 @@ class ApplicationController < ActionController::Base
     return if current_user.last_sign_in_check.present? && current_user.last_sign_in_check <= 5.minutes.ago
 
     current_user.update last_sign_in_check: Time.now
-    session[:company_precode] = nil
-    session[:country_codes] = nil
-    session[:logo_urls] = nil
 
     if UniversumSsoClient.signed_out?(current_user.uid)
       session[:user_id] = nil
       @current_user = nil
+      clear_iris_session
     end
   end
 
+  def clear_session_if_ua_signed_out
+    if current_user && UniversumSsoClient.signed_out?(current_user.uid)
+      clear_iris_session
+      redirect_to main_app.logout_user_sessions_path
+    end
+  end
 end

@@ -3,7 +3,6 @@ var PostMetrics = React.createClass({
     var chart_data = this.props.data;
     initiliaze_data(chart_data);
     generate_chart(chart_data);
-    set_trait_details();
     return null;
   }
 });

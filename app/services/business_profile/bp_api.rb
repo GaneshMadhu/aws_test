@@ -23,16 +23,19 @@ module BusinessProfile
     def parse_results(response)
       user_object = response["user"] rescue nil
       if user_object.present?
-        company_precode = user_object["company"] ?  user_object["company"]["precode"] : nil
+        if user_object["company"]
+          company_precode = user_object["company"]["precode"]
+          company_logo = user_object["company"]["logo"] ? user_object["company"]["logo"]["url"] : nil
+        end
         bu = user_object["business_units"] ? user_object["business_units"] : nil
         country_codes = bu.map{|x| x["represented_country"]} if bu
         logo_urls = []
         bu.each do |unit|
           logo_urls << unit["memberships"].map{|x| x["logo"]["url"] } if unit["memberships"]
         end if bu
-        [company_precode, country_codes, logo_urls.flatten.compact.uniq]
+        [company_precode, company_logo, country_codes, logo_urls.flatten.compact.uniq]
       else
-        [nil, nil, []]
+        [nil, nil, nil, []]
       end
     end
 

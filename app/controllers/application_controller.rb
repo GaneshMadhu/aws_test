@@ -54,8 +54,9 @@ class ApplicationController < ActionController::Base
         user_company = bp_api.bu_details("get_company_detail/#{current_user.uid.to_i}")
         parse_results = bp_api.parse_results(user_company)
         session[:company_precode] = parse_results[0]
-        session[:country_codes]   = parse_results[1]
-        session[:logo_urls]       = parse_results[2]
+        session[:company_logo]    = parse_results[1]
+        session[:country_codes]   = parse_results[2]
+        session[:logo_urls]       = parse_results[3]
       end
     end
   end
@@ -77,7 +78,7 @@ class ApplicationController < ActionController::Base
   def clear_session_if_ua_signed_out
     if current_user && UniversumSsoClient.signed_out?(current_user.uid)
       clear_iris_session
-      redirect_to main_app.logout_user_sessions_path
+      redirect_to main_app.logout_user_sessions_path and return
     end
   end
 end

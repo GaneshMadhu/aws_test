@@ -195,7 +195,6 @@ $xlarge-up: "(min-width: 1280px)";
 .tooltip-left{
     right: 35px;
     left: unset !important;
-    width: 270px !important;
   &:before{
     display: none;
   }
@@ -219,4 +218,12 @@ $xlarge-up: "(min-width: 1280px)";
 .postcard-video{
   display: block;
   margin: auto;
+}
+.ug-chart {
+  z-index:100;
+}
+@media (min-width: 769px){
+.post-card.ranked-post-card:nth-child(3n) {
+    float: left !important;
+  }
 }

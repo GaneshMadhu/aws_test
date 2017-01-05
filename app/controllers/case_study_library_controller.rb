@@ -2,6 +2,7 @@ class CaseStudyLibraryController < ApplicationController
 
   before_action :check_query_params, only: :index
   before_action :add_sort_param, only: :index
+  skip_before_action :ensure_iris_customer!, except: :index
 
 	def index
 		filter_data "report_tagged_posts"

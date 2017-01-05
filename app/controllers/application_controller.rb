@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     session[:company_precode] = nil
     session[:country_codes] = nil
     session[:logo_urls] = nil
+    session[:company_logo] = nil
   end
 
   protected

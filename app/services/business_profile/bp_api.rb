@@ -39,6 +39,10 @@ module BusinessProfile
       end
     end
 
+    def find_products(response)
+      response["products"].map{|x| x["name"]} if (response && response["products"])
+    end
+
   private
 
    def _wrap_json(&block)

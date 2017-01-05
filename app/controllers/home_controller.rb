@@ -11,8 +11,7 @@ class HomeController < ApplicationController
 	end
 
 	def clear_session
-		clear_iris_session
-		redirect_to main_app.logout_user_sessions_path
+		clear_iris_and_sign_out
 	end
 
 end

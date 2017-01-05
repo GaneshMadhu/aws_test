@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 	before_action :authenticate_user!
+  before_action :ensure_iris_customer!
 
   private
 
@@ -10,20 +11,14 @@ class ApplicationController < ActionController::Base
     @selected_options = filter_params[1]
   end
 
-  def clear_iris_session
-    session[:company_precode] = nil
-    session[:country_codes] = nil
-    session[:logo_urls] = nil
-    session[:company_logo] = nil
+  def clear_iris_and_sign_out
+    clear_iris_session
+    redirect_to main_app.logout_user_sessions_path and return
   end
 
   protected
 
   def authenticate_user!
-    clear_session_if_ua_signed_out
-    ensure_last_signed_in_at_set
-    sign_out_expired_session
-    set_company_params
     if !current_user
       respond_to do |format|
         format.json {
@@ -33,6 +28,17 @@ class ApplicationController < ActionController::Base
           redirect_to '/auth/universumaccess'
         }
       end
+    else
+      clear_session_if_ua_signed_out
+      ensure_last_signed_in_at_set
+      sign_out_expired_session
+      set_company_params
+    end
+  end
+
+  def ensure_iris_customer!
+    if current_user && !is_iris_customer
+      redirect_to UniversumSsoClient.url
     end
   end
 
@@ -62,6 +68,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def is_iris_customer
+    bp_api = BusinessProfile::BpApi.new
+    products = bp_api.bu_details("users/#{current_user.uid.to_i}/products")
+    user_products = bp_api.find_products(products)
+    user_products.present? ? user_products.include?("iris") : false
+  end
   # Sign out users that expired, but check each 5min or so
   def sign_out_expired_session
     return unless current_user.present?
@@ -77,9 +89,14 @@ class ApplicationController < ActionController::Base
   end
 
   def clear_session_if_ua_signed_out
-    if current_user && UniversumSsoClient.signed_out?(current_user.uid)
-      clear_iris_session
-      redirect_to main_app.logout_user_sessions_path and return
-    end
+    clear_iris_and_sign_out if (current_user && UniversumSsoClient.signed_out?(current_user.uid))
   end
+
+  def clear_iris_session
+    session[:company_precode] = nil
+    session[:country_codes] = nil
+    session[:logo_urls] = nil
+    session[:company_logo] = nil
+  end
+
 end

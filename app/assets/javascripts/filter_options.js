@@ -77,7 +77,7 @@ function custom_select(filter_options){
         data.push({
             id: result.id,
             text: result.text,
-            selected: (selected_values.indexOf(result.id) > -1) ? true : false
+            selected: (selected_values.indexOf(String(result.id)) > -1) ? true : false
         });
     });
     return data;
@@ -209,6 +209,12 @@ function custom_select(filter_options){
           updateFiltersCount(values, group);
       });
   });
+
+  if(selected_values.length != 0){
+    var values = input.val();
+    if (values && values[0] == '') values = null && $(this).val('');
+    updateFiltersCount(values, input.closest('.ugf-filter'));
+  }
 
   var filtersWrapper = $('.ug-filters'),
         filters = filtersWrapper.find('.ugf-filter');

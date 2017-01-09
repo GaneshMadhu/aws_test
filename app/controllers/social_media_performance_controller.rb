@@ -3,6 +3,7 @@ class SocialMediaPerformanceController < ApplicationController
   # before_action :set_company_and_country, only: [:index]
   # before_action :set_company_filter
   before_action :check_query_params, only: :index
+  skip_before_action :ensure_iris_customer!, except: :index
 
   def index
     filter_data "tagging_metrics"

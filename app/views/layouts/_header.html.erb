@@ -9,17 +9,9 @@
     </ul>
 
     <ul class="right">
-      <% session[:logo_urls].each do |url| %>
-        <li>
-          <a href="#!" class="logo-graystone">
-           <img src="<%= url %>" alt="">
-          </a>
-        </li>
-      <% end if session[:logo_urls] %>
-      <li class="divider"></li>
       <li>
         <a href="#!" class="logo-stone">
-          <img src="<%= image_url "stone.png" %>" alt="">
+          <img src="<%= session["company_logo"] %>" alt="">
         </a>
       </li>
       <li class="ugt-profile">

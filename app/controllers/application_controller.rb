@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate_user!
+    clear_session_if_ua_signed_out
+    ensure_last_signed_in_at_set
+    sign_out_expired_session
+    set_company_params
     if !current_user
       respond_to do |format|
         format.json {
@@ -28,11 +32,6 @@ class ApplicationController < ActionController::Base
           redirect_to '/auth/universumaccess'
         }
       end
-    else
-      clear_session_if_ua_signed_out
-      ensure_last_signed_in_at_set
-      sign_out_expired_session
-      set_company_params
     end
   end
 

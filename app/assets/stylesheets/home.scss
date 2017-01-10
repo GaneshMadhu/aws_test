@@ -338,6 +338,10 @@ $xlarge-up: "(min-width: 1280px)";
   }
 }
 
+.post-card .ugpc-post header .ugpc-social-info {
+  width: calc(100% - 70px);
+}
+
 /** initial setup **/
 .nano {
   position : relative;

@@ -322,6 +322,12 @@ $xlarge-up: "(min-width: 1280px)";
   .ug-filters .ugff-time {
     margin-bottom: 25px !important;
   }
+  .ug-filters .ugf-apply {
+    z-index:200;
+  }
+  .nano > .nano-content {
+    top:63px !important;
+  }
 }
 
 .datepickers-container{

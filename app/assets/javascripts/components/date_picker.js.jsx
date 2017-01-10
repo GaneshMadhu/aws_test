@@ -74,7 +74,7 @@ function apply_date_picker(selected_options){
             timeInputFilterStart.data('datepicker').date = new Date();
         }
         if(timeFilterConEnd.find('.end-date').html().length>0){
-            var maxdate=new Date(timeFilterConEnd.find('.end-date').html());
+            var maxdate=new Date(new Date(timeFilterConEnd.find('.end-date').html()).getTime() - (24 * 60 * 60 * 1000));
             timeInputFilterStart.data('datepicker').update({maxDate:maxdate});
         }
         else{
@@ -119,7 +119,7 @@ function apply_date_picker(selected_options){
             timeInputFilterEnd.data('datepicker').date = new Date();
         }
         if(timeFilterConStart.find('.start-date').html().length>0){
-            var mindate=new Date(timeFilterConStart.find('.start-date').html());
+            var mindate=new Date(new Date(timeFilterConStart.find('.start-date').html()).getTime() + (24 * 60 * 60 * 1000));
             timeInputFilterEnd.data('datepicker').update({minDate:mindate});
         }
         else{

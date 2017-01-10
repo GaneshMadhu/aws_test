@@ -57,6 +57,12 @@ $(document).ready(function(){
     $(".ugm-column").removeClass("expanded");
     $(this).addClass("expanded");
   });
+  $('.ug-filters').on('mousewheel DOMMouseScroll scrollstop touchmove', function(e){
+      $('.ug-filters').trigger('scroll');
+  });
+
+  $(".nano").nanoScroller({ alwaysVisible: true });
+
 });
 
 function safe_img_load(){

@@ -45,10 +45,10 @@ function frame_request(page){
   }
   if(($('#ugff-time-id').length > 0)){
     params['filter']['post_time'] = {}
-    if($('#ugf-time-formatted').find('.start').html() != "")
-      params['filter']['post_time']['gte'] = $('#ugf-time-formatted').find('.start').html()
-    if(($('#ugf-time-formatted').find('.end').html() != "") && ($('#ugf-time-formatted').find('.end').html() != "-"))
-      params['filter']['post_time']['lte'] = $('#ugf-time-formatted').find('.end').html()
+    if($('#ugff-time-id').find('.start-date').html() != "")
+      params['filter']['post_time']['gte'] = $('#ugff-time-id').find('.start-date').html()
+    if(($('#ugff-time-id').find('.end-date').html() != "") && ($('#ugff-time-id').find('.end-date').html() != "-"))
+      params['filter']['post_time']['lte'] = $('#ugff-time-id').find('.end-date').html()
   }
 
   if(($('.ugh-sortby').length > 0) && ($('.ugh-sortby').val() != "")){

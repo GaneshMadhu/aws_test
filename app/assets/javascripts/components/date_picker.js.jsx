@@ -33,7 +33,7 @@ function apply_date_picker(selected_options){
         timeFilterConStart = $('#ugf-time-formatted-start'),
         timeFilterConEnd = $('#ugf-time-formatted-end');
 
-    var trigClrStart,trigClrEnd=true;
+    var trigClrStart=true,trigClrEnd=true;
 
     timeFilterConStart.find('.start-date').text(start_date);
     timeFilterConEnd.find('.end-date').text(end_date);

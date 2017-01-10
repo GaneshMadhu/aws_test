@@ -21,40 +21,41 @@
     </div>
   </div>
   <article class="ugpc-post bottom-image">
-    <header>
+    <a class="embedly-card" href="<%= post["post_url"] %>" data-card-controls="0"></a>
+    <!-- <header>
       <figure class="ugpc-social-avatar">
-        <img src=<%= post["company_logo"]%>>
+        <img src=<%#= post["company_logo"]%>>
       </figure>
       <div class="ugpc-social-info">
-        <h5 class="name"><%= post["company_name"] %></h5>
-        <p class="date"><%= formatted_time(post["post_time"]) %></p>
+        <h5 class="name"><%#= post["company_name"] %></h5>
+        <p class="date"><%#= formatted_time(post["post_time"]) %></p>
       </div>
-      <% if post["url_type"] == "facebook"%>
+      <%# if post["url_type"] == "facebook"%>
         <a href="#!" class="ug-icon i-fb"></a>
-      <% else %>
-        <a href="#!" class="ug-icon i-<%= "#{post["url_type"]}"%>"></a>
-      <% end %>
+      <%# else %>
+        <a href="#!" class="ug-icon i-<%#= "#{post["url_type"]}"%>"></a>
+      <%# end %>
     </header>
     <div class="content">
     <div class="ugpc-entry-text">
-    <p><%= post["post_content"] %></p>
-    <a href="<%= post["post_url"]%>" target="_blank" class="lnk-continue">continue reading</a>
+    <p><%#= post["post_content"] %></p>
+    <a href="<%#= post["post_url"]%>" target="_blank" class="lnk-continue">continue reading</a>
     </div>
       <figure class="ugpc-post-image">
         <a href="#!">
-          <%= image_view(post["attachment_url"], "") %>
+          <%#= image_view(post["attachment_url"], "") %>
         </a>
       </figure>
       <div class="ugpc-stats">
         <div class="stat">
-          <p><i class="ug-icon i-likes"></i><span class="number"><%= post["likes"] %></span></p>
+          <p><i class="ug-icon i-likes"></i><span class="number"><%#= post["likes"] %></span></p>
         </div>
         <div class="stat">
-          <p><i class="ug-icon i-comments"></i><span class="number"><%= post["comments"] %></span></p>
+          <p><i class="ug-icon i-comments"></i><span class="number"><%#= post["comments"] %></span></p>
         </div>
         <div class="stat">
-          <p><i class="ug-icon i-shares"></i><span class="number"><%= post["shares"] %></span></p>
+          <p><i class="ug-icon i-shares"></i><span class="number"><%#= post["shares"] %></span></p>
         </div>
       </div>
-    </div>
+    </div> -->
   </article>

@@ -10,8 +10,8 @@ RSpec.describe SocialMediaPerformanceController, type: :controller do
   let(:tagging_metric_traits) { tagging_metrics['attributes'] }
 
   before(:each) do
-    session['company_name']       = 'Google'
-    session['company_group_name'] = 'India'
+    session['company_precode'] = '1'
+    session['country_codes']   = ['In','Au']
   end
 
   describe '#index' do

@@ -49,11 +49,13 @@
                     <i class="ug-icon i-dashboard"></i>Iris Homepage
                   <% end %>
                 </li>
-                <li>
-                  <%= link_to social_media_performance_index_path do %>
-                    <i class="ug-icon i-compperf"></i>Employer Social Media Performance
-                  <% end %>
-                </li>
+                <% if session["company_precode"] %>
+                  <li>
+                    <%= link_to social_media_performance_index_path do %>
+                      <i class="ug-icon i-compperf"></i>Employer Social Media Performance
+                    <% end %>
+                  </li>
+                <% end %>
                 <li>
                   <%= link_to attribute_zoom_in_index_path do %>
                     <i class="ug-icon i-zoomin"></i>Attribute Zoom-In

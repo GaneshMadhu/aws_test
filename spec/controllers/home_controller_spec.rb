@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe HomeController, type: :controller do
+
+  before {controller.class.skip_before_filter :authenticate_user!}
+
   describe '#terms_and_conditions' do
     it 'get terms and contidions' do
       get :terms_and_conditions

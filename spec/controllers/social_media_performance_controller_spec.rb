@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe SocialMediaPerformanceController, type: :controller do
 
-  let(:empty_precode){"0123"}
+  before {controller.class.skip_before_filter :authenticate_user!}
+
+  let(:empty_precode)         { "007" }
+  let(:tagging_metrics)       { controller.instance_variable_get(:@tagging_metrics) }
+  let(:tagging_metric_data)   { tagging_metrics['data'] }
+  let(:tagging_metric_traits) { tagging_metrics['attributes'] }
 
   before(:each) do
     session['company_name']       = 'Google'
@@ -13,14 +18,13 @@ RSpec.describe SocialMediaPerformanceController, type: :controller do
     context 'without filter_query' do
       it 'gets the API response' do
         get :index
-        tagging_metrics = controller.instance_variable_get(:@tagging_metrics)
         expect(tagging_metrics.count).to be > 0
-        expect(tagging_metrics['data']['tags_count']).to be_kind_of(Integer)
-        expect(tagging_metrics['data']).to have_key('tags')
-        expect(tagging_metrics['data']['tags']).to be_kind_of(Hash)
-        expect(tagging_metrics['data']['tags']).to be_truthy
-        expect(tagging_metrics['attributes']).to be_kind_of(Array)
-        expect(tagging_metrics['attributes'].count).to eq(4)
+        expect(tagging_metric_data['tags_count']).to be_kind_of(Integer)
+        expect(tagging_metric_data).to have_key('tags')
+        expect(tagging_metric_data['tags']).to be_kind_of(Hash)
+        expect(tagging_metric_data['tags']).to be_truthy
+        expect(tagging_metric_traits).to be_kind_of(Array)
+        expect(tagging_metric_traits.count).to eq(4)
         expect(response).to render_template('index')
       end
     end
@@ -28,14 +32,13 @@ RSpec.describe SocialMediaPerformanceController, type: :controller do
 
   describe '#filter' do
     it 'filters the data' do
-      process :filter, method: :post, xhr: true, params: {"filter":{"company_precode":[empty_precode]}}
-      tagging_metrics = controller.instance_variable_get(:@tagging_metrics)
+      xhr :post, :filter, {"filter":{"company_precode":[empty_precode]}}
       expect(tagging_metrics.count).to be > 0
-      expect(tagging_metrics['data']['tags_count']).to be_kind_of(Integer)
-      expect(tagging_metrics['data']).not_to have_key('tags')
-      expect(tagging_metrics['data']['tags']).to be_nil
-      expect(tagging_metrics['data']['tags']).not_to be_truthy
-    expect(response).to render_template('filter')
+      expect(tagging_metric_data['tags_count']).to be_kind_of(Integer)
+      expect(tagging_metric_data).not_to have_key('tags')
+      expect(tagging_metric_data['tags']).to be_nil
+      expect(tagging_metric_data['tags']).not_to be_truthy
+      expect(response).to render_template('filter')
     end
   end
 

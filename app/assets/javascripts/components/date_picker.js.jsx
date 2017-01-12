@@ -24,7 +24,6 @@ function apply_date_picker(selected_options){
                 end_date = selected_options['post_time']['max'];
                 endDate  = new Date(end_date);
             }
-            $('.dateclear').removeClass('hide');
         }
     }
 
@@ -38,6 +37,7 @@ function apply_date_picker(selected_options){
     timeFilterConStart.find('.start-date').text(start_date);
     timeFilterConEnd.find('.end-date').text(end_date);
 
+
     timeInputFilterStart.datepicker({
         date: new Date(),
         language: 'en',
@@ -49,7 +49,7 @@ function apply_date_picker(selected_options){
             if(formatted!=""){
                 trigClrStart=true;
                 $('#calendar-start').addClass('calendar-highlighted').removeClass('calendar-highlight');
-                timeInputFilterStart.trigger('change');
+                    timeInputFilterStart.trigger('change');
             }
             else{
                 if(trigClrStart==true){
@@ -88,13 +88,15 @@ function apply_date_picker(selected_options){
         date: new Date(),
         language: 'en',
         dateFormat: '',
-        startDate: startDate,
+        startDate: endDate,
         onSelect: function(formatted, date, inst) {
             timeFilterConEnd.find('.end-date').text(formatted);
             if(formatted!=""){
                 trigClrEnd=true;
                 $('#calendar-end').addClass('calendar-highlighted').removeClass('calendar-highlight');
-                timeInputFilterEnd.trigger('change');
+                if(!selected_options instanceof Object){
+                    timeInputFilterEnd.trigger('change');
+                }
             }
             else{
                 if(trigClrEnd==true){
@@ -128,6 +130,13 @@ function apply_date_picker(selected_options){
         timeInputFilterEnd.data('datepicker').view = 'days';
         timeInputFilterEnd.data('datepicker').show();
     });
+
+    if(selected_options instanceof Object){
+        if('post_time' in selected_options){
+            timeInputFilterStart.data('datepicker').selectDate(startDate);
+            timeInputFilterEnd.data('datepicker').selectDate(endDate);
+        }
+    }
 
   },500);
 }

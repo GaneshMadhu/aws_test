@@ -315,9 +315,6 @@ $xlarge-up: "(min-width: 1280px)";
 .ug-header .ugh-page-title .btn-filters {
   outline: none;
 }
-.ug-header {
-  display: -webkit-box;
-}
 @media (max-width: 1024px){
   .ug-filters .ugff-time {
     margin-bottom: 25px !important;
@@ -336,6 +333,10 @@ $xlarge-up: "(min-width: 1280px)";
       left: 130px;
     }
   }
+}
+
+.post-card .ugpc-post header .ugpc-social-info {
+  width: calc(100% - 70px);
 }
 
 /** initial setup **/
@@ -364,9 +365,9 @@ $xlarge-up: "(min-width: 1280px)";
 }
 
 .nano > .nano-pane {
-  background : rgba(56,88,155,.25);
+  background : rgba(0,0,0,.25);
   position   : absolute;
-  width      : 10px;
+  width      : 6px;
   right      : 0;
   top        : 0;
   bottom     : 0;
@@ -376,18 +377,18 @@ $xlarge-up: "(min-width: 1280px)";
   -moz-transition       : .2s;
   -o-transition         : .2s;
   transition            : .2s;
-  -moz-border-radius    : 3px;
-  -webkit-border-radius : 3px;
-  border-radius         : 3px;
+  -moz-border-radius    : 2px;
+  -webkit-border-radius : 2px;
+  border-radius         : 2px;
 }
 .nano > .nano-pane > .nano-slider {
   background: #444;
-  background: rgba(56,88,155,.65);
+  background: rgba(0,0,0,.5);
   position              : relative;
   margin                : 0 1px;
-  -moz-border-radius    : 3px;
-  -webkit-border-radius : 3px;
-  border-radius         : 3px;
+  -moz-border-radius    : 1px;
+  -webkit-border-radius : 1px;
+  border-radius         : 1px;
 }
 .nano:hover > .nano-pane, .nano-pane.active, .nano-pane.flashed {
   visibility : visible\9; /* Target only IE7 and IE8 with this hack */

@@ -8,23 +8,24 @@ var DatePicker = React.createClass({
 
 function apply_date_picker(selected_options){
   setTimeout(function(){
-     var start_date = "";
-     var end_date   = "";
+    var start_date = "";
+    var end_date   = "";
 
-     var startDate = new Date(),
-        endDate = new Date();
+    var startDate = new Date(),endDate = new Date();
+    var startPreSelect,endPreSelect;
 
     if(selected_options instanceof Object){
         if('post_time' in selected_options){
             if('min' in selected_options['post_time']){
                 start_date = selected_options['post_time']['min'];
                 startDate  = new Date(start_date);
+                startPreSelect = true;
             }
             if('max' in selected_options['post_time']){
                 end_date = selected_options['post_time']['max'];
                 endDate  = new Date(end_date);
+                endPreSelect = true; 
             }
-            $('.dateclear').removeClass('hide');
         }
     }
 
@@ -38,6 +39,7 @@ function apply_date_picker(selected_options){
     timeFilterConStart.find('.start-date').text(start_date);
     timeFilterConEnd.find('.end-date').text(end_date);
 
+
     timeInputFilterStart.datepicker({
         date: new Date(),
         language: 'en',
@@ -49,7 +51,12 @@ function apply_date_picker(selected_options){
             if(formatted!=""){
                 trigClrStart=true;
                 $('#calendar-start').addClass('calendar-highlighted').removeClass('calendar-highlight');
-                timeInputFilterStart.trigger('change');
+                if(startPreSelect!=true){
+                    timeInputFilterStart.trigger('change');
+                }
+                else{
+                    startPreSelect = false;
+                }
             }
             else{
                 if(trigClrStart==true){
@@ -88,13 +95,18 @@ function apply_date_picker(selected_options){
         date: new Date(),
         language: 'en',
         dateFormat: '',
-        startDate: startDate,
+        startDate: endDate,
         onSelect: function(formatted, date, inst) {
             timeFilterConEnd.find('.end-date').text(formatted);
             if(formatted!=""){
                 trigClrEnd=true;
                 $('#calendar-end').addClass('calendar-highlighted').removeClass('calendar-highlight');
-                timeInputFilterEnd.trigger('change');
+                if(endPreSelect!=true){
+                    timeInputFilterEnd.trigger('change');
+                }
+                else{
+                    endPreSelect = false;
+                }
             }
             else{
                 if(trigClrEnd==true){
@@ -128,6 +140,13 @@ function apply_date_picker(selected_options){
         timeInputFilterEnd.data('datepicker').view = 'days';
         timeInputFilterEnd.data('datepicker').show();
     });
+
+    if(selected_options instanceof Object){
+        if('post_time' in selected_options){
+            timeInputFilterStart.data('datepicker').selectDate(startDate);
+            timeInputFilterEnd.data('datepicker').selectDate(endDate);
+        }
+    }
 
   },500);
 }

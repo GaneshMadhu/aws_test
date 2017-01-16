@@ -6,20 +6,20 @@
   - Url: http://test-iris-fe.herokuapp.com
   - Heroku App- test-iris-fe
   - Connects to Iris Engine Test Url: http://test-iris.universumglobal.com
-  - Connects to Universum Access Staging Url: http://stage.universumacess.com
-  - Connects to Business Profile Staging Url: http://stg-businessprofile.universumglobal.com
+  - Connects to Universum Access Staging: http://stage.universumacess.com
+  - Connects to Business Profile Staging: http://stg-businessprofile.universumglobal.com
 - Staging
-  - Url: http://stg-iris-fe.herokuapp.com
+  -: http://stg-iris-fe.herokuapp.com
   - Heroku App- stg-iris-fe
-  - Connects to Iris Engine Staging Url: https://staging-iris.herokurapp.com
-  - Connects to Universum Access Staging Url: http://stg-access.universum-acess.com
-  - Connects to Business Profile Staging Url: http://stg-businessprofile.universumglobal.com
+  - Connects to Iris Engine Staging: https://staging-iris.herokurapp.com
+  - Connects to Universum Access Staging: http://stg-access.universum-acess.com
+  - Connects to Business Profile Staging: http://stg-businessprofile.universumglobal.com
 - Production
-  - Url: http://prod-iris-fe.herokuapp.com
+  -: http://prod-iris-fe.herokuapp.com
   - Heroku App- prod-iris-fe
-  - Connects to Iris Engine Production Url: https://iris.universumglobal.com
-  - Connects to Universum Access Production Url: http://universum-access.com
-  - Connects to Business Profile Production Url: http://businessprofile.universumglobal.com
+  - Connects to Iris Engine Production: https://iris.universumglobal.com
+  - Connects to Universum Access Production: http://universum-access.com
+  - Connects to Business Profile Production: http://businessprofile.universumglobal.com
  
 
 ## Setting up the development environment

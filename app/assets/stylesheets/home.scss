@@ -339,6 +339,15 @@ $xlarge-up: "(min-width: 1280px)";
   width: calc(100% - 70px);
 }
 
+.iframely-widget-container {
+    overflow: hidden;
+}
+
+#ug-post-content .post-card .ugpc-post.bottom-image {
+    min-height: 225px;
+    padding: 0;
+}
+
 /** initial setup **/
 .nano {
   position : relative;

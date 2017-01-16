@@ -1,61 +1,64 @@
 <div class="rpc-header">
-    <p class="ugpc-kind type-<%= post["sponsored_or_organic"].downcase %>"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i> <%= post["sponsored_or_organic"] %></p>
-    <div>
-      <%if rank <= 10 && rank != 0 %>
-        <span class="ugpc-rank"><%=rank%> <sup><%= rank.ordinalize.last(2)%></sup></span>
-      <% end %>
-      <div class="rpc-attribute tooltip-trigger" style="color: <%= post["trait_group"]["properties"]["color"] %>"><%= post["trait"]["code"] %>
-        <input type="hidden" value='<%= post["trait_group"]["properties"]["color"] %>'>
-        <div class="ugpc-attribute tooltip" style="background: <%= post["trait_group"]["properties"]["color"] %>;">
-          <span><span class="aca-nickname"><%= post["trait"]["code"] %></span></span>
-          <span class="aca-name"><%= post["trait"]["name"]%></span>
+  <p class="ugpc-kind type-<%= post["sponsored_or_organic"].downcase %>"><i class="ug-icon i-<%= post["sponsored_or_organic"].downcase %>"></i> <%= post["sponsored_or_organic"] %></p>
+  <div>
+    <%if rank <= 10 && rank != 0 %>
+      <span class="ugpc-rank"><%=rank%> <sup><%= rank.ordinalize.last(2)%></sup></span>
+    <% end %>
+    <div class="rpc-attribute tooltip-trigger" style="color: <%= post["trait_group"]["properties"]["color"] %>"><%= post["trait"]["code"] %>
+      <input type="hidden" value='<%= post["trait_group"]["properties"]["color"] %>'>
+      <div class="ugpc-attribute tooltip" style="background: <%= post["trait_group"]["properties"]["color"] %>;">
+        <span><span class="aca-nickname"><%= post["trait"]["code"] %></span></span>
+        <span class="aca-name"><%= post["trait"]["name"]%></span>
+      </div>
+    </div>
+    <% if post['country_code'] %>
+      <div class="rpc-attribute">
+        <div class="ugpc-attribute" title="<%= post['company_group_name'] %>">
+          <span class="flag-icon flag-icon-<%= (post['country_code'] || "").downcase %>"></span>
         </div>
       </div>
-      <% if post['country_code'] %>
-        <div class="rpc-attribute">
-          <div class="ugpc-attribute" title="<%= post['company_group_name'] %>">
-            <span class="flag-icon flag-icon-<%= (post['country_code'] || "").downcase %>"></span>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <% end %>
   </div>
-  <article class="ugpc-post bottom-image">
-    <a class="embedly-card" href="<%= post["post_url"] %>" data-card-controls="0"></a>
-    <!-- <header>
+</div>
+<article class="ugpc-post bottom-image">
+  <% if post["url_type"] == "linkedin" %>
+    <header>
       <figure class="ugpc-social-avatar">
-        <img src=<%#= post["company_logo"]%>>
+        <img src=<%= post["company_logo"]%>>
       </figure>
       <div class="ugpc-social-info">
-        <h5 class="name"><%#= post["company_name"] %></h5>
-        <p class="date"><%#= formatted_time(post["post_time"]) %></p>
+        <h5 class="name"><%= post["company_name"] %></h5>
+        <p class="date"><%= formatted_time(post["post_time"]) %></p>
       </div>
-      <%# if post["url_type"] == "facebook"%>
+      <% if post["url_type"] == "facebook"%>
         <a href="#!" class="ug-icon i-fb"></a>
-      <%# else %>
-        <a href="#!" class="ug-icon i-<%#= "#{post["url_type"]}"%>"></a>
-      <%# end %>
+      <% else %>
+        <a href="#!" class="ug-icon i-<%= "#{post["url_type"]}"%>"></a>
+      <% end %>
     </header>
     <div class="content">
-    <div class="ugpc-entry-text">
-    <p><%#= post["post_content"] %></p>
-    <a href="<%#= post["post_url"]%>" target="_blank" class="lnk-continue">continue reading</a>
-    </div>
+      <div class="ugpc-entry-text">
+        <p><%= post["post_content"] %></p>
+        <a href="<%= post["post_url"]%>" target="_blank" class="lnk-continue">continue reading</a>
+      </div>
       <figure class="ugpc-post-image">
         <a href="#!">
-          <%#= image_view(post["attachment_url"], "") %>
+          <%= image_view(post["attachment_url"], "") %>
         </a>
       </figure>
       <div class="ugpc-stats">
         <div class="stat">
-          <p><i class="ug-icon i-likes"></i><span class="number"><%#= post["likes"] %></span></p>
+          <p><i class="ug-icon i-likes"></i><span class="number"><%= post["likes"] %></span></p>
         </div>
         <div class="stat">
-          <p><i class="ug-icon i-comments"></i><span class="number"><%#= post["comments"] %></span></p>
+          <p><i class="ug-icon i-comments"></i><span class="number"><%= post["comments"] %></span></p>
         </div>
         <div class="stat">
-          <p><i class="ug-icon i-shares"></i><span class="number"><%#= post["shares"] %></span></p>
+          <p><i class="ug-icon i-shares"></i><span class="number"><%= post["shares"] %></span></p>
         </div>
       </div>
-    </div> -->
-  </article>
+    </div>
+  <% else %>
+    <a href="<%= post["post_url"] %>" data-lazy data-iframely-url></a>
+  <% end %>
+</article>

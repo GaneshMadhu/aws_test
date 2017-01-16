@@ -55,7 +55,7 @@
         </div>
       </div>
     <% else %>
-      <a class="embedly-card" href="<%= post["post_url"] %>" data-card-controls="0"></a>
+    <a href="<%= post["post_url"] %>" data-lazy data-iframely-url></a>
     <% end %>
   </article>
 </div>

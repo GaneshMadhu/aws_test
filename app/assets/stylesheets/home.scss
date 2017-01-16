@@ -338,6 +338,15 @@ $xlarge-up: "(min-width: 1280px)";
   }
 }
 
+.iframely-widget-container {
+    overflow: hidden;
+}
+
+#ug-post-content .mvp-ranked-posts .post-card .ugpc-post.bottom-image {
+    min-height: 250px;
+    padding: 0;
+}
+
 /** initial setup **/
 .nano {
   position : relative;

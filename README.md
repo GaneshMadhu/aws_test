@@ -239,5 +239,5 @@ If you don't provide `ACCESS_ASSET_HOST`, `access.lvh.me:3002` will be used for 
 
 ### Necessary ENV variables
 
-The nececssary ENV variables will be shared as a seperate document.
+The nececssary ENV variables will be shared as a separate document.
 

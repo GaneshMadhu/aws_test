@@ -44,12 +44,6 @@ function set_trait_details(){
   },150);
 }
 
-function init_iframely(){
-  setTimeout(function(){
-    iframely.load();
-  },1000);
-}
-
 $(document).ready(function(){
   safe_img_load();
   var path= $(location).attr('pathname');

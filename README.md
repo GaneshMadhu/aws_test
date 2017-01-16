@@ -12,14 +12,14 @@
   - Url: http://stg-iris-fe.herokuapp.com
   - Heroku App- stg-iris-fe
   - Connects to Iris Engine Staging Url: https://staging-iris.herokurapp.com
-  - Connects to Universum Access Staging Url: http://stage.universumacess.com
+  - Connects to Universum Access Staging Url: http://stg-access.universum-acess.com
   - Connects to Business Profile Staging Url: http://stg-businessprofile.universumglobal.com
 - Production
   - Url: http://prod-iris-fe.herokuapp.com
   - Heroku App- prod-iris-fe
   - Connects to Iris Engine Production Url: https://iris.universumglobal.com
-  - Connects to Universum Access Production Url: http://access.universumglobal.com
-  - Connects to Business Profile Production Url: http://stg-businessprofile.universumglobal.com
+  - Connects to Universum Access Production Url: http://universum-access.com
+  - Connects to Business Profile Production Url: http://businessprofile.universumglobal.com
  
 
 ## Setting up the development environment
@@ -42,7 +42,6 @@ git clone git@github.com:Universum/businessprofile.git
 cd businessprofile
 bundle install
 ```
-
 
 ### DB setup & seed
 
@@ -68,14 +67,14 @@ For available data see `./lib/csv/listing/`.
 
 ### ApiKey
 
-Set up and api key for Access on the rails console:
+Set up an api key for Iris on the rails console:
 
 ```ruby
-ApiKey.create access_app_name: "iris-fe", access_token: "<same as BP_TOKEN in .env>"
+ApiKey.create access_app_name: "iris-fe", access_token: < Create a random token >
 ```
 
 **Notes:**
- - The `access_token` is the same as the BP_TOKEN in the `.env` of Access.
+ - The `access_token` should be the same as the BP_TOKEN in the `.env` of Iris.
 
 ### Admin user
 
@@ -124,8 +123,6 @@ bundle install
 ```
 
 ### Necessary ENV variables
-
-create a file named `.env` in the root of the checkout:
 
 ```sh
 export BP_TOKEN=<execute 'ApiKey.where(access_app_name: "universum_access").first.access_token' in rails console for BP>
@@ -181,8 +178,8 @@ Please follow the steps given in this link to setup Iris Engine: Url: https://gi
 ## Iris FrontEnd setup
 
 ```sh
-git clone git@github.com:Universum/project-coconut-rails.git
-cd iris
+git clone git@github.com:Universum/iris-fe.git
+cd iris-fe
 bundle install
 ```
 
@@ -191,6 +188,7 @@ bundle install
 ```sh
 # == Create database and migrate ==
 rake db:create db:migrate
+```
 
 ### Starting the server
 
@@ -210,7 +208,7 @@ This application consumes [UniversumAccess (UA)](https://github.com/Universum/un
 
 ### Subdomains
 
-This app expects to be on `http://accesss.whatever.com`, `http://stg-access.whatever.com.` ...
+This app expects to be on `http://access.whatever.com`, `http://stg-access.whatever.com.` ...
 
 So, to develop locally you must also use these subdomains, otherwise the routing rules will not match.
 
@@ -241,6 +239,5 @@ If you don't provide `ACCESS_ASSET_HOST`, `access.lvh.me:3002` will be used for 
 
 ### Necessary ENV variables
 
-Create a file named `.env` in the root directory of the checkout. You must at least have the following variables in there:
-
+The nececssary ENV variables will be shared as a seperate document.
 

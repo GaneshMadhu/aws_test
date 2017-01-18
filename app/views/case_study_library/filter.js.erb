@@ -1,4 +1,13 @@
 $("#ug-post-content").html("<%= escape_javascript(render partial: 'posts_content', locals: { data: (@posts['data'] rescue []), meta: (@posts['meta'] rescue [])} ) %>");
+<% data = @posts['filters'] %>
+<% if data %>
+  <% ["company_groups","companies","platforms"].each do |type| %>
+    <% next if data.blank? or data[type].blank? or data[type].compact.blank? %>
+    var wrapper = "#<%= type %>_filter_wrapper";
+    $(wrapper).html("<%= escape_javascript(react_component('FilterSelect', SelectFilterParams.new(data[type], type, filter_case_study_library_index_path, (@posts['selected'] || {})).options)) %>");
+    ReactRailsUJS.mountComponents(wrapper);
+  <% end %>
+<% end %>
 remove_loaders();
 apply_hover_for_attributes();
 safe_img_load();

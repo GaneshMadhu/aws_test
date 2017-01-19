@@ -9,7 +9,9 @@
       <div class="nano-content">
         <% select_filters.each do |type| %>
           <% next if data.blank? or data[type].blank? or data[type].compact.blank? %>
-          <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type, api_path,selected_options).options) %>
+          <div id=<%= "#{type}_filter_wrapper" %>>
+            <%= react_component('FilterSelect', SelectFilterParams.new(data[type], type, api_path,selected_options).options) %>
+          </div>
         <% end %>
 
         <% if post_type %>

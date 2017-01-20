@@ -59,6 +59,7 @@
       </div>
     </div>
   <% else %>
-    <a href="<%= post["post_url"] %>" data-lazy data-iframely-url></a>
+  <div class="see-more-backdrop"><a class="post-url-button" href="<%= post["post_url"] %>" target="_blank">See More</a></div>
+  <a href="<%= post["post_url"] %>" data-lazy data-iframely-url></a>
   <% end %>
 </article>

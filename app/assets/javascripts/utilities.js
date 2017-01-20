@@ -62,7 +62,19 @@ $(document).ready(function(){
   });
 
   $(".nano").nanoScroller({ alwaysVisible: true });
+  
+  $('.post-url-button').hover(
+    function () {
+    $(this).parent().addClass('add-backdrop');
+    }, 
+    function () {
+    $(this).parent().removeClass('add-backdrop');
+    }
+  );
 
+  $('.ug-card').resize(function() {
+    console.log(2);
+  });
 });
 
 function safe_img_load(){

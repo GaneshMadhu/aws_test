@@ -180,6 +180,15 @@ Please follow the steps given in this link to setup Iris Engine: Url: https://gi
 ```sh
 git clone git@github.com:Universum/iris-fe.git
 cd iris-fe
+```
+
+```sh
+Iris Front-End relies on certain gems that have limited access, for example: sso-client, bpmodels etc. In order to access these gems we have added a separate github account, the token for which is shared along with the other ENV variables document. To configure this, please execute the following command in the terminal:
+
+bundle config --local GITHUB__COM <access token for account>:x-oauth-basic
+
+Once this is done, you can proceed with bundle:
+
 bundle install
 ```
 

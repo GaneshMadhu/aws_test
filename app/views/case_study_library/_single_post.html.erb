@@ -21,6 +21,7 @@
   </div>
 </div>
 <article class="ugpc-post bottom-image">
+  <div class="see-more-backdrop"><a class="post-url-button" href="<%= post["post_url"] %>" target="_blank">See More</a></div>
   <% if post["url_type"] == "linkedin" %>
     <header>
       <figure class="ugpc-social-avatar">
@@ -59,7 +60,6 @@
       </div>
     </div>
   <% else %>
-  <div class="see-more-backdrop"><a class="post-url-button" href="<%= post["post_url"] %>" target="_blank">See More</a></div>
   <a href="<%= post['post_url'] %>" data-lazy data-iframely-url></a>
   <% end %>
 </article>

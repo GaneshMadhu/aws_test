@@ -34,6 +34,15 @@ function apply_hover_for_attributes(){
     var bg_value = $(this).find('input[type=hidden]').val();
     $(this).css('background-color','#fff');
   });
+
+  $('.post-url-button').hover(
+    function () {
+    $(this).parent().addClass('add-backdrop');
+    }, 
+    function () {
+    $(this).parent().removeClass('add-backdrop');
+    }
+  );
 }
 
 function set_trait_details(){

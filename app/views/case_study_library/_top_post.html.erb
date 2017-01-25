@@ -14,6 +14,7 @@
   </div>
 
   <article class="ugpc-post bottom-image">
+    <div class="see-more-backdrop"><a class="post-url-button" href="<%= post["post_url"] %>" target="_blank">See More</a></div>
     <% if post["url_type"] ==  "linkedin" %>
       <!-- <span class="ugpc-rank first">1<sup>st</sup></span> -->
       <header>
@@ -55,8 +56,7 @@
         </div>
       </div>
     <% else %>
-      <!-- <a href="<%#= post["post_url"] %>" data-lazy data-iframely-url></a> -->
-      <a href="https://www.facebook.com/Mallikarjunay/posts/1590557097627426" data-lazy data-iframely-url></a>
+      <a href="<%= post['post_url'] %>"  data-iframely-url></a>
     <% end %>
   </article>
 </div>

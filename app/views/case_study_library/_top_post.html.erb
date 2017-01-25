@@ -32,7 +32,6 @@
             <span title="<%= post['company_group_name'] %>" class="flag-icon flag-icon-<%= (post['country_code'] || "").downcase %> top_post_flag_style"></span>
           </a>
         <% end %>
-
       </header>
       <div class="content">
         <div class="ugpc-entry-text">
@@ -57,7 +56,7 @@
         </div>
       </div>
     <% else %>
-    <a href="<%= post['post_url'] %>"  data-iframely-url></a>
+      <a href="<%= post['post_url'] %>"  data-iframely-url></a>
     <% end %>
   </article>
 </div>

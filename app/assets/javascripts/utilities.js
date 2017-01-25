@@ -66,6 +66,16 @@ $(document).ready(function(){
     $(".ugm-column").removeClass("expanded");
     $(this).addClass("expanded");
   });
+  $('.ug-filters').on('mousewheel DOMMouseScroll scrollstop touchmove', function(e){
+      $('.ug-filters').trigger('scroll');
+  });
+  $(".nano").nanoScroller({ alwaysVisible: true });
+  $(document).on('click', function(event) {
+    if (!$(event.target).is('.datepicker *,.datepicker--pointer,.datepicker--nav,.datepicker--nav-action,.datepicker--nav-title,.datepicker--nav-title *,.datepicker--content,.datepicker--days,.datepicker--days-names,.datepicker--day-name,.datepicker--cells,.datepicker--cell,#ugf-time-formatted-start,#ugf-time-formatted-start *,.datepickers-container *,.datepicker--nav-action *,#ugf-time-formatted-end,#ugf-time-formatted-end *,.ugff-time,ugff-time *,.datepickers-container,.datepickers-container *')){
+          $('#ugf-time-start').data('datepicker').hide();
+          $('#ugf-time-end').data('datepicker').hide();
+      }
+  });
 });
 
 function safe_img_load(){

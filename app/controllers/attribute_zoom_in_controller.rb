@@ -1,6 +1,7 @@
 class AttributeZoomInController < ApplicationController
 
   before_action :check_query_params, only: :index
+  skip_before_action :ensure_iris_customer!, except: :index
 
   def index
     filter_data "post_metrics"

@@ -3,6 +3,8 @@ class SocialMediaPerformanceController < ApplicationController
   # before_action :set_company_and_country, only: [:index]
   # before_action :set_company_filter
   before_action :check_query_params, only: :index
+  before_action :check_session_variables
+  skip_before_action :ensure_iris_customer!, except: :index
 
   def index
     filter_data "tagging_metrics"
@@ -20,7 +22,11 @@ class SocialMediaPerformanceController < ApplicationController
     @tagging_metrics  = iris.search(url, filters)
   end
 
-  # private
+  private
+
+  def check_session_variables
+    redirect_to root_path unless session[:company_precode].present?
+  end
 
   # def set_company_and_country
   #   session['company_name']       = params['company_name'] if params['company_name']

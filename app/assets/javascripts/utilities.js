@@ -34,6 +34,15 @@ function apply_hover_for_attributes(){
     var bg_value = $(this).find('input[type=hidden]').val();
     $(this).css('background-color','#fff');
   });
+
+  $('.post-url-button').hover(
+    function () {
+    $(this).parent().addClass('add-backdrop');
+    }, 
+    function () {
+    $(this).parent().removeClass('add-backdrop');
+    }
+  );
 }
 
 function set_trait_details(){
@@ -45,7 +54,6 @@ function set_trait_details(){
 }
 
 $(document).ready(function(){
-  safe_img_load();
   var path= $(location).attr('pathname');
   $("#mega-menu ul li").each(function() {
     var loop= $(this);
@@ -57,22 +65,14 @@ $(document).ready(function(){
     $(".ugm-column").removeClass("expanded");
     $(this).addClass("expanded");
   });
-});
-
-function safe_img_load(){
-  var safeimageregex = new RegExp('https*%3A[^&]+');
-  $( ".ugpc-post-image" ).each(function() {
-    var img_tag = $(this).find('img');
-    var url=img_tag.attr('src');
-    if (safeimageregex.test(url)) {
-      var decodedurl = decodeURIComponent(url.match(safeimageregex)[0]);
-      var youtubeurlregex = new RegExp('i.ytimg.com[^.]+');
-      if(youtubeurlregex.test(decodedurl)) {
-        var youtubeembed = decodedurl.match(youtubeurlregex)[0].split('/')[2];
-        img_tag.remove();
-        $(this).html("<iframe class='postcard-video' src='https://www.youtube.com/embed/"+youtubeembed+"' frameborder='0' allowfullscreen></iframe>");
-      }
-      img_tag.attr('src',decodedurl);
-    }
+  $('.ug-filters').on('mousewheel DOMMouseScroll scrollstop touchmove', function(e){
+      $('.ug-filters').trigger('scroll');
   });
-}
+  $(".nano").nanoScroller({ alwaysVisible: true });
+  $(document).on('click', function(event) {
+    if (!$(event.target).is('.datepicker *,.datepicker--pointer,.datepicker--nav,.datepicker--nav-action,.datepicker--nav-title,.datepicker--nav-title *,.datepicker--content,.datepicker--days,.datepicker--days-names,.datepicker--day-name,.datepicker--cells,.datepicker--cell,#ugf-time-formatted-start,#ugf-time-formatted-start *,.datepickers-container *,.datepicker--nav-action *,#ugf-time-formatted-end,#ugf-time-formatted-end *,.ugff-time,ugff-time *,.datepickers-container,.datepickers-container *')){
+          $('#ugf-time-start').data('datepicker').hide();
+          $('#ugf-time-end').data('datepicker').hide();
+      }
+  });
+});

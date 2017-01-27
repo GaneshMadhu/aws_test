@@ -58,13 +58,15 @@
           <div class="ugh-actions"><a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a></div>
           <div class="ugh-description">Learn from your competition and if your social content is engaging, explore which themes/attributes prevail over time.</div>
         </header>
-        <div class="ug-card ugc-esmp">
-          <%= link_to "", social_media_performance_index_path, class: "box-link" %>
-          <header>
-            <h4>Employer Social Media Performance</h4>
-            <p>View data</p>
-          </header>
-        </div>
+        <% if session["company_precode"] %>
+          <div class="ug-card ugc-esmp">
+            <%= link_to "", social_media_performance_index_path, class: "box-link" %>
+            <header>
+              <h4>Employer Social Media Performance</h4>
+              <p>View data</p>
+            </header>
+          </div>
+        <% end %>
         <div class="ug-card ugc-azmi">
           <%= link_to "", attribute_zoom_in_index_path, class: "box-link" %>
           <header>

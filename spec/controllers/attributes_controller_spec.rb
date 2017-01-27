@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe AttributesController, type: :controller do
+
+  before {controller.class.skip_before_filter :authenticate_user!}
+
   describe '#index' do
     it 'gets the list of attributes' do
       get :index

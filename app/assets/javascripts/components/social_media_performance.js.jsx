@@ -86,7 +86,9 @@ function generateLeftChart(chart_data){
           lineColor: 'transparent',
           minorTickLength: 0,
           tickLength: 1,
-          zIndex: 1
+          zIndex: 1,
+          min: 0,
+          max: (parseInt(yAxisData.length)-1)
       }],
       yAxis: {
           title: {
@@ -167,12 +169,31 @@ function generateLeftChart(chart_data){
       },
 
       legend: {
-          enabled: false
+          backgroundColor: 'none',
+          shadow: false,
+          align: 'left',
+          verticalAlign: 'top',
+          x: 0,
+          y: -50,
+          useHTML: true,
+          floating: true,
+          padding: 2,
+          symbolHeight: 0,
+          symbolWidth: 0,
+          itemMarginBottom: 10,
+          itemStyle: {
+              lineHeight: '14px',
+              fontSize: '16px',
+              fontWeight: '500'
+          }
       },
 
       series: [{
-          name: 'Posts',
-          data: yAxisData
+          name: 'Volume of posts &nbsp;&nbsp;&nbsp;<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip">Number of posts evaluated against the attributes.</span></span">',
+          data: yAxisData,
+          color: "transparent",
+          zIndex: 2,
+          enableMouseTracking: true
       }]
   });
 }
@@ -307,14 +328,32 @@ function generateRightChart(chart_data){
           minorTickLength: 0,
           tickLength: 1,
           labels: { enabled: false },
-          min: 0
+          min: 0,
+          max: (parseInt(series.length)-1) 
+
       },
       legend: {
-          enabled: false
+          backgroundColor: 'none',
+          shadow: false,
+          align: 'right',
+          verticalAlign: 'top',
+          x: 0,
+          y: -50,
+          useHTML: true,
+          floating: true,
+          padding: 2,
+          symbolHeight: 0,
+          symbolWidth: 0,
+          itemMarginBottom: 10,
+          itemStyle: {
+              lineHeight: '14px',
+              fontSize: '16px',
+              fontWeight: '500'
+          }
       },
 
       series: [{
-          name: 'Post Engagement',
+          name: 'Average engagement score &nbsp;&nbsp;&nbsp;<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip tooltip-left">Avg engagement score per attribute is calculated by taking all the posts evaluated against the attribute. Engagement score ranges from 0 to 1000.</span></span">',
           data: series
       }]
   });

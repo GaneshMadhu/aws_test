@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe HomepageController, type: :controller do
+
+  before {controller.class.skip_before_filter :authenticate_user!}
+
   describe '#index' do
     it 'have 200 success code' do
       get :index

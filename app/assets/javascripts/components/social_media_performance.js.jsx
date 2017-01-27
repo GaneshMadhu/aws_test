@@ -189,7 +189,7 @@ function generateLeftChart(chart_data){
       },
 
       series: [{
-          name: 'Volume of posts &nbsp;&nbsp;&nbsp;<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip">Number of posts evaluated against the attributes.</span></span">',
+          name: 'Volume of posts &nbsp;&nbsp;&nbsp;<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip">Total number of posts within each attribute made by the selected brand during the time frame specified in the filter.</span></span">',
           data: yAxisData,
           color: "transparent",
           zIndex: 2,
@@ -258,7 +258,7 @@ function generateRightChart(chart_data){
                   verticalAlign: 'top',
                   useHTML: true,
                   rotation: 0,
-                  text: '<span class="hc-plotband-label">Avg. engagement score -  '+(Math.round(avg * 100) / 100)+'</span>',
+                  text: '<span class="hc-plotband-label">Overall average engagement score -  '+(Math.round(avg * 100) / 100)+'</span>',
                   x: 0,
                   y: (parseInt(series.length * 50)/2)
               },
@@ -353,7 +353,7 @@ function generateRightChart(chart_data){
       },
 
       series: [{
-          name: 'Average engagement score &nbsp;&nbsp;&nbsp;<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip tooltip-left">Avg engagement score per attribute is calculated by taking all the posts evaluated against the attribute. Engagement score ranges from 0 to 1000.</span></span">',
+          name: 'Average engagement score &nbsp;&nbsp;&nbsp;<span" class="tooltip-trigger"><i class="ug-icon i-info"></i><span class="tooltip tooltip-left">The average engagement score per attribute, which is calculated by taking into account Likes, Comments, Shares, and Audience Reception Rate. The engagement scores can range from 0 - 1000. For more detailed information check out the How Iris Works section.</span></span">',
           data: series
       }]
   });

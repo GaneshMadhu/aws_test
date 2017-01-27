@@ -5,6 +5,6 @@ if(has_data == 'true'){
 }
 else{
   	$("#post_metrics_chart_wrapper").html("<%= escape_javascript(render partial: 'shared/no_results' ) %>");
-   	set_trait_details();
 }
+set_trait_details();
 remove_loaders();

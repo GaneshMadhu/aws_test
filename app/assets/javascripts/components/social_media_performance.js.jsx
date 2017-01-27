@@ -86,7 +86,9 @@ function generateLeftChart(chart_data){
           lineColor: 'transparent',
           minorTickLength: 0,
           tickLength: 1,
-          zIndex: 1
+          zIndex: 1,
+          min: 0,
+          max: (parseInt(yAxisData.length)-1)
       }],
       yAxis: {
           title: {
@@ -326,7 +328,9 @@ function generateRightChart(chart_data){
           minorTickLength: 0,
           tickLength: 1,
           labels: { enabled: false },
-          min: 0
+          min: 0,
+          max: (parseInt(series.length)-1) 
+
       },
       legend: {
           backgroundColor: 'none',

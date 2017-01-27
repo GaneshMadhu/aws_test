@@ -1,16 +1,5 @@
 $("#ug-post-content").html("<%= escape_javascript(render partial: 'posts_content', locals: { data: (@posts['data'] rescue []), meta: (@posts['meta'] rescue [])} ) %>");
-<%
-  data  = @posts['filters'] rescue nil
-  reset = @posts['reset_options'] rescue nil
-%>
-<% if data && reset %>
-  <% reset['reset_filters'].each do |type| %>
-    <% next if data.blank? or data[type].blank? or data[type].compact.blank? %>
-    var wrapper = "#<%= type %>_filter_wrapper";
-    $(wrapper).html("<%= escape_javascript(react_component('FilterSelect', SelectFilterParams.new(data[type], type, filter_case_study_library_index_path, (reset['selected'] || {})).options)) %>");
-    ReactRailsUJS.mountComponents(wrapper);
-  <% end %>
-<% end %>
+$("#dynamic_reset_filters").html("<%= escape_javascript(render partial: 'shared/reset_filters', locals: { data: (@posts['filters'] rescue nil), reset: (@posts['reset_options'] rescue nil) }) %>").html('');
 remove_loaders();
 apply_hover_for_attributes();
 iframely.load();

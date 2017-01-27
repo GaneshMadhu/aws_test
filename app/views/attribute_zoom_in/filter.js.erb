@@ -7,4 +7,6 @@ else{
   	$("#post_metrics_chart_wrapper").html("<%= escape_javascript(render partial: 'shared/no_results' ) %>");
    	set_trait_details();
 }
+$("#dynamic_reset_filters").html("<%= escape_javascript(render partial: 'shared/reset_filters', locals: { data: (@post_metrics['filters'] rescue nil), reset: (@post_metrics['reset_options'] rescue nil) }) %>").html('');
 remove_loaders();
+

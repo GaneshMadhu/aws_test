@@ -46,29 +46,29 @@
               <ul>
                 <li>
                   <%= link_to homepage_index_path do %>
-                    <i class="ug-icon i-dashboard"></i>Iris Homepage
+                    <i class="ug-icon i-dashboard"></i>Home
                   <% end %>
                 </li>
-                <% if session["company_precode"] %>
+                <% if true %>
                   <li>
                     <%= link_to social_media_performance_index_path do %>
-                      <i class="ug-icon i-compperf"></i>Employer Social Media Performance
+                      <i class="ug-icon i-compperf"></i>Social Performance by Employer
                     <% end %>
                   </li>
                 <% end %>
                 <li>
                   <%= link_to attribute_zoom_in_index_path do %>
-                    <i class="ug-icon i-zoomin"></i>Attribute Zoom-In
+                    <i class="ug-icon i-zoomin"></i>Social Performance by Attribute
                   <% end %>
                 </li>
                 <li>
                   <%= link_to case_study_library_index_path do %>
-                    <i class="ug-icon i-postlib"></i>Case Study Library
+                    <i class="ug-icon i-postlib"></i>Social Post Library
                   <% end %>
                 </li>
                 <li>
                   <%= link_to attributes_path do %>
-                    <i class="ug-icon i-drivers"></i>The Universum Drivers of Employer Attractiveness
+                    <i class="ug-icon i-drivers"></i>How Iris Breaks Down Your Brand
                   <% end %>
                 </li>
               </ul>
@@ -78,9 +78,8 @@
                 <h4>SUPPORT MATERIAL</h4>
               </header>
               <ul>
-                <li><a href="<%= faqs_path %>" target="_blank"><i class="ug-icon i-faq"></i>FAQ</a></li>
-                <li><a href="mailto:<%= ENV["SUPPORT_EMAIL"] %>"><i class="ug-icon i-support"></i>Support</a></li>
-                <li><a href="mailto:<%= ENV["SUPPORT_EMAIL"] %>"><i class="ug-icon i-ideas_feedback"></i>Ideas & Feedback</a></li>
+                <li><a href="<%= faqs_path %>" target="_blank"><i class="ug-icon i-faq"></i>FAQ</a></li>                
+                <li><a href="mailto:<%= ENV["SUPPORT_EMAIL"] %>"><i class="ug-icon i-ideas_feedback"></i>Support & Feedback</a></li>
               </ul>
             </div>
             <div class="ugm-column">
@@ -88,7 +87,7 @@
                 <h4>ACCOUNT</h4>
               </header>
               <ul>
-                <li><a href="#!"><i class="ug-icon i-adminconsole"></i>Account Settings</a>
+                <!-- <li><a href="#!"><i class="ug-icon i-adminconsole"></i>Account Settings</a> -->
                 <li><a href="<%= clear_session_path %>"><i class="ug-icon i-logout" id="logout_link"></i>Logout</a></li>
                 <li><a href="<%= privacy_policy_path %>" class="no-icon" target="_blank">Privacy Policy</a></li>
                 <li><a href="<%= terms_and_conditions_path %>" class="no-icon" target="_blank">Terms & Conditions</a></li>

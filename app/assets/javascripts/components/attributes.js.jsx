@@ -72,7 +72,7 @@ var TraitGroup = React.createClass({
     var active = (index == 0) ? "active" : "";
     return (
       <li className={active}>
-          <input type='hidden' class='driver_color' value={this.props.category.properties.color} />
+          <input type='hidden' className='driver_color' value={this.props.category.properties.color} />
           <a href="#" data-filter={this.props.filter}>
               {this.props.category.name.replace(" ","\n")}
           </a>

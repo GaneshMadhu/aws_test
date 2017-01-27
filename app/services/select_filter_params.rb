@@ -57,7 +57,7 @@ class SelectFilterParams
       when filter_social_media_performance_index_path
         {
           attribute: "Search from the list of 40 attributes of employer attractiveness",
-          country:   "The country/s of your subscription",
+          country:   "The country/countries of your subscription",
           company:   "Search from the list of employers within your subscription",
           platform:  "Search from the list of social media platforms within your subscription",
           industry:  "Search from the list of industries within your subscription",

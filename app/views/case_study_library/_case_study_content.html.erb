@@ -1,7 +1,7 @@
 <!-- start post-performance cards  -->
 <section class="ug-hand">
   <header>
-    <h3>Explore the most and least engaging social media posts</h3>
+    <h3>Social performance scale</h3>
     <div class="ugh-actions">
       <div class="custom-select">
         <select name="ugh-sortby" id="" class="ugh-sortby" placeholder="Sort by" onchange="javascript: rest_api_call('<%= filter_case_study_library_index_path %>');">
@@ -11,7 +11,7 @@
       </div>
       <a href="#!" class="ugh-show-description"><span class="ughsd-close">Show</span><span class="ughsd-open">Hide</span><span class="hide-on-small"> description</span></a>
     </div>
-    <div class="ugh-description">The library of posts shows you how social media posts perform. The rank is built based on the engagement score of each post.</div>
+    <div class="ugh-description">Discover which social media posts are the most and least engaging, ranked based on the engagement score of each post.</div>
   </header>
   <div id="ug-post-content">
     <%= render 'posts_content', data: data, meta: meta %>

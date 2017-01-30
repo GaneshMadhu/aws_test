@@ -59,7 +59,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use postgres as the database for Active Record
-gem 'pg'
+# gem 'pg'
 
 # for integrarion with access
 gem 'universum_sso_client', '0.3.0',   git: 'https://github.com/Universum/sso_client_engine.git', tag: '0.3.0'

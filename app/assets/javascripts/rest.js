@@ -12,6 +12,7 @@ function make_ajax(uri, method, data, path) {
       cache: false,
       data: data ? data : {},
       error: function(jqXHR) {
+        if(jqXHR.status && jqXHR.status != 200)
           console.log("ajax error " + jqXHR.status);
       }
   };

@@ -1,4 +1,5 @@
 $("#ug-post-content").html("<%= escape_javascript(render partial: 'posts_content', locals: { data: (@posts['data'] rescue []), meta: (@posts['meta'] rescue [])} ) %>");
+$("#dynamic_reset_filters").html("<%= escape_javascript(render partial: 'shared/reset_filters', locals: { data: (@posts['filters'] rescue nil), reset: (@posts['reset_options'] rescue nil) }) %>").html('');
 remove_loaders();
 apply_hover_for_attributes();
 iframely.load();

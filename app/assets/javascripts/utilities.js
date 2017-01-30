@@ -38,7 +38,7 @@ function apply_hover_for_attributes(){
   $('.post-url-button').hover(
     function () {
     $(this).parent().addClass('add-backdrop');
-    }, 
+    },
     function () {
     $(this).parent().removeClass('add-backdrop');
     }

@@ -46,7 +46,7 @@ class CheckQueryParams
     params['filter_query'] ||= {}
     case params['controller']
       when 'attribute_zoom_in'
-        params['filter_query']['post_time']  = {'max': Date.today.strftime("%m/%d/%y"), 'min': (Date.today - 1.years).strftime("%m/%d/%y")} if params['filter_query'].blank? && params['filter_query']['post_time'].blank?
+        params['filter_query']['post_time']  = {'max': Date.today.end_of_month.strftime("%m/%d/%y"), 'min': (Date.today.end_of_month - 1.year + 1.day).strftime("%m/%d/%y")} if params['filter_query'].blank? && params['filter_query']['post_time'].blank?
         params['filter_query']['trait.code'] = ENV['ZOOMIN_DEFAULT_TRAIT'] if params['filter_query']['trait.code'].blank?
       when 'social_media_performance'
         params["filter_query"]["company_precode"] = session[:company_precode].to_s if session[:company_precode]
